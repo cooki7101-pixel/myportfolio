@@ -1,0 +1,6 @@
+import Section from '../../components/Section'
+import ProjectHero from '../../components/ProjectHero'
+import ProjectNavigation from '../../components/ProjectNavigation'
+import ImageGrid from '../../components/ImageGrid'
+const images = ['https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1600&q=80','https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80','https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=1200&q=80']
+export default function Project02() { return <article className="project-page editorial"><ProjectHero number="02" category="Editorial Interface · 2024" title="Project Two" description="A looser, editorial canvas for projects where the narrative and visual rhythm lead." /><div className="editorial-feature" style={{ backgroundImage: `url(${images[0]})` }} role="img" aria-label="Editorial project feature" /><Section eyebrow="The idea" title="Let the work set the pace."><p className="editorial-intro">Use large type, generous margins, and changing image scales to give a project its own voice. This layout is intentionally different from Project One.</p><ImageGrid images={images.slice(1)} /></Section><blockquote>“The most interesting detail is often the one you almost missed.”</blockquote><ProjectNavigation current="02" /></article> }
