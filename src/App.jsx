@@ -1,12 +1,12 @@
-import { Routes, Route } from 'react-router-dom'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Home from './pages/Home'
-import About from './pages/About'
-import NotFound from './pages/NotFound'
-import Project01 from './pages/projects/Project01'
-import Project02 from './pages/projects/Project02'
-import Project03 from './pages/projects/Project03'
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import NotFound from "./pages/NotFound";
+import Project01 from "./pages/projects/Project01";
+import Project02 from "./pages/projects/Project02";
+import Project03 from "./pages/projects/Project03";
 
 export default function App() {
   return (
@@ -24,5 +24,5 @@ export default function App() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
