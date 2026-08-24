@@ -1,1 +1,19 @@
 /* Component-specific styles can be added here as students customize the kit. */
+.section-intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 39rem;
+  word-break: break-word;
+}
+.section-intro-title {
+  color: var(--color-text);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.38;
+}
+.section-intro-description {
+  color: var(--color-text);
+  font-size: 1.125rem;
+  line-height: 1.48;
+}
