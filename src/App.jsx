@@ -2,11 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import NotFound from "./pages/NotFound";
-import Project01 from "./pages/projects/Project01";
-import Project02 from "./pages/projects/Project02";
-import Project03 from "./pages/projects/Project03";
+import ProjectPassing from "./pages/projects/ProjectPassing";
 
 export default function App() {
   return (
@@ -15,10 +12,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/works/project-01" element={<Project01 />} />
-          <Route path="/works/project-02" element={<Project02 />} />
-          <Route path="/works/project-03" element={<Project03 />} />
+          <Route path="/works/project-passing" element={<ProjectPassing />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

@@ -1,5 +1,0 @@
-import Section from '../components/Section'
-
-export default function About() {
-  return <div className="about-page"><section className="page-intro container"><p className="eyebrow">About</p><h1>Curious by default.<br /><em>Intentional</em> by design.</h1></section><Section eyebrow="01 / Introduction" title="A little about me."><div className="about-grid"><p className="about-lede">Hello, I’m Your Name — a UX/UI designer interested in the space between people, technology, and culture.</p><p>I enjoy making complex things feel simple and building visual systems that have room to breathe. This is placeholder copy: make it yours.</p></div></Section><Section eyebrow="02 / Profile" title="Experience & skills."><div className="profile-list"><div><h3>Experience</h3><p>2024 — Now · Independent Designer</p><p>2022 — 2024 · Design Studio</p></div><div><h3>Skills</h3><p>Research · UX/UI · Prototyping<br />Art Direction · Visual Design · Writing</p></div><div><h3>Contact</h3><a className="text-link" href="mailto:hello@example.com">hello@example.com ↗</a></div></div></Section></div>
-}
