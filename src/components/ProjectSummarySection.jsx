@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import '../componentsStyle/project-summary-section.css'
 
 function MetaItem({ label, children }) {
@@ -12,7 +13,17 @@ export default function ProjectSummarySection({
   role = '리서치,\nUIUX디자인,\n프로토타입,\n사용성 테스트',
   tools = 'Figma,\nFigjam,\nFigmaMake,\nClaude,\nLovable',
 }) {
-  const isTablet = property1 === 'Tablet'
+  const [isViewportTablet, setIsViewportTablet] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 1100px)')
+    const updateBreakpoint = () => setIsViewportTablet(mediaQuery.matches)
+    updateBreakpoint()
+    mediaQuery.addEventListener('change', updateBreakpoint)
+    return () => mediaQuery.removeEventListener('change', updateBreakpoint)
+  }, [])
+
+  const isTablet = property1 === 'Tablet' || isViewportTablet
   return (
     <section className={`project-summary project-summary--${isTablet ? 'tablet' : 'desktop'}`} data-node-id="291:1704">
       <div className="project-summary__overview">

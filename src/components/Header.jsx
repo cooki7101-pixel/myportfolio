@@ -1,9 +1,20 @@
 import { NavLink } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import Logo from './Logo'
 import '../componentsStyle/header.css'
 
 export default function Header({ breakpoint = 'desktop' }) {
-  const isMobile = breakpoint === 'mobile'
+  const [isViewportMobile, setIsViewportMobile] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 360px)')
+    const updateBreakpoint = () => setIsViewportMobile(mediaQuery.matches)
+    updateBreakpoint()
+    mediaQuery.addEventListener('change', updateBreakpoint)
+    return () => mediaQuery.removeEventListener('change', updateBreakpoint)
+  }, [])
+
+  const isMobile = breakpoint === 'mobile' || isViewportMobile
 
   return (
     <header className={`header header--${isMobile ? 'mobile' : 'desktop'}`} data-node-id="291:1660">
