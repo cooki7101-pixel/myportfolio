@@ -1,0 +1,56 @@
+@import url('/webfonts/static/neueMachina/neueMachina.css');
+@import url('/webfonts/static/wantedSans/WantedSans.css');
+
+.phase-intro {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 120px 0;
+  color: #333;
+  text-align: center;
+}
+
+.phase-intro__title,
+.phase-intro__headline,
+.phase-intro__description { width: 100%; margin: 0; }
+
+.phase-intro__title {
+  color: #757575;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 22px;
+  font-weight: 200;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.phase-intro__contents { display: flex; width: 100%; flex-direction: column; gap: 12px; align-items: flex-start; }
+
+.phase-intro__headline {
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 70px;
+  font-weight: 400;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.phase-intro__description {
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.phase-intro--tablet { padding: 100px 0; }
+.phase-intro--tablet .phase-intro__headline { font-size: 56px; }
+.phase-intro--mobile { padding: 100px 16px; }
+.phase-intro--mobile .phase-intro__headline { font-size: 36px; line-height: 1.14; }
+
+@media (max-width: 700px) {
+  .phase-intro--desktop { padding: 100px 16px; }
+  .phase-intro--desktop .phase-intro__headline { font-size: 36px; line-height: 1.14; }
+}

@@ -1,0 +1,20 @@
+@import url('/webfonts/static/wantedSans/WantedSans.css');
+.home-project { position: relative; box-sizing: border-box; display: flex; width: 498px; height: 629.472px; min-width: 360px; min-height: 455.04px; flex-direction: column; align-items: flex-start; justify-content: space-between; overflow: hidden; padding: 20px; border-radius: 10px; color: #fff; }
+.home-project__media, .home-project__gradient { position: absolute; inset: 0; width: 100%; height: 100%; }
+.home-project__media { background: #b2b2b2; }
+.home-project__media img, .home-project__media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.home-project__gradient { background: linear-gradient(180deg, transparent 53.775%, rgba(0,9,23,.2) 60.366%, rgba(0,9,23,.6) 68.19%, rgba(0,9,23,.752) 80.159%, #000917 95.665%); }
+.home-project__tags, .home-project__contents { position: relative; z-index: 1; width: 100%; }
+.home-project__tags { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+.home-project__tags span { padding: 10px; border: .5px solid #fff; border-radius: 100px; background: rgba(255,255,255,.1); font-family: 'Wanted Sans', var(--font-sans); font-size: 14px; line-height: 1.1; white-space: nowrap; }
+.home-project__contents { display: flex; max-width: 350px; flex-direction: column; gap: 16px; }
+.home-project__contents h3, .home-project__contents p { margin: 0; white-space: pre-line; }
+.home-project__contents h3 { font-family: 'Wanted Sans', var(--font-sans); font-size: 28px; font-weight: 700; line-height: 1.36; }
+.home-project__contents p { font-family: 'Wanted Sans', var(--font-sans); font-size: 18px; line-height: 1.5; }
+.home-project--tablet { width: 428px; height: 541px; padding: 20px; }
+.home-project--tablet .home-project__contents h3 { font-size: 28px; }
+.home-project--mobile { width: 306px; height: 387px; min-width: 0; min-height: 0; padding: 18px; }
+.home-project--mobile .home-project__tags { gap: 10px; }
+.home-project--mobile .home-project__contents { gap: 10px; }
+.home-project--mobile .home-project__contents h3 { font-size: 20px; }
+.home-project--mobile .home-project__contents p { font-size: 16px; }

@@ -1,0 +1,54 @@
+@import url('/webfonts/static/neueMachina/neueMachina.css');
+@import url('/webfonts/static/wantedSans/WantedSans.css');
+
+.section-intro {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  max-width: 664px;
+  word-break: break-word;
+  color: #212121;
+  font-style: normal;
+}
+
+.section-intro__eyebrow,
+.section-intro__title,
+.section-intro__description {
+  width: 100%;
+  margin: 0;
+}
+
+.section-intro__eyebrow {
+  color: #757575;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 16px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.section-intro__title {
+  color: #212121;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: normal;
+  line-height: 1.38;
+}
+
+.section-intro__description {
+  color: #212121;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.48;
+}
+
+@media (max-width: 700px) {
+  .section-intro__eyebrow { font-size: 14px; }
+  .section-intro__title { font-size: 22px; }
+  .section-intro__description { font-size: 16px; }
+}

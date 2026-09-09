@@ -1,0 +1,33 @@
+@import url('/webfonts/static/neueMachina/neueMachina.css');
+
+.header {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 68px;
+  background: rgba(222, 228, 242, 0.2);
+}
+
+.header__logo { line-height: 0; }
+.header__menu { display: flex; align-items: center; justify-content: flex-end; gap: 40px; }
+.header__menu a {
+  color: #333;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.header--mobile { width: 100%; min-height: 70px; padding: 18px 20px; }
+.header--mobile .header__menu { gap: 0; }
+.header--mobile .header__menu a { font-size: 18px; }
+
+@media (max-width: 700px) {
+  .header--desktop { padding: 18px 20px; }
+  .header--desktop .header__menu { gap: 16px; }
+  .header--desktop .header__menu a { font-size: 18px; }
+}
