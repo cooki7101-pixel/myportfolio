@@ -3,18 +3,23 @@ import { useEffect, useState } from 'react'
 import Logo from './Logo'
 import '../componentsStyle/header.css'
 
-export default function Header({ breakpoint = 'desktop' }) {
-  const [isViewportMobile, setIsViewportMobile] = useState(false)
+// Header component set breakpoints (Figma): desktop >= 682px, mobile <= 681px.
+const MOBILE_MAX_WIDTH = 681
+
+export default function Header({ breakpoint }) {
+  const [viewportBreakpoint, setViewportBreakpoint] = useState('desktop')
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 360px)')
-    const updateBreakpoint = () => setIsViewportMobile(mediaQuery.matches)
+    const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_MAX_WIDTH}px)`)
+    const updateBreakpoint = () => setViewportBreakpoint(mediaQuery.matches ? 'mobile' : 'desktop')
     updateBreakpoint()
     mediaQuery.addEventListener('change', updateBreakpoint)
     return () => mediaQuery.removeEventListener('change', updateBreakpoint)
   }, [])
 
-  const isMobile = breakpoint === 'mobile' || isViewportMobile
+  // `breakpoint` prop lets Storybook force a variant; otherwise it auto-detects from viewport width.
+  const resolvedBreakpoint = breakpoint ?? viewportBreakpoint
+  const isMobile = resolvedBreakpoint === 'mobile'
 
   return (
     <header className={`header header--${isMobile ? 'mobile' : 'desktop'}`} data-node-id="291:1660">

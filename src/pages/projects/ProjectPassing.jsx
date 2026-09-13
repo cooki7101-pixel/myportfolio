@@ -1,3 +1,5 @@
+import Header from '../../components/Header'
+import HomeFooter from '../../components/HomeFooter'
 import Hero from '../../components/Hero'
 import ProjectSummarySection from '../../components/ProjectSummarySection'
 import SectionIntro from '../../components/SectionIntro'
@@ -7,6 +9,7 @@ const passingHeroImage = '/assets/buyer-mapping.png'
 
 export default function ProjectPassing() {
   return <article className="project-passing" style={{ backgroundColor: '#DEE4F2' }}>
+    <Header />
     <Hero title="AI 티켓 사기 예방 ‘패싱’" mediaType="img" mediaSrc={passingHeroImage} />
     <div className="container">
       <ProjectSummarySection />
@@ -36,5 +39,6 @@ export default function ProjectPassing() {
         />
       </section>
     </div>
+    <HomeFooter />
   </article>
 }

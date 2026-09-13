@@ -1,3 +1,5 @@
+import Header from '../../components/Header'
+import HomeFooter from '../../components/HomeFooter'
 import '../../componentsStyle/about.css'
 
 const traits = [
@@ -18,7 +20,9 @@ const bioParagraphs = [
 
 export default function About() {
   return (
-    <div className="about" data-node-id="435:1566">
+    <div className="about" data-node-id="435:1566" style={{ backgroundColor: '#DEE4F2' }}>
+      <Header />
+
       <section className="about__content" data-node-id="435:1752">
         <h1 className="about__title" data-node-id="435:1666">
           HELLO!
@@ -48,6 +52,8 @@ export default function About() {
           ))}
         </div>
       </section>
+
+      <HomeFooter />
     </div>
   )
 }

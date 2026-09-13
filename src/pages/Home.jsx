@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import Header from "../components/Header";
+import HomeFooter from "../components/HomeFooter";
 import ProjectGrid from "../components/ProjectGrid";
 
 export default function Home() {
   return (
     <>
+      <Header />
       <section className="home-hero container">
         <p className="eyebrow">UX / UI Designer & Visual Thinker</p>
         <h1>
@@ -41,6 +44,7 @@ export default function Home() {
       >
         <ProjectGrid />
       </section>
+      <HomeFooter />
     </>
   );
 }

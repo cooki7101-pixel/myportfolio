@@ -1,5 +1,20 @@
+import { MemoryRouter } from 'react-router-dom'
 import HomeFooter from './HomeFooter'
-export default { title: 'Components/HomeFooter', component: HomeFooter, parameters: { layout: 'fullscreen' }, argTypes: { prop1: { control: 'select', options: ['기본', '베리언트2', '베리언트3'] }, email: { control: 'text' } }, args: { prop1: '기본' } }
+
+export default {
+  title: 'Layout/Footer',
+  component: HomeFooter,
+  parameters: { layout: 'fullscreen' },
+  argTypes: {
+    breakpoint: { control: 'select', options: ['desktop', 'tablet', 'mobile'] },
+    email: { control: 'text' },
+    linkedinUrl: { control: 'text' },
+    resumeUrl: { control: 'text' },
+  },
+  args: { breakpoint: 'desktop' },
+  decorators: [(Story) => <MemoryRouter initialEntries={['/']}><Story /></MemoryRouter>],
+}
+
 export const Default = {}
-export const Compact = { args: { prop1: '베리언트2' } }
-export const Mobile = { args: { prop1: '베리언트3' } }
+export const Tablet = { args: { breakpoint: 'tablet' } }
+export const Mobile = { args: { breakpoint: 'mobile' } }
