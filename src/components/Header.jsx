@@ -6,7 +6,7 @@ import '../componentsStyle/header.css'
 // Header component set breakpoints (Figma): desktop >= 682px, mobile <= 681px.
 const MOBILE_MAX_WIDTH = 681
 
-export default function Header({ breakpoint }) {
+export default function Header({ breakpoint, homeUrl = '/' }) {
   const [viewportBreakpoint, setViewportBreakpoint] = useState('desktop')
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Header({ breakpoint }) {
 
   return (
     <header className={`header header--${isMobile ? 'mobile' : 'desktop'}`} data-node-id="291:1660">
-      <NavLink className="header__logo" to="/" aria-label="Portfolio home">
+      <NavLink className="header__logo" to={homeUrl} aria-label="Portfolio home">
         <Logo variant={isMobile ? 'mobile-black' : 'desktop-black'} alt="김연수 포트폴리오" />
       </NavLink>
       <nav className="header__menu" aria-label="Main navigation">

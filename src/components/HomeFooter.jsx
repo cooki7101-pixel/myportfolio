@@ -22,6 +22,8 @@ export default function HomeFooter({
   // TODO: swap in the real LinkedIn / resume links whenever they're ready.
   linkedinUrl = '#',
   resumeUrl = '#',
+  // TODO: point this at the real index/home page URL whenever it's ready.
+  homeUrl = '/',
 }) {
   const [viewportBreakpoint, setViewportBreakpoint] = useState('desktop')
 
@@ -52,7 +54,9 @@ export default function HomeFooter({
         </nav>
       </div>
       <div className="home-footer__bottom">
-        <img src="/assets/footer-logo-desktop-white.svg" alt="김연수 포트폴리오" />
+        <Link to={homeUrl} aria-label="Portfolio home">
+          <img src="/assets/footer-logo-desktop-white.svg" alt="김연수 포트폴리오" />
+        </Link>
         <small>{copyright}</small>
       </div>
     </div>
