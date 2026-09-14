@@ -86,7 +86,7 @@
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px;
 }
 
 .home-project-list__tag {
@@ -101,8 +101,9 @@
   color: #fff;
   font-family: 'Wanted Sans', var(--font-sans);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.1;
+  text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.32);
   white-space: nowrap;
 }
 
@@ -134,36 +135,35 @@
   line-height: 1.5;
 }
 
-/* Below the desktop pin threshold (see DESKTOP_MIN_WIDTH in
-   HomeProjectList.jsx) the JS leaves the track untransformed and the
-   section's own height auto — so undo the pinned/clipped layout here and
-   just stack the cards normally. */
-@media (max-width: 899px) {
-  .home-project-list__sticky {
-    position: static;
-    height: auto;
-    padding: 100px 0 80px;
-    overflow: visible;
-  }
-
-  .home-project-list__track-wrap {
-    overflow: visible;
-  }
-
+/* Tablet (722–989px): same pinned/scroll-jacked motion as desktop — only the
+   card size shrinks (per Figma's tablet frame), everything else about the
+   sticky/overflow-visible setup above stays the same, so the row keeps
+   sliding in on scroll and stays unclipped past the page's side gutters. */
+@media (max-width: 989px) {
   .home-project-list__grid {
-    flex-direction: column;
-    width: 100%;
+    gap: 28px;
   }
 
   .home-project-list__card {
-    width: 100%;
+    flex: 0 0 428px;
+    width: 428px;
+    height: 541px;
+  }
+
+  .home-project-list__tags {
+    gap: 10px;
   }
 }
 
-@media (max-width: 700px) {
+/* Site-wide mobile breakpoint (<= 721px) — same pinned/scroll-jacked motion
+   as desktop/tablet (per the reference), just a smaller card size. Still a
+   horizontal row of cards, not a vertical stack. */
+@media (max-width: 721px) {
+  /* Figma's mobile frame is pt-142/pb-80 with content pinned to the bottom
+     (justify-end), not the top/bottom-60 centered box used above. */
   .home-project-list__sticky {
-    padding: 60px 0;
-    gap: 24px;
+    justify-content: flex-end;
+    padding: 142px 0 80px;
   }
 
   .home-project-list__heading {
@@ -171,6 +171,38 @@
   }
 
   .home-project-list__grid {
-    gap: 24px;
+    gap: 12px;
+  }
+
+  .home-project-list__card {
+    flex: 0 0 304px;
+    width: 304px;
+    height: 384px;
+    padding: 18px;
+  }
+
+  /* At this size the tag row is a razor-tight fit in Figma (270px available,
+     ~268px of tags+gaps) — any tiny font-metric difference pushes it onto a
+     second line. Force nowrap so it stays a single row like the design;
+     the card's own overflow:hidden clips the sub-pixel sliver if it occurs. */
+  .home-project-list__tags {
+    flex-wrap: nowrap;
+    gap: 8px;
+  }
+
+  .home-project-list__tag {
+    text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  .home-project-list__contents {
+    gap: 10px;
+  }
+
+  .home-project-list__title {
+    font-size: 20px;
+  }
+
+  .home-project-list__description {
+    font-size: 16px;
   }
 }

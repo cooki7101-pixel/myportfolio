@@ -11,7 +11,7 @@ const defaultProjects = [
     video: '/assets/home-passing.mp4',
   },
   {
-    tags: ['#AI AGENT', '#SENIOR', '#SENIOR'],
+    tags: ['#AI AGENT', '#SENIOR', '#REVAMP'],
     title: ['카카오T with 시니어 맞춤', 'AI 보이스 에이전트'],
     description: '디지털 사용에 어려움 겪는 시니어도 택시 호출을 끝까지 완료할 수 있도록 개선',
     to: '#',
@@ -73,8 +73,9 @@ function HomeProjectCard({ tags, title, description, to, image, video }) {
 // the edge; the point is continuous scroll-driven motion, not a snap-to-fit
 // finish. Nothing is clipped/hidden with CSS overflow to achieve this —
 // it's purely a transform, the full row is always in the DOM and paintable.
-// Disabled below DESKTOP_MIN_WIDTH — cards just stack normally on mobile/tablet.
-const DESKTOP_MIN_WIDTH = 900
+// Runs at every breakpoint — per the reference, the pinned/scroll-jacked
+// entrance motion is the same at desktop, tablet AND mobile, only the card
+// size shrinks (see the breakpoint sizing in home-project-list.css).
 
 export default function HomeProjectList({ projects = defaultProjects, id }) {
   const sectionRef = useRef(null)
@@ -92,13 +93,6 @@ export default function HomeProjectList({ projects = defaultProjects, id }) {
     let rafId = null
 
     const measure = () => {
-      if (window.innerWidth < DESKTOP_MIN_WIDTH) {
-        section.style.height = 'auto'
-        track.style.transform = 'none'
-        startTranslate = 0
-        endTranslate = 0
-        return
-      }
       // Reset transform before measuring so scrollWidth reflects the
       // untransformed layout, not whatever frame we're mid-animation on.
       track.style.transform = 'none'
