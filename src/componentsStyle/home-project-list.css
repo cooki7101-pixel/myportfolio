@@ -1,0 +1,176 @@
+@import url('/webfonts/static/neueMachina/neueMachina.css');
+@import url('/webfonts/static/wantedSans/WantedSans.css');
+
+/* Pinned horizontal-scroll runway (see the scroll math in HomeProjectList.jsx)
+   — this section's own height is set in JS to viewport height + however far
+   the card track overflows, so scrolling through it 1:1 drags the track left. */
+.home-project-list {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.home-project-list__sticky {
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+}
+
+.home-project-list__heading {
+  margin: 0;
+  color: #333;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* Intentionally NOT clipped — the card row is left fully visible/overflowing
+   past the 1200 box at all times; the JS transform is a slide-in entrance,
+   not a reveal-from-behind-a-mask effect. */
+.home-project-list__track-wrap {
+  width: 100%;
+  overflow: visible;
+}
+
+.home-project-list__grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 40px;
+  width: max-content;
+  will-change: transform;
+}
+
+
+.home-project-list__card {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex: 0 0 500px;
+  width: 500px;
+  height: 632px;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 20px;
+  background: #2b2b2b;
+  color: #fff;
+  text-decoration: none;
+}
+
+.home-project-list__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-position: center;
+  background-size: cover;
+  background-color: #2b2b2b;
+}
+
+.home-project-list__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 9, 23, 0) 53.775%, rgba(0, 9, 23, 0.2) 60.366%, rgba(0, 9, 23, 0.6) 68.19%, rgba(0, 9, 23, 0.752) 80.159%, rgb(0, 9, 23) 95.665%);
+}
+
+.home-project-list__tags {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.home-project-list__tag {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: 0.5px solid #fff;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.home-project-list__contents {
+  position: relative;
+  display: flex;
+  max-width: 350px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home-project-list__title {
+  margin: 0;
+  width: 100%;
+  color: #fff;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.36;
+}
+
+.home-project-list__description {
+  margin: 0;
+  width: 100%;
+  color: #fff;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Below the desktop pin threshold (see DESKTOP_MIN_WIDTH in
+   HomeProjectList.jsx) the JS leaves the track untransformed and the
+   section's own height auto — so undo the pinned/clipped layout here and
+   just stack the cards normally. */
+@media (max-width: 899px) {
+  .home-project-list__sticky {
+    position: static;
+    height: auto;
+    padding: 100px 0 80px;
+    overflow: visible;
+  }
+
+  .home-project-list__track-wrap {
+    overflow: visible;
+  }
+
+  .home-project-list__grid {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .home-project-list__card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .home-project-list__sticky {
+    padding: 60px 0;
+    gap: 24px;
+  }
+
+  .home-project-list__heading {
+    font-size: 36px;
+  }
+
+  .home-project-list__grid {
+    gap: 24px;
+  }
+}

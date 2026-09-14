@@ -1,50 +1,38 @@
-import { Link } from "react-router-dom";
-import Header from "../components/Header";
-import HomeFooter from "../components/HomeFooter";
-import ProjectGrid from "../components/ProjectGrid";
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import Header from '../components/Header'
+import HomeFooter from '../components/HomeFooter'
+import HomeProjectList from '../components/HomeProjectList'
+import '../componentsStyle/home.css'
 
 export default function Home() {
+  const { hash } = useLocation()
+
+  // Lets Header's WORK link ("/#work") jump straight to the project list,
+  // including when navigating in from another page.
+  useEffect(() => {
+    if (hash !== '#work') return
+    const target = document.getElementById('work')
+    target?.scrollIntoView({ behavior: 'smooth' })
+  }, [hash])
+
   return (
-    <>
+    <div className="home" data-node-id="380:3913">
       <Header />
-      <section className="home-hero container">
-        <p className="eyebrow">UX / UI Designer & Visual Thinker</p>
-        <h1>
-          Making space
-          <br />
-          for <em>better ideas.</em>
-        </h1>
-        <p className="lede">
-          A starter portfolio for documenting thoughtful digital experiences,
-          experiments, and everything in between.
+
+      {/* TODO: rough placeholder — real interactive hero to be built separately */}
+      <section className="home__hero" data-node-id="380:3921">
+        <h1 className="home__hero-title">YEONSU</h1>
+        <p className="home__hero-desc">
+          빠른 작업 능력과 끝까지 놓치지 않는 세밀함으로 완성도 있는 프로젝트를 이끌어가는 프로덕트 디자이너 김연수입니다.
         </p>
-        <Link className="text-link" to="/about">
-          More about me <span>↗</span>
-        </Link>
       </section>
-      <section
-        eyebrow="01 / Intro"
-        title="I turn questions into clear, useful experiences."
-      >
-        <div className="intro-copy">
-          <p>
-            Use this space to introduce your point of view. Replace this
-            placeholder with a short statement about what you care about, how
-            you work, or what you are currently exploring.
-          </p>
-          <p className="muted">
-            Currently available for selected projects · Seoul, KR
-          </p>
-        </div>
-      </section>
-      <section
-        eyebrow="02 / Selected works"
-        title="A few things I’ve made."
-        className="works-section"
-      >
-        <ProjectGrid />
-      </section>
+
+      <div className="home__project-wrap" data-node-id="380:3948">
+        <HomeProjectList id="work" />
+      </div>
+
       <HomeFooter />
-    </>
-  );
+    </div>
+  )
 }

@@ -27,7 +27,7 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
         <Logo variant={isMobile ? 'mobile-black' : 'desktop-black'} alt="김연수 포트폴리오" />
       </NavLink>
       <nav className="header__menu" aria-label="Main navigation">
-        {isMobile ? <NavLink to="/">MENU</NavLink> : <><NavLink to="/">WORK</NavLink><NavLink to="/about">ABOUT</NavLink><NavLink to="/resume">RESUME</NavLink></>}
+        {isMobile ? <NavLink to="/#work">MENU</NavLink> : <><NavLink to="/#work">WORK</NavLink><NavLink to="/about">ABOUT</NavLink><NavLink to="/resume">RESUME</NavLink></>}
       </nav>
     </header>
   )
