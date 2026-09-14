@@ -30,7 +30,7 @@
 }
 
 .section-intro__title {
-  color: #212121;
+  color: #333;
   font-family: 'Wanted Sans', var(--font-sans);
   font-size: 24px;
   font-weight: 700;
@@ -39,16 +39,14 @@
 }
 
 .section-intro__description {
-  color: #212121;
+  color: #333;
   font-family: 'Wanted Sans', var(--font-sans);
   font-size: 18px;
   font-weight: 400;
   letter-spacing: normal;
   line-height: 1.48;
+  white-space: pre-line;
 }
 
-@media (max-width: 700px) {
-  .section-intro__eyebrow { font-size: 14px; }
-  .section-intro__title { font-size: 22px; }
-  .section-intro__description { font-size: 16px; }
-}
+/* No mobile font-size overrides — Figma keeps eyebrow/title/description at
+   16px/24px/18px across every breakpoint for section-intro. */

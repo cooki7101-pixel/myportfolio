@@ -10,3 +10,7 @@
 .content-section--horizontal .content-section__placeholder { aspect-ratio: 496 / 330; }
 .content-section--horizontal2 .content-section__placeholder { aspect-ratio: 665 / 406; }
 .content-section--horizontal2 .content-section__block:nth-child(3) { display: none; }
+.content-section--split { flex-direction: row; flex-wrap: wrap; align-items: flex-start; gap: 40px; }
+.content-section--split > * { flex: 1 1 0; min-width: 325px; }
+.content-section--split > :first-child { max-width: 510px; }
+.content-section--split .content-section__placeholder { aspect-ratio: 496 / 330; }

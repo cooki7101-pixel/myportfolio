@@ -1,0 +1,145 @@
+.ut-group {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.ut-group__photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  max-width: 819px;
+}
+
+.ut-group__photo {
+  min-width: 160px;
+  aspect-ratio: 376 / 309;
+  border-radius: 10px;
+  background: #dbdbdb;
+  overflow: hidden;
+}
+
+.ut-group__photo--a { flex: 376 0 0; }
+.ut-group__photo--b { flex: 433 0 0; }
+
+.ut-group__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ut-group__result {
+  width: 100%;
+  margin: 0;
+  color: #333;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 18px;
+  line-height: 1.48;
+}
+
+.ut-group__docs {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 40px 10px;
+  width: 100%;
+}
+
+.ut-group__doc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  /* flex-basis matches this item's natural width so both docs shrink by the same
+     proportion (not the same px amount) as the row narrows — that keeps their
+     heights equal since each keeps its own fixed aspect-ratio. */
+  flex: 1 1 532px;
+  max-width: 532px;
+}
+
+.ut-group__doc--wide {
+  flex-basis: 658px;
+  max-width: 658px;
+}
+
+.ut-group__doc-media {
+  width: 100%;
+  aspect-ratio: 532 / 490;
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
+  background: #dbdbdb;
+  overflow: hidden;
+}
+
+.ut-group__doc--wide .ut-group__doc-media {
+  aspect-ratio: 658 / 490;
+}
+
+/* Desktop (>=1200px): height is fixed at 490px per design, not derived from aspect-ratio. */
+@media (min-width: 1200px) {
+  .ut-group__doc-media,
+  .ut-group__doc--wide .ut-group__doc-media {
+    aspect-ratio: auto;
+    height: 490px;
+  }
+}
+
+.ut-group__doc-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ut-group__doc figcaption {
+  color: #6c6f71;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 16px;
+}
+
+/* Bottom document images stay side-by-side (auto-layout row) down to 990px, then stack. */
+@media (max-width: 989px) {
+  .ut-group__docs {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 40px;
+  }
+
+  .ut-group__doc,
+  .ut-group__doc--wide {
+    width: 100%;
+    max-width: 100%;
+    flex: none;
+  }
+
+  .ut-group__doc-media {
+    height: auto;
+    aspect-ratio: 532 / 490;
+  }
+
+  .ut-group__doc--wide .ut-group__doc-media {
+    height: auto;
+    aspect-ratio: 600 / 446.8;
+  }
+}
+
+@media (max-width: 721px) {
+  .ut-group__photos {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .ut-group__photo--a,
+  .ut-group__photo--b {
+    flex: 1 1 100%;
+  }
+
+  .ut-group__docs {
+    gap: 24px;
+  }
+}

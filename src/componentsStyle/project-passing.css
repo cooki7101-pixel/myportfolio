@@ -1,0 +1,119 @@
+.project-passing__body {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1280px; /* 1200px content + 40px side gutter on each side */
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.project-passing__section {
+  padding: 40px 0;
+}
+
+.project-passing__group {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.project-passing__feature-definition {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-passing__feature-definition p {
+  width: 100%;
+  color: #333;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 18px;
+  line-height: 1.48;
+}
+
+.project-passing__feature-definition-image {
+  width: 100%;
+  aspect-ratio: 1200 / 552;
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
+  background: #dbdbdb;
+}
+
+.project-passing__takeaways {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 40px 0 80px;
+}
+
+.project-passing__takeaways-heading {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  white-space: nowrap;
+}
+
+.project-passing__takeaways-eyebrow {
+  margin: 0;
+  color: #757575;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.project-passing__takeaways-title {
+  margin: 0;
+  color: #333;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.38;
+}
+
+.project-passing__takeaways-list {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 280px;
+  max-width: 817px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-passing__takeaway {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  color: #333;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 18px;
+  line-height: 1.48;
+}
+
+.project-passing__takeaway-row {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.project-passing__takeaway p {
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .project-passing__body {
+    padding: 0 17px;
+  }
+
+  .project-passing__takeaways {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .project-passing__takeaways-heading {
+    white-space: normal;
+  }
+}

@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-import ProjectPassing from "./pages/projects/ProjectPassing";
+import ProjectPassing from "./pages/work/ProjectPassing";
 import About from "./pages/about/About";
 
 export default function App() {
