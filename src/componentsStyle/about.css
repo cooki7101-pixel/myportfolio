@@ -20,8 +20,11 @@
 .about__bio p { margin: 0 0 1.5em; }
 .about__bio p:last-child { margin-bottom: 0; }
 
-@media (max-width: 900px) {
-  .about__content { padding: 50px 20px; gap: 28px; }
+@media (max-width: 989px) {
+  /* .about already reserves 76px of top padding for the fixed header, so
+     adding another 100px here was stacking to a 176px gap above the title.
+     24px here brings the total back to the intended 100px (76 + 24). */
+  .about__content { padding: 24px 20px 100px; gap: 28px; }
   .about__title { font-size: 40px; }
   .about__body { gap: 20px; }
   .about__image { width: 100%; height: auto; aspect-ratio: 593 / 660; }

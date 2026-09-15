@@ -1,0 +1,39 @@
+@import url('/webfonts/static/neueMachina/neueMachina.css');
+
+/* Figma node 573:8409 ("ING") — full-screen percentage counter shown while
+   the site loads, then faded out and removed. */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #c9d2e7;
+  opacity: 1;
+  transition: opacity 500ms ease;
+}
+
+.loading-screen--fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-screen__percent {
+  margin: 0;
+  color: #333;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 80px;
+  font-weight: 400;
+  line-height: 1.05;
+  text-align: center;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 721px) {
+  .loading-screen__percent {
+    font-size: 40px;
+  }
+}

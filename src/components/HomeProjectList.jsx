@@ -14,7 +14,7 @@ const defaultProjects = [
     tags: ['#AI AGENT', '#SENIOR', '#REVAMP'],
     title: ['카카오T with 시니어 맞춤', 'AI 보이스 에이전트'],
     description: '디지털 사용에 어려움 겪는 시니어도 택시 호출을 끝까지 완료할 수 있도록 개선',
-    to: '#',
+    to: '/works/kakao-t',
     video: '/assets/home-kakaot.mp4',
   },
   {

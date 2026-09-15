@@ -163,11 +163,12 @@
      (justify-end), not the top/bottom-60 centered box used above. */
   .home-project-list__sticky {
     justify-content: flex-end;
+    gap: 20px;
     padding: 142px 0 80px;
   }
 
   .home-project-list__heading {
-    font-size: 36px;
+    font-size: 32px;
   }
 
   .home-project-list__grid {
@@ -191,6 +192,7 @@
   }
 
   .home-project-list__tag {
+    padding: 9px;
     text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
   }
 
@@ -203,6 +205,6 @@
   }
 
   .home-project-list__description {
-    font-size: 16px;
+    font-size: 14px;
   }
 }

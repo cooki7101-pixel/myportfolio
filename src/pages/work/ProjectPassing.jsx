@@ -12,6 +12,12 @@ import UtGroup from '../../components/UtGroup'
 import FooterMore from '../../components/FooterMore'
 import '../../componentsStyle/project-passing.css'
 
+// "MORE PROJECTS" footer shows the other two case studies (not this page's own).
+const moreProjects = [
+  { type: 'video', src: '/assets/home-kakaot.mp4', label: '카카오T with 시니어 맞춤 AI 보이스 에이전트' },
+  { type: 'video', src: '/assets/home-hyundai.mp4', label: '현대자동차 홈페이지 개선' },
+]
+
 export default function ProjectPassing() {
   return (
     <article className="project-passing" data-node-id="291:396" style={{ backgroundColor: '#DEE4F2' }}>
@@ -220,7 +226,7 @@ export default function ProjectPassing() {
 
       {/* Frame 229 오버뷰 인디케이터는 검토 후 이어서 추가할 예정입니다. */}
 
-      <FooterMore />
+      <FooterMore projects={moreProjects} />
     </article>
   )
 }
