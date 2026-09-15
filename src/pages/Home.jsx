@@ -17,7 +17,7 @@ export default function Home() {
   }, [hash])
 
   return (
-    <div className="home" data-node-id="380:3913">
+    <div className="home" data-node-id="380:3913" >
       <Header />
 
       {/* TODO: rough placeholder — real interactive hero to be built separately */}
