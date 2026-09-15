@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
+    "gsap": "^3.15.0",
     "react": "latest",
     "react-dom": "latest",
     "react-router-dom": "latest",
