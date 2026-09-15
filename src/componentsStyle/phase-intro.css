@@ -47,10 +47,5 @@
 
 .phase-intro--tablet { padding: 100px 0; }
 .phase-intro--tablet .phase-intro__headline { font-size: 56px; }
-.phase-intro--mobile { padding: 100px 16px; }
+.phase-intro--mobile { padding: 100px 0; }
 .phase-intro--mobile .phase-intro__headline { font-size: 36px; line-height: 1.14; }
-
-@media (max-width: 700px) {
-  .phase-intro--desktop { padding: 100px 16px; }
-  .phase-intro--desktop .phase-intro__headline { font-size: 36px; line-height: 1.14; }
-}

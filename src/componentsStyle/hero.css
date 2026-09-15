@@ -6,13 +6,11 @@
 .hero__title-wrap a img { display: inline-block; width: 28.2px; height: 15.2px; margin-left: 6px; vertical-align: middle; }
 .hero__media { width: 100%; aspect-ratio: 1840 / 832; overflow: hidden; border-radius: 10px; background: #dbdbdb; }
 .hero__media > * { width: 100%; height: 100%; object-fit: cover; }
-.hero--tablet, .hero--tablet2 { gap: 40px; padding: 76px 40px 0; }
-.hero--tablet .hero__title-wrap, .hero--tablet2 .hero__title-wrap { padding-top: 80px; }
-.hero--tablet h1 { font-size: 56px; }
-.hero--tablet2 h1 { font-size: 50px; }
-.hero--tablet2 .hero__media { aspect-ratio: 1878 / 1278; }
+.hero--laptop, .hero--tablet { gap: 40px; padding: 76px 40px 0; }
+.hero--laptop .hero__title-wrap, .hero--tablet .hero__title-wrap { padding-top: 80px; }
+.hero--laptop h1 { font-size: 56px; }
+.hero--tablet h1 { font-size: 50px; }
 .hero--mobile { gap: 28px; padding: 76px 17px 0; }
 .hero--mobile .hero__title-wrap { padding-top: 60px; }
 .hero--mobile h1 { font-size: 32px; }
-.hero--mobile .hero__media { aspect-ratio: 1884 / 1278; }
-@media (max-width: 700px) { .hero--desktop { gap: 28px; padding: 76px 17px 0; } .hero--desktop .hero__title-wrap { padding-top: 60px; } .hero--desktop h1 { font-size: 32px; } }
+.hero--mobile .hero__media { aspect-ratio: 1886 / 1279; }

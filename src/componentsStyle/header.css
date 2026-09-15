@@ -14,7 +14,7 @@
   background: rgba(222, 228, 242, 0.2);
 }
 
-.header__logo { line-height: 0; }
+.header__logo { position: relative; z-index: 1101; line-height: 0; }
 .header__menu { display: flex; align-items: center; justify-content: flex-end; gap: 40px; }
 .header__menu a {
   color: #333;
@@ -26,12 +26,79 @@
   text-decoration: none;
   white-space: nowrap;
 }
+/* Tablet (682-1279px, Figma node 579:8433) — same plain horizontal nav as
+   desktop, just narrower side padding. */
+.header--tablet { padding: 18px 40px; }
+
 .header--mobile { width: 100%; min-height: 70px; padding: 18px 20px; }
 .header--mobile .header__menu { gap: 0; }
 .header--mobile .header__menu a { font-size: 18px; }
 
-@media (max-width: 700px) {
-  .header--desktop { padding: 18px 20px; }
-  .header--desktop .header__menu { gap: 16px; }
-  .header--desktop .header__menu a { font-size: 18px; }
+/* Mobile menu trigger — plain "MENU"/"CLOSE" text link, same style as the
+   original trigger, in the header's top-right corner. */
+.header__menu-toggle {
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: #333;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+  cursor: pointer;
+  z-index: 1101;
+}
+
+/* Full-screen overlay nav — links pinned to the top-left, right under the
+   header, at the same left inset as the logo (matches the reference's
+   top/left-anchored mobile menu rather than a centered one). */
+.header__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1099;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 106px 20px 100px;
+  background: #dee4f2;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition: opacity 280ms ease, transform 280ms ease, visibility 280ms;
+}
+.header--menu-open .header__overlay {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.header__overlay-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.header__overlay-list a {
+  color: #333;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 32px;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* "LET'S WORK TOGETHER" contact CTA — pinned to the bottom of the overlay,
+   separate from the nav list (via the overlay's own space-between layout). */
+.header__overlay-cta {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  font-size: 16px !important;
+  color: #333333 !important;
+  text-decoration: underline !important;
+  text-transform: none !important;
 }

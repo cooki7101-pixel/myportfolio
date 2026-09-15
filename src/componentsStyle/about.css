@@ -1,0 +1,31 @@
+@import url('/webfonts/static/neueMachina/neueMachina.css');
+@import url('/webfonts/static/wantedSans/WantedSans.css');
+
+.about { box-sizing: border-box; display: flex; width: 100%; flex-direction: column; align-items: center; padding-top: 76px; }
+.about__content { box-sizing: border-box; display: flex; width: 100%; max-width: 1280px; /* 1200px content + 40px side gutter on each side */ flex-direction: column; gap: 36px; padding: 118px 40px; }
+
+.about__title { margin: 0; color: #333; font-family: 'Neue Machina', var(--font-sans); font-size: 60px; font-weight: 400; line-height: 1.2; }
+
+.about__body { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 30px; width: 100%; }
+.about__image { width: 593px; height: 660px; flex-shrink: 0; overflow: hidden; border-radius: 10px; background: #dbdbdb; }
+.about__image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.about__traits { display: flex; align-items: flex-start; gap: 12px; }
+.about__quote-icon { flex-shrink: 0; width: 42px; height: 28px; }
+.about__trait-labels { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; margin: 0; padding: 0; list-style: none; font-family: 'Neue Machina', var(--font-sans); font-size: 20px; line-height: 1.5; text-transform: uppercase; white-space: nowrap; }
+.about__trait-labels li:first-child { color: #333; }
+.about__trait-labels li { color: #757575; }
+
+.about__bio { margin: 0; color: #333; font-family: 'Wanted Sans', var(--font-sans); font-size: 18px; font-weight: 500; line-height: 1.5; white-space: pre-wrap; }
+.about__bio p { margin: 0 0 1.5em; }
+.about__bio p:last-child { margin-bottom: 0; }
+
+@media (max-width: 989px) {
+  /* .about already reserves 76px of top padding for the fixed header, so
+     adding another 100px here was stacking to a 176px gap above the title.
+     24px here brings the total back to the intended 100px (76 + 24). */
+  .about__content { padding: 24px 20px 100px; gap: 28px; }
+  .about__title { font-size: 40px; }
+  .about__body { gap: 20px; }
+  .about__image { width: 100%; height: auto; aspect-ratio: 593 / 660; }
+}
