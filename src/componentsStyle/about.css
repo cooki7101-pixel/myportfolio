@@ -21,7 +21,7 @@
 .about__bio p:last-child { margin-bottom: 0; }
 
 @media (max-width: 900px) {
-  .about__content { padding: 80px 20px; gap: 28px; }
+  .about__content { padding: 50px 20px; gap: 28px; }
   .about__title { font-size: 40px; }
   .about__body { gap: 20px; }
   .about__image { width: 100%; height: auto; aspect-ratio: 593 / 660; }
