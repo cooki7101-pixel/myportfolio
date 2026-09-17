@@ -14,7 +14,8 @@ import '../../componentsStyle/project-passing.css'
 
 // "MORE PROJECTS" footer shows the other two case studies (not this page's own).
 const moreProjects = [
-  { type: 'video', src: '/assets/home-kakaot.mp4', label: '카카오T with 시니어 맞춤 AI 보이스 에이전트' },
+  { type: 'video', src: '/assets/home-kakaot.mp4', label: '카카오T with 시니어 맞춤 AI 보이스 에이전트', to: '/works/kakao-t' },
+  // TODO: link to the Hyundai case study route once that page exists.
   { type: 'video', src: '/assets/home-hyundai.mp4', label: '현대자동차 홈페이지 개선' },
 ]
 
@@ -67,28 +68,13 @@ export default function ProjectPassing() {
             eyebrow="DESK RESEARCH"
             title="왜 티켓인가?"
             description={`먼저 어떤 품목의 사기 피해가 가장 큰지 확인하고자 뉴스 17건과 학술 연구 6건을 분석했습니다. 그 결과 티켓·상품권이 사기 피해 1위였고, 20대 피해가 가장 많았으며 10대 피해도 늘고 있었습니다. 젊은 층도 쉽게 피해를 입을 만큼 사기 수법이 교묘해지고 있다는 점에서 반드시 풀어야 할 문제라고 판단했습니다.\n\n티켓류 중 상품권과 이용권은 사후 환불로 해결이 가능해 제외했습니다. 환불로도 공연이 돌아오지 않는 점에서 티켓만 최종 대상으로 남겼습니다.`}
-            items={[
-              {
-                src: '/assets/passing/image 542.png',
-                type: 'img'
-              }
-            ]}
+            items={[{}]}
           />
           <ContentSection
             showEyebrow={false}
             title="왜 X(트위터)인가?"
             description="이후 구조적으로 안전장치가 부족함에도 X(트위터)에서 거래하는 이유를 분석했습니다. 더치트 사기 신고 데이터와 온라인 거래 사례 및 미디어 피해 사례를 분석해 가짜 예매 내역 인증, 조급한 입금 유도 등 반복되는 사기 패턴을 확인했습니다. 또한 실시간 매물과 팬덤 중심의 높은 접근성이 X(트위터)를 이용하는 주요 요인임을 도출했습니다."
-            items={[
-              {
-                label: 'X(트위터)에서 일어나는 P2P 거래 실제 게시글',
-                src: '/assets/passing/image 557.png',
-                type: 'img'
-              },
-              {
-                src: '/assets/passing/image 541.png',
-                type: 'img'
-              }
-            ]}
+            items={[{ label: 'X(트위터)에서 일어나는 P2P 거래 실제 게시글' }, {}]}
           />
         </div>
 
@@ -98,10 +84,7 @@ export default function ProjectPassing() {
             eyebrow="CASESTUDY ANALYSIS"
             title="위험한데도 왜 계속 X(트위터)를 쓸까?"
             description="시장 조사를 위해 안전장치를 갖춘 경쟁사의 거래 구조를 비교 분석했습니다. 티켓 전문 플랫폼은 사기 발생 시 환불을 제공하지만 판매자의 무단 취소 등 거래 과정의 위험은 사전에 차단하기 어려운 한계를 확인했습니다."
-            items={[{
-              src: '/assets/passing/image 540.png',
-              type: 'img'
-            }]}
+            items={[{}]}
           />
         </div>
 
@@ -111,10 +94,7 @@ export default function ProjectPassing() {
             eyebrow="COMPETITOR ANALYSIS"
             title="기존 티켓 거래 서비스는 안전한 거래를 어떻게 만들고 있을까?"
             description="시장 조사를 위해 이미 안전장치를 갖춘 경쟁사도 함께 분석했습니다. 그 중 티켓 전문 거래 플랫폼은 사기 발생 시 100% 환불을 제공하고 있었지만 공연일까지 기다리다가 판매자가 무단 취소하는 문제가 있었습니다. 이를 통해 기존 서비스는 사후 보상에는 대응하고 있지만 거래 과정에서 발생하는 위험을 사전에 줄이는 데에는 한계가 있음을 확인했습니다."
-            items={[{
-              src: '/assets/passing/image 289.png',
-              type: 'img'
-            }]}
+            items={[{}]}
           />
         </div>
 
@@ -125,37 +105,9 @@ export default function ProjectPassing() {
             eyebrow="USER INTERVIEWS"
             title="검증한 ‘X(트위터)를 떠나지 못하는 이유’"
             description="앞선 리서치를 바탕으로 팬 1명, 일반 관람객 2명을 대상으로 인터뷰를 진행했습니다. 사용자들은 예상대로 X(트위터)의 위험성을 알고 있었지만 티켓을 빠르게 찾을 수 있다는 이유로 계속 이용하기도 했습니다. 새로운 문제를 발견하기보다는 앞서 확인한 ‘위험을 알면서도 떠나지 못하는 이유’를 검증하는 과정이었습니다."
-            items={[{
-              label: "'참여자 A'와 인터뷰 과정",
-              src: '/assets/passing/Image.png',
-              type: 'img'
-            }]}
+            items={[{ label: "'참여자 A'와 인터뷰 과정" }]}
           />
-          <InterviewBox
-            breakpoint="desktop"
-            items={[
-              {
-                label: '인터뷰 스크립트',
-                src: '/assets/interview-script.png',
-                type: 'img'
-              },
-              {
-                label: 'AFFINITY MAPPING',
-                src: '/assets/passing/passing-mapping-video.mp4',
-                type: 'video'
-              },
-              {
-                label: '구매자 매핑 인사이트',
-                src: '/assets/buyer-mapping.png',
-                type: 'img'
-              },
-              {
-                label: '판매자 매핑 인사이트',
-                src: '/assets/seller-mapping.png',
-                type: 'img'
-              }
-            ]}
-          />
+          <InterviewBox />
         </div>
 
         <PhaseIntro
@@ -170,22 +122,7 @@ export default function ProjectPassing() {
             eyebrow="PERSONA"
             title="서로 다른 두 사용자의 거래 니즈 분석"
             description="인터뷰를 통해 도출한 인사이트를 바탕으로 구매자와 판매자 퍼소나를 제작했습니다. 구매자는 사기 위험에 대한 불안과 원하는 티켓을 빠르게 구해야 하는 부담이 있었고, 판매자는 티켓 등록 과정과 반복적인 채팅의 번거로움을 경험하고 있었습니다."
-            items={[
-              {
-                label: '구매자 퍼소나',
-                src: '/assets/passing/Image-persona.png',
-                type: 'img'
-              },
-              {
-                label: '판매자 퍼소나',
-                src: '/assets/passing/Image-persona-1.png',
-                type: 'img'
-              },
-              {
-                src: '/assets/passing/Image-persona-2.png',
-                type: 'img'
-              }
-            ]}
+            items={[{ label: '구매자 퍼소나' }, { label: '판매자 퍼소나' }, {}]}
           />
         </div>
 

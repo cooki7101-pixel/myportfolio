@@ -14,7 +14,8 @@ import '../../componentsStyle/project-kakao-t.css'
 
 // "MORE PROJECTS" footer shows the other two case studies (not this page's own).
 const moreProjects = [
-  { type: 'video', src: '/assets/home-passing.mp4', label: "AI 티켓 사기 예방 '패싱'" },
+  { type: 'video', src: '/assets/home-passing.mp4', label: "AI 티켓 사기 예방 '패싱'", to: '/works/project-passing' },
+  // TODO: link to the Hyundai case study route once that page exists.
   { type: 'video', src: '/assets/home-hyundai.mp4', label: '현대자동차 홈페이지 개선' },
 ]
 

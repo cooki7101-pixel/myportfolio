@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import '../componentsStyle/footer-more.css'
 
 const defaultProjects = [
-  { type: 'img', src: '/assets/buyer-mapping.png', label: '카카오T with 시니어 맞춤 AI 보이스 에이전트' },
-  { type: 'img', src: '/assets/seller-mapping.png', label: '카카오T with 시니어 맞춤 AI 보이스 에이전트' },
+  { type: 'img', src: '/assets/buyer-mapping.png', label: '카카오T with 시니어 맞춤 AI 보이스 에이전트', to: '/works/kakao-t' },
+  { type: 'img', src: '/assets/seller-mapping.png', label: '카카오T with 시니어 맞춤 AI 보이스 에이전트', to: '/works/kakao-t' },
 ]
 
 // FooterMore component set breakpoints (Figma, updated): desktop >= 990px, tablet 722-989px, mobile <= 721px.
@@ -33,6 +33,14 @@ export default function FooterMore({ breakpoint, projects = defaultProjects, cop
   const resolvedBreakpoint = breakpoint ?? viewportBreakpoint
 
   return <footer className={`footer-more footer-more--${resolvedBreakpoint}`} data-node-id="348:4709">
-    <div className="footer-more__contents"><section className="footer-more__projects"><h2>MORE PROJECTS</h2><div className="footer-more__grid">{(Array.isArray(projects) ? projects : []).slice(0, 2).map((project, index) => { const label = project.label || project.title || ''; return <article key={`${label}-${index}`}><div className="footer-more__media">{project.component || (project.type === 'video' ? <video autoPlay muted loop playsInline preload="auto" aria-label={label}><source src={project.src} /></video> : <img src={project.src} alt="" />)}</div><h3>{label}</h3></article> })}</div></section><div className="footer-more__bottom"><Link to="/" aria-label="Portfolio home"><img src="/assets/footer-logo-desktop-white.svg" alt="김연수 포트폴리오" /></Link><small>{copyright}</small></div></div>
+    <div className="footer-more__contents"><section className="footer-more__projects"><h2>MORE PROJECTS</h2><div className="footer-more__grid">{(Array.isArray(projects) ? projects : []).slice(0, 2).map((project, index) => {
+      const label = project.label || project.title || ''
+      const media = <div className="footer-more__media">{project.component || (project.type === 'video' ? <video autoPlay muted loop playsInline preload="auto" aria-label={label}><source src={project.src} /></video> : <img src={project.src} alt="" />)}</div>
+      return project.to ? (
+        <Link className="footer-more__card" key={`${label}-${index}`} to={project.to}>{media}<h3>{label}</h3></Link>
+      ) : (
+        <article className="footer-more__card" key={`${label}-${index}`}>{media}<h3>{label}</h3></article>
+      )
+    })}</div></section><div className="footer-more__bottom"><Link to="/" aria-label="Portfolio home"><img src="/assets/footer-logo-desktop-white.svg" alt="김연수 포트폴리오" /></Link><small>{copyright}</small></div></div>
   </footer>
 }
