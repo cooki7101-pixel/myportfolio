@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ProjectPassing from "./pages/work/ProjectPassing";
 import ProjectKakaoT from "./pages/work/ProjectKakaoT";
+import ProjectHyundai from "./pages/work/ProjectHyundai";
 import About from "./pages/about/About";
 import LoadingScreen from "./components/LoadingScreen";
 
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/works/project-passing" element={<ProjectPassing />} />
         <Route path="/works/kakao-t" element={<ProjectKakaoT />} />
+        <Route path="/works/hyundai" element={<ProjectHyundai />} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

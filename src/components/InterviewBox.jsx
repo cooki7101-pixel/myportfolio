@@ -2,11 +2,10 @@ import { useEffect, useState } from 'react'
 import '../componentsStyle/interview-box.css'
 
 const defaultItems = [
-  { type: 'img', src: '/assets/interview-script.png', label: '인터뷰 스크립트' },
-  // TODO: AFFINITY MAPPING is a video slot in Figma but no footage has been uploaded there yet — shows a placeholder until a real src is provided.
-  { type: 'video', label: 'AFFINITY MAPPING' },
-  { type: 'img', src: '/assets/buyer-mapping.png', label: '구매자 매핑 인사이트' },
-  { type: 'img', src: '/assets/seller-mapping.png', label: '판매자 매핑 인사이트' },
+  { type: 'img', src: '/assets/passing/img-interview1.svg', label: '인터뷰 스크립트' },
+  { type: 'video', src: '/assets/passing/passing-mapping-video.mp4', label: 'AFFINITY MAPPING' },
+  { type: 'img', src: '/assets/passing/img-interview2.svg', label: '구매자 매핑 인사이트' },
+  { type: 'img', src: '/assets/passing/img-interview3.svg', label: '판매자 매핑 인사이트' },
 ]
 
 function getViewportBreakpoint() {

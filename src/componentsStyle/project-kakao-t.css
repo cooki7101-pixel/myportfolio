@@ -16,6 +16,130 @@
   gap: 50px;
 }
 
+.project-kakao-t__mapping-group {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.project-kakao-t__wide-image {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #dbdbdb;
+}
+
+.project-kakao-t__wide-image:empty {
+  aspect-ratio: 2400 / 2652;
+}
+
+.project-kakao-t__wide-image img,
+.project-kakao-t__wide-image video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-kakao-t__persona-group {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.project-kakao-t__persona-images {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.project-kakao-t__wireframe-group {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Match image1's width to image3's rendered width (one of two equal items in
+   a 1200px-wide row with a 12px gap: (1200 - 12) / 2 = 594px), keep its
+   right edge flush with image3's right edge, without cropping — the real
+   asset still renders at its own natural aspect ratio. */
+.project-kakao-t__wireframe-group .content-section--split .content-section__block {
+  max-width: 594px;
+  margin-left: auto;
+}
+
+@media (max-width: 989px) {
+  .project-kakao-t__wireframe-group .content-section--split .content-section__block {
+    margin-left: 0;
+    max-width: 100%;
+  }
+}
+
+
+.project-kakao-t__wireframe-images {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.project-kakao-t__wireframe-image {
+  flex: 1 1 0;
+  min-width: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #d9d9d9;
+}
+
+.project-kakao-t__wireframe-image:empty {
+  aspect-ratio: 1188 / 1160;
+}
+
+.project-kakao-t__wireframe-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-kakao-t__persona-image {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.project-kakao-t__persona-image-media {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #d9d9d9;
+}
+
+.project-kakao-t__persona-image-media:empty {
+  aspect-ratio: 1200 / 1078;
+}
+
+.project-kakao-t__persona-image-media--wide:empty {
+  aspect-ratio: 1200 / 647;
+}
+
+.project-kakao-t__persona-image-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-kakao-t__persona-image figcaption {
+  color: #6c6f71;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 14px;
+  line-height: 1.48;
+}
+
 .project-kakao-t__takeaways {
   display: flex;
   flex-wrap: wrap;

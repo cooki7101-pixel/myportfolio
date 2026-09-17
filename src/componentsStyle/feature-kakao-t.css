@@ -1,0 +1,190 @@
+@import url('/webfonts/static/neueMachina/neueMachina.css');
+@import url('/webfonts/static/wantedSans/WantedSans.css');
+
+.feature-kakao-t {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 48px;
+  padding: 40px 0;
+}
+
+.feature-kakao-t__comparison {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  gap: 80px;
+  min-width: 400px;
+  max-width: 637px;
+}
+
+.feature-kakao-t__as-is,
+.feature-kakao-t__to-be {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.feature-kakao-t__as-is {
+  max-width: 215px;
+  justify-content: center;
+}
+
+.feature-kakao-t__to-be {
+  max-width: 344px;
+  gap: 4px;
+}
+
+/* ITERATION instances: gap under the TO BE logo is 10px, not 4px. */
+.feature-kakao-t--iteration .feature-kakao-t__to-be {
+  gap: 10px;
+}
+
+.feature-kakao-t__label {
+  margin: 0;
+  color: #757575;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 16px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.feature-kakao-t__label--to-be {
+  color: #333;
+  font-size: 20px;
+  letter-spacing: 0.2px;
+}
+
+.feature-kakao-t__to-be-logo {
+  display: block;
+  width: 60px;
+  height: auto;
+}
+
+.feature-kakao-t__as-is-media {
+  width: 100%;
+  aspect-ratio: 215 / 495;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.feature-kakao-t__as-is-media:empty {
+  background: #dbdbdb;
+}
+
+.feature-kakao-t__as-is-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feature-kakao-t__to-be-media {
+  width: 100%;
+  overflow: hidden;
+}
+
+.feature-kakao-t__to-be-media:empty {
+  aspect-ratio: 344 / 696;
+  background: #d9d9d9;
+}
+
+.feature-kakao-t__to-be-media img,
+.feature-kakao-t__to-be-media video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.feature-kakao-t__intro {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 300px;
+  max-width: 500px;
+  word-break: break-word;
+}
+
+.feature-kakao-t__eyebrow {
+  width: 100%;
+  margin: 0;
+  color: #757575;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 16px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.feature-kakao-t__intro h3 {
+  width: 100%;
+  margin: 0;
+  color: #212121;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.38;
+}
+
+.feature-kakao-t__description {
+  width: 100%;
+  margin: 0;
+  color: #212121;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.48;
+}
+
+@media (max-width: 989px) {
+  .feature-kakao-t {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  /* Mobile Figma spec stacks the text intro above the AS IS/TO BE comparison,
+     but the comparison markup comes first in the DOM — flip the visual order. */
+  .feature-kakao-t__intro {
+    order: -1;
+  }
+
+  .feature-kakao-t__comparison {
+    max-width: 100%;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 721px) {
+  .feature-kakao-t__comparison {
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+    width: 100%;
+    max-width: 342px;
+    min-width: 0;
+    margin: 0 auto;
+  }
+
+  .feature-kakao-t__as-is,
+  .feature-kakao-t__to-be {
+    width: 100%;
+    max-width: 342px;
+    flex: none;
+    min-width: 0;
+  }
+
+  .feature-kakao-t__intro {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .feature-kakao-t__label {
+    white-space: normal;
+  }
+}

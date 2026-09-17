@@ -1,0 +1,79 @@
+.comparison-hyundai {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+
+.comparison-hyundai__intro h3 {
+  margin: 0;
+  color: #333;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.38;
+}
+
+.comparison-hyundai__images {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.comparison-hyundai__item {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 280px;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.comparison-hyundai__label {
+  margin: 0;
+  color: #757575;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 18px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.comparison-hyundai__label--tobe {
+  color: #333;
+  font-size: 20px;
+  letter-spacing: 0.2px;
+}
+
+.comparison-hyundai__tobe-logo {
+  display: block;
+  width: 60px;
+  height: auto;
+}
+
+.comparison-hyundai__media {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* No src yet: show a placeholder box. */
+.comparison-hyundai__media:empty {
+  aspect-ratio: 1 / 1.4;
+  background: #dbdbdb;
+}
+
+.comparison-hyundai__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 721px) {
+  .comparison-hyundai__images {
+    flex-direction: column;
+    gap: 24px;
+  }
+}

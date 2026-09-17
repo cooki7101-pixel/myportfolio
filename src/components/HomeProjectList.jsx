@@ -1,10 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '../componentsStyle/home-project-list.css'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const defaultProjects = [
   {
@@ -25,7 +21,7 @@ const defaultProjects = [
     tags: ['#반응형', '#WEB', '#REVAMP'],
     title: '현대자동차 홈페이지 개선',
     description: ['일관성 없는 레이아웃과 끊기는 구매흐름을', '반응형에 맞춰 재설계'],
-    to: '#',
+    to: '/works/hyundai',
     video: '/assets/home-hyundai.mp4',
   },
 ]
@@ -92,47 +88,51 @@ export default function HomeProjectList({ projects = defaultProjects, id }) {
     const track = trackRef.current
     if (!section || !trackWrap || !track) return
 
-    let trigger
+    let startTranslate = 0
+    let endTranslate = 0
+    let rafId = null
 
-    const setupScrollAnimation = () => {
-      // Clear the previous transform before measuring the natural row width.
-      gsap.set(track, { x: 0 })
+    const measure = () => {
+      // Reset transform before measuring so scrollWidth reflects the
+      // untransformed layout, not whatever frame we're mid-animation on.
+      track.style.transform = 'none'
+      // Full reveal: how far the track overflows its own wrapper.
       const overflow = Math.max(track.scrollWidth - trackWrap.clientWidth, 0)
+      endTranslate = -overflow
+      // Slide-in distance before settling at endTranslate — one "window
+      // width" worth, so the whole row visibly enters from the right.
       const entranceDistance = trackWrap.clientWidth
-      const endTranslate = -overflow
-      const startTranslate = endTranslate + entranceDistance
-
+      startTranslate = endTranslate + entranceDistance
       section.style.height = `${window.innerHeight + entranceDistance}px`
-      trigger?.kill()
-      gsap.killTweensOf(track)
+    }
 
+    const update = () => {
+      rafId = null
       if (startTranslate === endTranslate) return
-
-      gsap.set(track, { x: startTranslate })
-      trigger = gsap.to(track, {
-        x: endTranslate,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: `+=${entranceDistance}`,
-          scrub: true,
-          invalidateOnRefresh: true,
-        },
-      }).scrollTrigger
+      const rect = section.getBoundingClientRect()
+      const runway = startTranslate - endTranslate
+      const progress = Math.min(Math.max(-rect.top / runway, 0), 1)
+      track.style.transform = `translateX(${startTranslate - progress * runway}px)`
     }
 
-    setupScrollAnimation()
+    const onScroll = () => {
+      if (rafId) return
+      rafId = requestAnimationFrame(update)
+    }
+
     const onResize = () => {
-      setupScrollAnimation()
-      ScrollTrigger.refresh()
+      measure()
+      update()
     }
+
+    measure()
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onResize)
     return () => {
+      window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onResize)
-      trigger?.kill()
-      gsap.killTweensOf(track)
-      gsap.set(track, { clearProps: 'transform' })
+      if (rafId) cancelAnimationFrame(rafId)
     }
   }, [])
 

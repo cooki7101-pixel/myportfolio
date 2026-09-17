@@ -77,14 +77,14 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
             <ol className="header__overlay-list">
               <li><NavLink to="/#work" onClick={closeMenu}>WORK</NavLink></li>
               <li><NavLink to="/about" onClick={closeMenu}>ABOUT</NavLink></li>
-              <li><NavLink to="/resume" onClick={closeMenu}>RESUME</NavLink></li>
+              <li><a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>RESUME</a></li>
             </ol>
             <a className="header__overlay-cta" href="mailto:cooki7101@naver.com" onClick={closeMenu}>Let's work together?</a>
           </nav>
         </>
       ) : (
         <nav className="header__menu" aria-label="Main navigation">
-          <NavLink to="/#work">WORK</NavLink><NavLink to="/about">ABOUT</NavLink><NavLink to="/resume">RESUME</NavLink>
+          <NavLink to="/#work">WORK</NavLink><NavLink to="/about">ABOUT</NavLink><a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer">RESUME</a>
         </nav>
       )}
     </header>
