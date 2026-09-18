@@ -7,14 +7,16 @@
 }
 
 /* Photos row — matches the Figma reference (node 609:8890) proportions:
-   two roughly equal boxes, radius 10px on both. No fixed height/background —
-   the box hugs the real image's own aspect ratio, so there's no leftover
-   gray letterboxing and it keeps shrinking flush with the image as the row
-   narrows. */
+   real source files are img-passing-ut1.svg (376x309) and
+   img-passing-ut2.svg (433x309) — same natural height already. Each box
+   keeps its own aspect-ratio and grows in proportion to its natural width
+   (flex-grow set to that width), so the pair scales down TOGETHER as the
+   row narrows, always staying the same height as each other with no
+   letterboxing/leftover gap, and no crop. */
 .ut-group__photos {
   display: flex;
   flex-wrap: nowrap;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 10px;
   width: 100%;
   max-width: 704px;
@@ -25,18 +27,29 @@
   min-width: 0;
   overflow: hidden;
   border-radius: 10px;
+  aspect-ratio: 347 / 379;
 }
 
-/* No src yet: show a placeholder box at the reference's aspect ratio. */
+.ut-group__photo:nth-child(1) {
+  flex-grow: 376;
+  aspect-ratio: 376 / 309;
+}
+
+.ut-group__photo:nth-child(2) {
+  flex-grow: 433;
+  aspect-ratio: 433 / 309;
+}
+
+/* No src yet: show a placeholder box. */
 .ut-group__photo:empty {
-  aspect-ratio: 347 / 379;
   background: #dbdbdb;
 }
 
 .ut-group__photo img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
 }
 
 .ut-group__result {
@@ -48,7 +61,11 @@
   line-height: 1.48;
 }
 
-/* Docs row — same idea: no fixed height, box hugs the image's own ratio.
+/* Docs row — same proportional-scaling idea as the photos row: real source
+   files are img-passing-ut3.svg (658x490, the wide/first doc) and
+   img-passing-ut4.svg (532x490, the second doc) — same natural height
+   already. flex-grow set to each one's natural width so the pair scales
+   down together, staying the same height with no leftover gap and no crop.
    Only the first (UT TASKS SEQ) has a border + radius; the second (SUS) is
    plain and square-cornered. */
 .ut-group__docs {
@@ -72,11 +89,23 @@
 .ut-group__doc-media {
   width: 100%;
   overflow: hidden;
+  aspect-ratio: 592 / 442;
 }
 
-.ut-group__doc-media:empty {
-  aspect-ratio: 592 / 442;
-  background: #dbdbdb;
+.ut-group__doc--wide {
+  flex-grow: 658;
+}
+
+.ut-group__doc--wide .ut-group__doc-media {
+  aspect-ratio: 658 / 490;
+}
+
+.ut-group__doc:not(.ut-group__doc--wide) {
+  flex-grow: 532;
+}
+
+.ut-group__doc:not(.ut-group__doc--wide) .ut-group__doc-media {
+  aspect-ratio: 532 / 490;
 }
 
 /* Only the wide (first) doc gets the border + radius. */
@@ -88,7 +117,8 @@
 .ut-group__doc-media img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
 }
 
 .ut-group__doc figcaption {
