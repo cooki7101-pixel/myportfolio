@@ -1,0 +1,88 @@
+.responsive-hyundai {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.responsive-hyundai__row {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+.responsive-hyundai__item {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 140px;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Desktop/tablet/mobile mockups keep Figma's relative widths so the trio
+   doesn't end up evenly split into thirds. */
+.responsive-hyundai__item--desktop {
+  flex-grow: 570;
+}
+
+.responsive-hyundai__item--tablet {
+  flex-grow: 350;
+}
+
+.responsive-hyundai__item--mobile {
+  flex-grow: 180;
+  max-width: 180px;
+}
+
+.responsive-hyundai__label {
+  margin: 0;
+  color: #333;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 18px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.responsive-hyundai__media {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* No src yet: show a placeholder box. */
+.responsive-hyundai__media:empty {
+  aspect-ratio: 570 / 1598;
+  background: #dbdbdb;
+}
+
+.responsive-hyundai__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 989px) {
+  .responsive-hyundai__row {
+    flex-wrap: wrap;
+    row-gap: 24px;
+  }
+}
+
+@media (max-width: 721px) {
+  .responsive-hyundai__row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+
+  .responsive-hyundai__item--desktop,
+  .responsive-hyundai__item--tablet,
+  .responsive-hyundai__item--mobile {
+    flex: none;
+    max-width: none;
+    width: 100%;
+  }
+}

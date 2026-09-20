@@ -1,0 +1,23 @@
+.project-hyundai__body {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1280px; /* 1200px content + 40px side gutter on each side */
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.project-hyundai__section {
+  padding: 40px 0;
+}
+
+/* This page's images should keep sharp corners — override the shared
+   ContentSection component's rounded media box just for this page. */
+.project-hyundai .content-section__media {
+  border-radius: 0;
+}
+
+@media (max-width: 700px) {
+  .project-hyundai__body {
+    padding: 0 17px;
+  }
+}

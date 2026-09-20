@@ -1,0 +1,32 @@
+/* Hide the native arrow only where the follower is actually active (fine
+   pointer, JS ran) — never on touch, and never before the effect mounts. */
+body.cursor-follower-active,
+body.cursor-follower-active * {
+  cursor: none;
+}
+
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease, opacity 0.2s ease;
+  will-change: transform;
+}
+
+.cursor-follower--visible {
+  opacity: 1;
+}
+
+.cursor-follower--hover {
+  width: 56px;
+  height: 56px;
+}

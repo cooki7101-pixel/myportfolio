@@ -30,7 +30,7 @@
    desktop, just narrower side padding. */
 .header--tablet { padding: 18px 40px; }
 
-.header--mobile { width: 100%; min-height: 70px; padding: 18px 20px; }
+.header--mobile { width: 100%; min-height: 70px; padding: 18px 17px; }
 .header--mobile .header__menu { gap: 0; }
 .header--mobile .header__menu a { font-size: 18px; }
 
@@ -61,7 +61,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 106px 20px 100px;
+  padding: 106px 17px 100px;
   background: #dee4f2;
   opacity: 0;
   visibility: hidden;

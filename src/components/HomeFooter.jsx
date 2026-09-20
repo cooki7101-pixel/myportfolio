@@ -19,9 +19,9 @@ export default function HomeFooter({
   breakpoint,
   email = 'cooki7101@naver.com',
   copyright = '© 2026 Designed by Yeonsu Kim',
-  // TODO: swap in the real LinkedIn / resume links whenever they're ready.
+  // TODO: swap in the real LinkedIn link whenever it's ready.
   linkedinUrl = '#',
-  resumeUrl = '#',
+  resumeUrl = '/assets/resume.pdf',
   // TODO: point this at the real index/home page URL whenever it's ready.
   homeUrl = '/',
 }) {

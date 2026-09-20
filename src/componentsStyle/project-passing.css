@@ -33,10 +33,20 @@
 
 .project-passing__feature-definition-image {
   width: 100%;
-  aspect-ratio: 1200 / 552;
+  overflow: hidden;
   border-radius: 10px;
   border: 1px solid #e6e6e6;
   background: #dbdbdb;
+}
+
+.project-passing__feature-definition-image:empty {
+  aspect-ratio: 1200 / 552;
+}
+
+.project-passing__feature-definition-image img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .project-passing__takeaways {

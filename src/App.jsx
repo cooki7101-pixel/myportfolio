@@ -4,8 +4,10 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ProjectPassing from "./pages/work/ProjectPassing";
 import ProjectKakaoT from "./pages/work/ProjectKakaoT";
+import ProjectHyundai from "./pages/work/ProjectHyundai";
 import About from "./pages/about/About";
 import LoadingScreen from "./components/LoadingScreen";
+import CursorFollower from "./components/CursorFollower";
 
 // Without this, navigating to a new page keeps whatever scroll position the
 // previous page was left at (e.g. clicking the 패싱 card from the middle of
@@ -31,6 +33,7 @@ export default function App() {
 
   return (
     <div className="site-shell">
+      <CursorFollower />
       {showLoadingScreen && (
         <LoadingScreen onFinish={() => setShowLoadingScreen(false)} />
       )}
@@ -39,6 +42,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/works/project-passing" element={<ProjectPassing />} />
         <Route path="/works/kakao-t" element={<ProjectKakaoT />} />
+        <Route path="/works/hyundai" element={<ProjectHyundai />} />
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

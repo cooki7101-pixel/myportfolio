@@ -49,3 +49,12 @@
 .phase-intro--tablet .phase-intro__headline { font-size: 56px; }
 .phase-intro--mobile { padding: 100px 0; }
 .phase-intro--mobile .phase-intro__headline { font-size: 36px; line-height: 1.14; }
+
+/* Manual <br /> line breaks in headline/description are desktop-only —
+   let text wrap naturally at tablet/mobile widths instead. */
+.phase-intro--tablet .phase-intro__headline br,
+.phase-intro--tablet .phase-intro__description br,
+.phase-intro--mobile .phase-intro__headline br,
+.phase-intro--mobile .phase-intro__description br {
+  display: none;
+}

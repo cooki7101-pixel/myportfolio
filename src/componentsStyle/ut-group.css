@@ -6,30 +6,50 @@
   gap: 40px;
 }
 
+/* Photos row — matches the Figma reference (node 609:8890) proportions:
+   real source files are img-passing-ut1.svg (376x309) and
+   img-passing-ut2.svg (433x309) — same natural height already. Each box
+   keeps its own aspect-ratio and grows in proportion to its natural width
+   (flex-grow set to that width), so the pair scales down TOGETHER as the
+   row narrows, always staying the same height as each other with no
+   letterboxing/leftover gap, and no crop. */
 .ut-group__photos {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-items: stretch;
   gap: 10px;
   width: 100%;
-  max-width: 819px;
+  max-width: 704px;
 }
 
 .ut-group__photo {
-  min-width: 160px;
-  aspect-ratio: 376 / 309;
-  border-radius: 10px;
-  background: #dbdbdb;
+  flex: 1 1 0;
+  min-width: 0;
   overflow: hidden;
+  border-radius: 10px;
+  aspect-ratio: 347 / 379;
 }
 
-.ut-group__photo--a { flex: 376 0 0; }
-.ut-group__photo--b { flex: 433 0 0; }
+.ut-group__photo:nth-child(1) {
+  flex-grow: 376;
+  aspect-ratio: 376 / 309;
+}
+
+.ut-group__photo:nth-child(2) {
+  flex-grow: 433;
+  aspect-ratio: 433 / 309;
+}
+
+/* No src yet: show a placeholder box. */
+.ut-group__photo:empty {
+  background: #dbdbdb;
+}
 
 .ut-group__photo img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .ut-group__result {
@@ -41,6 +61,13 @@
   line-height: 1.48;
 }
 
+/* Docs row — same proportional-scaling idea as the photos row: real source
+   files are img-passing-ut3.svg (658x490, the wide/first doc) and
+   img-passing-ut4.svg (532x490, the second doc) — same natural height
+   already. flex-grow set to each one's natural width so the pair scales
+   down together, staying the same height with no leftover gap and no crop.
+   Only the first (UT TASKS SEQ) has a border + radius; the second (SUS) is
+   plain and square-cornered. */
 .ut-group__docs {
   display: flex;
   flex-wrap: nowrap;
@@ -55,45 +82,43 @@
   align-items: center;
   gap: 4px;
   margin: 0;
-  /* flex-basis matches this item's natural width so both docs shrink by the same
-     proportion (not the same px amount) as the row narrows — that keeps their
-     heights equal since each keeps its own fixed aspect-ratio. */
-  flex: 1 1 532px;
-  max-width: 532px;
-}
-
-.ut-group__doc--wide {
-  flex-basis: 658px;
-  max-width: 658px;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .ut-group__doc-media {
   width: 100%;
-  aspect-ratio: 532 / 490;
-  border-radius: 10px;
-  border: 1px solid #e6e6e6;
-  background: #dbdbdb;
   overflow: hidden;
+  aspect-ratio: 592 / 442;
+}
+
+.ut-group__doc--wide {
+  flex-grow: 658;
 }
 
 .ut-group__doc--wide .ut-group__doc-media {
   aspect-ratio: 658 / 490;
 }
 
-/* Desktop (>=1200px): height is fixed at 490px per design, not derived from aspect-ratio. */
-@media (min-width: 1200px) {
-  .ut-group__doc-media,
-  .ut-group__doc--wide .ut-group__doc-media {
-    aspect-ratio: auto;
-    height: 490px;
-  }
+.ut-group__doc:not(.ut-group__doc--wide) {
+  flex-grow: 532;
+}
+
+.ut-group__doc:not(.ut-group__doc--wide) .ut-group__doc-media {
+  aspect-ratio: 532 / 490;
+}
+
+/* Only the wide (first) doc gets the border + radius. */
+.ut-group__doc--wide .ut-group__doc-media {
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
 }
 
 .ut-group__doc-media img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .ut-group__doc figcaption {
@@ -102,41 +127,31 @@
   font-size: 16px;
 }
 
-/* Bottom document images stay side-by-side (auto-layout row) down to 990px, then stack. */
+/* Tablet (722–989px): photos row stays as on desktop; docs row stacks. */
 @media (max-width: 989px) {
   .ut-group__docs {
     flex-direction: column;
     flex-wrap: nowrap;
-    gap: 40px;
+    gap: 24px;
   }
 
-  .ut-group__doc,
-  .ut-group__doc--wide {
+  .ut-group__doc {
     width: 100%;
-    max-width: 100%;
     flex: none;
-  }
-
-  .ut-group__doc-media {
-    height: auto;
-    aspect-ratio: 532 / 490;
-  }
-
-  .ut-group__doc--wide .ut-group__doc-media {
-    height: auto;
-    aspect-ratio: 600 / 446.8;
   }
 }
 
+/* Mobile (<=721px): photos row also stacks. */
 @media (max-width: 721px) {
   .ut-group__photos {
     flex-direction: column;
     max-width: 100%;
+    gap: 24px;
   }
 
-  .ut-group__photo--a,
-  .ut-group__photo--b {
-    flex: 1 1 100%;
+  .ut-group__photo {
+    flex: none;
+    width: 100%;
   }
 
   .ut-group__docs {
