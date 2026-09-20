@@ -24,6 +24,24 @@
   color: #333;
   position: relative;
 }
+.home__hero-text-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -80%);
+  overflow: hidden;
+}
+.home__hero-text {
+  width: calc(100% - 80px);
+  font-family: "PP Neue Machina";
+  font-weight: 400;
+  font-size: calc((100vw - 200px) / 3.6);
+  text-align: center;
+  letter-spacing: -15px;
+  text-transform: uppercase;
+  color: #121212;
+}
+
 .home__hero-img-text {
   width: calc(100% - 80px);
   position: absolute;

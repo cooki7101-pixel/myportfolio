@@ -4,14 +4,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  min-height: 110px;
+  gap: 10px;
   padding: 24px 30px 24px 25px;
   border: 0.7px solid rgba(255, 255, 255, 0.95);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.12);
-  -webkit-backdrop-filter: blur(12px) saturate(125%);
-  backdrop-filter: blur(12px) saturate(125%);
+  border-radius: var(--glass-box-curvature);
+  background: rgba(255, 255, 255, var(--glass-box-opacity));
+  -webkit-backdrop-filter: blur(var(--glass-box-blur)) saturate(125%);
+  backdrop-filter: blur(var(--glass-box-blur)) saturate(125%);
   color: #212121;
   isolation: isolate;
   overflow: hidden;
@@ -21,8 +20,14 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.01) 42%, rgba(255, 255, 255, 0.08));
-  content: '';
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.02) 42%,
+    rgba(255, 255, 255, 0.45)
+  );
+  content: "";
+  opacity: var(--glass-box-opacity);
   pointer-events: none;
   z-index: 0;
 }
@@ -35,6 +40,7 @@
   pointer-events: none;
   z-index: 0;
   mix-blend-mode: screen;
+  opacity: var(--glass-box-opacity);
 }
 
 .glass-box__icon {
@@ -43,14 +49,55 @@
   flex: 0 0 62px;
   width: 62px;
   height: 62px;
-  opacity: 0.65;
 }
 
 .glass-box__icon img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+}
+
+.glass-box__items {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.glass-box__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.glass-box__item-icon {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  opacity: 0.65;
+}
+
+.glass-box__item-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.glass-box__item-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: #212121;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.1;
+  text-transform: uppercase;
 }
 
 .glass-box__label {
@@ -59,15 +106,11 @@
   display: flex;
   flex-direction: column;
   color: #212121;
-  font-family: 'Neue Machina', var(--font-sans);
+  font-family: "Neue Machina", var(--font-sans);
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.2;
   text-align: center;
   text-transform: uppercase;
   white-space: nowrap;
-}
-
-.glass-box__label span:first-child {
-  text-transform: lowercase;
 }

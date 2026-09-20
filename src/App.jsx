@@ -30,16 +30,22 @@ export default function App() {
   // 100% then fades out on its own; unmounted here for good so it never
   // reappears on later in-app navigation.
   const [showLoadingScreen, setShowLoadingScreen] = useState(true);
+  const [loadingFinished, setLoadingFinished] = useState(false);
+
+  const handleLoadingFinish = () => {
+    setShowLoadingScreen(false);
+    setLoadingFinished(true);
+  };
 
   return (
     <div className="site-shell">
       <CursorFollower />
       {showLoadingScreen && (
-        <LoadingScreen onFinish={() => setShowLoadingScreen(false)} />
+        <LoadingScreen onFinish={handleLoadingFinish} />
       )}
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home loadingFinished={loadingFinished} />} />
         <Route path="/works/project-passing" element={<ProjectPassing />} />
         <Route path="/works/kakao-t" element={<ProjectKakaoT />} />
         <Route path="/works/hyundai" element={<ProjectHyundai />} />
