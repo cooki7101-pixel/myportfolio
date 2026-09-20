@@ -1,5 +1,5 @@
-@import url('/webfonts/static/neueMachina/neueMachina.css');
-@import url('/webfonts/static/wantedSans/WantedSans.css');
+@import url("/webfonts/static/neueMachina/neueMachina.css");
+@import url("/webfonts/static/wantedSans/WantedSans.css");
 
 /* Pinned horizontal-scroll runway (see the scroll math in HomeProjectList.jsx)
    — this section's own height is set in JS to viewport height + however far
@@ -15,6 +15,7 @@
   top: 0;
   box-sizing: border-box;
   display: flex;
+  align-items: center;
   height: 100vh;
   width: 100%;
   flex-direction: column;
@@ -25,10 +26,13 @@
 .home-project-list__heading {
   margin: 0;
   color: #333;
-  font-family: 'Neue Machina', var(--font-sans);
+  font-family: "Neue Machina", var(--font-sans);
   font-size: 56px;
   font-weight: 400;
   line-height: 1.2;
+  width: 100%;
+  max-width: 1280px; /* iki - 20260920 - 부모 영역보다 여기 자식 요소에 max-width를 주는게 좋다*/
+  padding: 0 40px; /* iki - 20260920 - 패딩도 부모 영역보다 여기에 준다 */
 }
 
 /* Intentionally NOT clipped — the card row is left fully visible/overflowing
@@ -36,7 +40,8 @@
    not a reveal-from-behind-a-mask effect. */
 .home-project-list__track-wrap {
   width: 100%;
-  overflow: visible;
+  /* overflow: visible; iki - 20260920 - 스크롤을 없애려면 여기를 visible로 하면 안되고 hidden 처리 */
+  overflow: hidden;
 }
 
 .home-project-list__grid {
@@ -46,7 +51,6 @@
   width: max-content;
   will-change: transform;
 }
-
 
 .home-project-list__card {
   box-sizing: border-box;
@@ -79,7 +83,14 @@
 .home-project-list__gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 9, 23, 0) 53.775%, rgba(0, 9, 23, 0.2) 60.366%, rgba(0, 9, 23, 0.6) 68.19%, rgba(0, 9, 23, 0.752) 80.159%, rgb(0, 9, 23) 95.665%);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 9, 23, 0) 53.775%,
+    rgba(0, 9, 23, 0.2) 60.366%,
+    rgba(0, 9, 23, 0.6) 68.19%,
+    rgba(0, 9, 23, 0.752) 80.159%,
+    rgb(0, 9, 23) 95.665%
+  );
 }
 
 .home-project-list__tags {
@@ -99,7 +110,7 @@
   border-radius: 100px;
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
-  font-family: 'Wanted Sans', var(--font-sans);
+  font-family: "Wanted Sans", var(--font-sans);
   font-size: 14px;
   font-weight: 400;
   line-height: 1.1;
@@ -119,7 +130,7 @@
   margin: 0;
   width: 100%;
   color: #fff;
-  font-family: 'Wanted Sans', var(--font-sans);
+  font-family: "Wanted Sans", var(--font-sans);
   font-size: 28px;
   font-weight: 700;
   line-height: 1.36;
@@ -129,7 +140,7 @@
   margin: 0;
   width: 100%;
   color: #fff;
-  font-family: 'Wanted Sans', var(--font-sans);
+  font-family: "Wanted Sans", var(--font-sans);
   font-size: 18px;
   font-weight: 400;
   line-height: 1.5;

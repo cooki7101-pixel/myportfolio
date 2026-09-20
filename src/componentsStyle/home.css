@@ -1,5 +1,5 @@
-@import url('/webfonts/static/neueMachina/neueMachina.css');
-@import url('/webfonts/static/wantedSans/WantedSans.css');
+@import url("/webfonts/static/neueMachina/neueMachina.css");
+@import url("/webfonts/static/wantedSans/WantedSans.css");
 
 .home {
   box-sizing: border-box;
@@ -16,31 +16,39 @@
   box-sizing: border-box;
   display: flex;
   width: 100%;
-  height: 1080px;
+  height: 100vh;
   flex-direction: column;
   justify-content: center;
   gap: 16px;
-  padding: 150px 68px 0 40px;
+  /* padding: 150px 68px 0 40px; */
   color: #333;
+  position: relative;
 }
-
-.home__hero-title {
-  margin: 0;
-  color: #333;
-  font-family: 'Neue Machina', var(--font-sans);
-  font-size: 120px;
-  font-weight: 400;
-  line-height: 1;
-  text-transform: uppercase;
+.home__hero-img-text {
+  width: calc(100% - 80px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -80%);
+}
+.home__hero-img-me {
+  width: calc(100% - 400px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .home__hero-desc {
   margin: 0;
   max-width: 337px;
   color: #333;
-  font-family: 'Wanted Sans', var(--font-sans);
+  font-family: "Wanted Sans", var(--font-sans);
   font-size: 16px;
   line-height: 1.32;
+  position: absolute;
+  bottom: 20%;
+  left: calc(0% + 40px);
 }
 
 /* Standard 1200px content box (like every other section) — this is the
@@ -50,9 +58,9 @@
 .home__project-wrap {
   box-sizing: border-box;
   width: 100%;
-  max-width: 1280px;
+  /* max-width: 1280px;  iki - 20260920 - 스크롤 인터렉션이 들어가는 부분 max-width 1280px를 주면 양 옆이 짤리게 된다*/
   margin: 0 auto;
-  padding: 0 40px;
+  /* padding: 0 40px; iki - 20260920 - padding을 자식 요소에 넣는게 좋다*/
 }
 
 @media (max-width: 700px) {
