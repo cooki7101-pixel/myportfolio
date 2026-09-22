@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import gsap from "gsap";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import ProjectPassing from "./pages/work/ProjectPassing";
@@ -81,27 +82,105 @@ function ScrollManager() {
   return null;
 }
 
+function PageTransitionRoutes({ loadingFinished }) {
+  const location = useLocation();
+  const [displayLocation, setDisplayLocation] = useState(location);
+  const [outgoingLocation, setOutgoingLocation] = useState(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const outgoingRef = useRef(null);
+  const incomingRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const isSameRoute =
+      location.pathname === displayLocation.pathname &&
+      location.search === displayLocation.search &&
+      location.hash === displayLocation.hash;
+    if (isSameRoute) return;
+    setOutgoingLocation(displayLocation);
+    setDisplayLocation(location);
+    setIsTransitioning(true);
+  }, [location.pathname, location.search, location.hash, displayLocation]);
+
+  useLayoutEffect(() => {
+    if (!isTransitioning || !outgoingRef.current || !incomingRef.current) return undefined;
+
+    const timeline = gsap.timeline({
+      onComplete: () => {
+        setOutgoingLocation(null);
+        setIsTransitioning(false);
+      },
+    });
+
+    timeline
+      .to(outgoingRef.current, {
+        opacity: 0,
+        filter: 'blur(8px)',
+        duration: 0.6,
+        ease: 'power2.inOut',
+      })
+      .fromTo(incomingRef.current,
+        { opacity: 0, filter: 'blur(8px)' },
+        { opacity: 1, filter: 'blur(0px)', duration: 0.85, ease: 'power2.out' },
+        0.15,
+      );
+
+    return () => timeline.kill();
+  }, [isTransitioning]);
+
+  const renderRoutes = (routeLocation) => (
+    <Routes location={routeLocation}>
+      <Route path="/" element={<Home loadingFinished={loadingFinished} />} />
+      <Route path="/works/project-passing" element={<ProjectPassing />} />
+      <Route path="/works/kakao-t" element={<ProjectKakaoT />} />
+      <Route path="/works/hyundai" element={<ProjectHyundai />} />
+      <Route path="/about" element={<About />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+
+  return (
+    <div style={{ position: 'relative', width: '100%' }}>
+      {outgoingLocation && (
+        <div ref={outgoingRef} style={{ position: 'absolute', inset: 0, zIndex: 2, width: '100%' }}>
+          {renderRoutes(outgoingLocation)}
+        </div>
+      )}
+      <div ref={incomingRef} style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+        {renderRoutes(displayLocation)}
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   // Shown once on first load (Figma node 573:8409, "ING") — counts up to
   // 100% then fades out on its own; unmounted here for good so it never
   // reappears on later in-app navigation.
   const [showLoadingScreen, setShowLoadingScreen] = useState(true);
+  const [loadingFinished, setLoadingFinished] = useState(false);
+
+  const handleLoadingFinish = () => {
+    setShowLoadingScreen(false);
+    setLoadingFinished(true);
+  };
+
+  useEffect(() => {
+    const previousOverflowY = document.body.style.overflowY;
+    document.body.style.overflowY = showLoadingScreen ? "hidden" : "auto";
+
+    return () => {
+      document.body.style.overflowY = previousOverflowY;
+    };
+  }, [showLoadingScreen]);
 
   return (
     <div className="site-shell">
       <CursorFollower />
       {showLoadingScreen && (
-        <LoadingScreen onFinish={() => setShowLoadingScreen(false)} />
+        <LoadingScreen onFinish={handleLoadingFinish} />
       )}
       <ScrollManager />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/works/project-passing" element={<ProjectPassing />} />
-        <Route path="/works/kakao-t" element={<ProjectKakaoT />} />
-        <Route path="/works/hyundai" element={<ProjectHyundai />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <PageTransitionRoutes loadingFinished={loadingFinished} />
     </div>
   );
 }

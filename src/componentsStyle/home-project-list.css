@@ -64,7 +64,7 @@
   overflow: hidden;
   border-radius: 10px;
   padding: 20px;
-  background: #2b2b2b;
+  /* background: #2b2b2b; */
   color: #fff;
   text-decoration: none;
 }
@@ -77,7 +77,7 @@
   object-fit: cover;
   background-position: center;
   background-size: cover;
-  background-color: #2b2b2b;
+  /* background-color: #2b2b2b; */
 }
 
 .home-project-list__gradient {
