@@ -1,0 +1,24 @@
+.scroll-fade-img {
+  opacity: 0;
+  /* Big enough to visibly overlap the section text above it as it comes
+     down — that overlap is intentional (it's fine if it covers the text
+     briefly), it's what sells "coming from outside the frame" instead of
+     a small drift that reads as happening inside the box. Same duration
+     as the transform so the fade-in doesn't finish early and make it look
+     like it just appeared partway down. */
+  transform: translateY(-120px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.scroll-fade-img--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Lets the un-revealed image's rise-in show above its own rounded media
+   box instead of being clipped by that box's overflow:hidden — removed
+   again as soon as the image is revealed, restoring the box's normal
+   crop/rounding. */
+.scroll-fade-parent {
+  overflow: visible !important;
+}

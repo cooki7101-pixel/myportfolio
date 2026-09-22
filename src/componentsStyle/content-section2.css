@@ -2,13 +2,21 @@
 .content-section2__group { display: flex; flex-direction: column; gap: 40px; }
 .content-section2__row { display: flex; flex-wrap: wrap; align-items: stretch; gap: 40px 16px; }
 .content-section2 figure { display: flex; width: calc(50% - 8px); margin: 0; flex-direction: column; align-items: center; gap: 4px; }
-.content-section2__media, .content-section2__placeholder { width: 100%; overflow: hidden; border-radius: 10px; background: #dbdbdb; }
+.content-section2__media, .content-section2__placeholder { width: 100%; overflow: hidden; border-radius: 10px; }
+.content-section2__placeholder { background: #dbdbdb; }
 /* Only an empty placeholder (no real image yet) keeps the Figma-spec box
-   ratio; a real image is shown at its own natural size/ratio, not cropped. */
-.content-section2__media:has(.content-section2__placeholder) { aspect-ratio: 592 / 532; }
+   ratio + gray fill; a real image is shown at its own natural size/ratio,
+   not cropped, and the box itself has no background so a scroll-in image
+   animation never reveals gray at its edges. */
+.content-section2__media:has(.content-section2__placeholder) { aspect-ratio: 592 / 532; background: #dbdbdb; }
 .content-section2__media > img, .content-section2__media > video { display: block; width: 100%; height: auto; }
+/* Explicit belt-and-suspenders rounding on the video itself (not just its
+   .content-section2__media wrapper), so the corners stay rounded
+   regardless of the wrapper's own overflow state. */
+.content-section2__media > video { border-radius: 10px; overflow: hidden; }
 .content-section2__media > .content-section2__placeholder { width: 100%; height: 100%; }
-.content-section2__wide { display: flex; width: 100%; flex-direction: column; border-radius: 10px; background: #dbdbdb; }
+.content-section2__wide { display: flex; width: 100%; flex-direction: column; border-radius: 10px; }
+.content-section2__wide:has(.content-section2__placeholder) { background: #dbdbdb; }
 .content-section2__wide > .content-section2__media { width: 100%; border-radius: 10px; }
 .content-section2__wide > .content-section2__media:has(.content-section2__placeholder) { aspect-ratio: 1200 / 647; }
 .content-section2__wide > .content-section2__media > .content-section2__placeholder { width: 100%; height: 100%; aspect-ratio: auto; background: #dbdbdb; }

@@ -22,15 +22,24 @@
   gap: 40px;
 }
 
+/* Explicit belt-and-suspenders rounding on the AFFINITY MAPPING video
+   itself (not just its .content-section__media wrapper), so the corners
+   stay rounded regardless of the wrapper's own overflow state. */
+.project-kakao-t__mapping-group video {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
 .project-kakao-t__wide-image {
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
-  background: #dbdbdb;
 }
 
 .project-kakao-t__wide-image:empty {
   aspect-ratio: 2400 / 2652;
+  background: #dbdbdb;
 }
 
 .project-kakao-t__wide-image img,
@@ -90,11 +99,11 @@
   min-width: 300px;
   border-radius: 10px;
   overflow: hidden;
-  background: #d9d9d9;
 }
 
 .project-kakao-t__wireframe-image:empty {
   aspect-ratio: 1188 / 1160;
+  background: #d9d9d9;
 }
 
 .project-kakao-t__wireframe-image img {
@@ -116,11 +125,11 @@
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
-  background: #d9d9d9;
 }
 
 .project-kakao-t__persona-image-media:empty {
   aspect-ratio: 1200 / 1078;
+  background: #d9d9d9;
 }
 
 .project-kakao-t__persona-image-media--wide:empty {

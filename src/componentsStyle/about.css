@@ -7,14 +7,34 @@
 .about__title { margin: 0; color: #333; font-family: 'Neue Machina', var(--font-sans); font-size: 60px; font-weight: 400; line-height: 1.2; }
 
 .about__body { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 30px; width: 100%; }
-.about__image { width: 593px; height: 660px; flex-shrink: 0; overflow: hidden; border-radius: 10px; background: #dbdbdb; }
-.about__image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.about__image { position: relative; width: 593px; height: 660px; flex-shrink: 0; overflow: hidden; border-radius: 10px; background: #dbdbdb; }
+.about__image-photo {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
 
-.about__traits { display: flex; align-items: flex-start; gap: 12px; }
-.about__quote-icon { flex-shrink: 0; width: 42px; height: 28px; }
-.about__trait-labels { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; margin: 0; padding: 0; list-style: none; font-family: 'Neue Machina', var(--font-sans); font-size: 20px; line-height: 1.5; text-transform: uppercase; white-space: nowrap; }
-.about__trait-labels li:first-child { color: #333; }
-.about__trait-labels li { color: #757575; }
+/* Quote icon sits absolutely inside the row so it can slide up/down to
+   whichever trait label is currently active, without disturbing the list's
+   own layout. */
+.about__traits { position: relative; display: flex; align-items: flex-start; gap: 12px; }
+.about__quote-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex-shrink: 0;
+  width: 42px;
+  height: 28px;
+  transition: transform 0.3s ease;
+}
+.about__trait-labels { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; margin: 0; padding: 0 0 0 54px; list-style: none; font-family: 'Neue Machina', var(--font-sans); font-size: 20px; line-height: 1.5; text-transform: uppercase; white-space: nowrap; }
+.about__trait-labels li { color: #757575; transition: color 0.3s ease; }
+.about__trait-labels li.is-active { color: #333; }
 
 .about__bio { margin: 0; color: #333; font-family: 'Wanted Sans', var(--font-sans); font-size: 18px; font-weight: 500; line-height: 1.5; white-space: pre-wrap; }
 .about__bio p { margin: 0 0 1.5em; }

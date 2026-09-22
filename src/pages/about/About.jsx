@@ -1,15 +1,24 @@
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Header from '../../components/Header'
 import HomeFooter from '../../components/HomeFooter'
 import '../../componentsStyle/about.css'
 
+// Each trait has its own photo — they cycle together, one at a time, in
+// lockstep: the highlighted trait label, the quote icon's row, and the
+// visible photo all advance on the same beat.
 const traits = [
-  'I AM SOCIABLE',
-  'I AM ENTHUSIASTIC',
-  'I LOVE TAKING PICTURES',
-  'I LOVE ART',
-  'I LOVE MUSIC',
-  'I LOVE DOG',
+  { label: 'I AM SOCIABLE', image: '/assets/about/image-sociable.png' },
+  { label: 'I AM ENTHUSIASTIC', image: '/assets/about/image-ENTHUSIASTIC.png' },
+  { label: 'I LOVE TAKING PICTURES', image: '/assets/about/image-TAKING%20PICTURES.png' },
+  { label: 'I LOVE ART', image: '/assets/about/image-art.png' },
+  { label: 'I LOVE MUSIC', image: '/assets/about/image-music.png' },
+  { label: 'I LOVE DOG', image: '/assets/about/image-dog.png' },
 ]
+
+// How long each trait stays active before advancing to the next one — the
+// single shared "tempo" for the image swap, the label highlight, and the
+// quote icon's move.
+const CYCLE_MS = 2400
 
 const bioParagraphs = [
   '안녕하세요. 저는 계획을 세우고 목표를 향해 하나씩 해결해 나가는 과정을 좋아하는 프로덕트 디자이너 김연수입니다. 빠른 작업 속도와 높은 집중력으로 효율적으로 진행하면서도 마지막 디테일까지 놓치지 않으며 완성도를 높이는 것을 중요하게 생각합니다.',
@@ -19,6 +28,42 @@ const bioParagraphs = [
 ]
 
 export default function About() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [hoveredIndex, setHoveredIndex] = useState(null)
+  const [iconOffset, setIconOffset] = useState(0)
+  const listRef = useRef(null)
+  const itemRefs = useRef([])
+
+  // Hovering a label freezes the cycle on that trait; leaving it resumes
+  // the automatic animation right where it left off.
+  const displayedIndex = hoveredIndex !== null ? hoveredIndex : activeIndex
+
+  // Advance the shared tempo — image, label highlight, and quote icon all
+  // move to the next trait together. Paused while a label is hovered.
+  useEffect(() => {
+    if (hoveredIndex !== null) return
+    const timer = setInterval(() => {
+      setActiveIndex((index) => (index + 1) % traits.length)
+    }, CYCLE_MS)
+    return () => clearInterval(timer)
+  }, [hoveredIndex])
+
+  // Measure the currently displayed label's row so the quote icon can
+  // slide to sit next to it, whichever line is highlighted.
+  useLayoutEffect(() => {
+    const measure = () => {
+      const list = listRef.current
+      const activeItem = itemRefs.current[displayedIndex]
+      if (!list || !activeItem) return
+      const listRect = list.getBoundingClientRect()
+      const itemRect = activeItem.getBoundingClientRect()
+      setIconOffset(itemRect.top - listRect.top + (itemRect.height - 28) / 2)
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [displayedIndex])
+
   return (
     <div className="about" data-node-id="435:1566" style={{ backgroundColor: '#DEE4F2' }}>
       <Header />
@@ -32,15 +77,36 @@ export default function About() {
 
         <div className="about__body" data-node-id="435:1667">
           <div className="about__image" data-node-id="512:7020">
-            {/* TODO: drop the real photo (Figma node 512:7020) into public/assets
-                (e.g. about-photo.jpg) and swap this placeholder for an <img>. */}
+            {traits.map((trait, index) => (
+              <img
+                key={trait.label}
+                src={trait.image}
+                alt=""
+                className="about__image-photo"
+                style={{ opacity: index === displayedIndex ? 1 : 0 }}
+              />
+            ))}
           </div>
 
           <div className="about__traits" data-node-id="435:1669">
-            <img className="about__quote-icon" src="/assets/about-quote-icon.svg" alt="" data-node-id="435:1670" />
-            <ul className="about__trait-labels" data-node-id="435:1674">
-              {traits.map((trait) => (
-                <li key={trait}>{trait}</li>
+            <img
+              className="about__quote-icon"
+              src="/assets/about-quote-icon.svg"
+              alt=""
+              data-node-id="435:1670"
+              style={{ transform: `translateY(${iconOffset}px)` }}
+            />
+            <ul className="about__trait-labels" data-node-id="435:1674" ref={listRef}>
+              {traits.map((trait, index) => (
+                <li
+                  key={trait.label}
+                  ref={(el) => (itemRefs.current[index] = el)}
+                  className={index === displayedIndex ? 'is-active' : undefined}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  {trait.label}
+                </li>
               ))}
             </ul>
           </div>
