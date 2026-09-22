@@ -6,6 +6,7 @@ import ResponsiveHyundai from '../../components/ResponsiveHyundai'
 import ContentSection from '../../components/ContentSection'
 import PhaseIntro from '../../components/PhaseIntro'
 import FooterMore from '../../components/FooterMore'
+import ScrollFadeImages from '../../components/ScrollFadeImages'
 import '../../componentsStyle/project-hyundai.css'
 
 // "MORE PROJECTS" footer shows the other two case studies (not this page's own).
@@ -111,6 +112,7 @@ export default function ProjectHyundai() {
       </div>
 
       <FooterMore projects={moreProjects} />
+      <ScrollFadeImages selector=".project-hyundai__body" />
     </article>
   )
 }

@@ -9,6 +9,7 @@ import InterviewBoxKakaoT from '../../components/InterviewBoxKakaoT'
 import UtGroup from '../../components/UtGroup'
 import SectionIntro from '../../components/SectionIntro'
 import FooterMore from '../../components/FooterMore'
+import ScrollFadeImages from '../../components/ScrollFadeImages'
 import '../../componentsStyle/project-kakao-t.css'
 
 // "MORE PROJECTS" footer shows the other two case studies (not this page's own).
@@ -345,6 +346,7 @@ export default function ProjectKakaoT() {
       {/* Frame 229 오버뷰 인디케이터는 검토 후 이어서 추가할 예정입니다. */}
 
       <FooterMore projects={moreProjects} />
+      <ScrollFadeImages selector=".project-kakao-t__body" excludeSelector=".feature-kakao-t__to-be-media, .ut-group" />
     </article>
   )
 }

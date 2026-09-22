@@ -10,6 +10,7 @@ import InterviewBox from '../../components/InterviewBox'
 import WireframeGroup from '../../components/WireframeGroup'
 import UtGroup from '../../components/UtGroup'
 import FooterMore from '../../components/FooterMore'
+import ScrollFadeImages from '../../components/ScrollFadeImages'
 import '../../componentsStyle/project-passing.css'
 
 // "MORE PROJECTS" footer shows the other two case studies (not this page's own).
@@ -65,7 +66,7 @@ export default function ProjectPassing() {
         <PhaseIntro />
 
         {/* DeskResearchGroup */}
-        <div className="project-passing__section project-passing__group">
+        <div className="project-passing__section project-passing__group project-passing__section--rounded">
           <ContentSection
             eyebrow="DESK RESEARCH"
             title="왜 티켓인가?"
@@ -135,7 +136,7 @@ export default function ProjectPassing() {
         />
 
         {/* BrainStormingGroup */}
-        <div className="project-passing__section">
+        <div className="project-passing__section project-passing__section--rounded">
           <ContentSection
             layout="split"
             eyebrow="BRAIN STORMING"
@@ -156,7 +157,7 @@ export default function ProjectPassing() {
         </div>
 
         {/* StoryboardGroup */}
-        <div className="project-passing__section">
+        <div className="project-passing__section project-passing__section--rounded">
           <ContentSection
             eyebrow="STORY BOARD"
             title="불안한 티켓 거래를 안전한 경험으로 바꾸다"
@@ -192,7 +193,7 @@ export default function ProjectPassing() {
         />
 
         {/* PrototypeGroup */}
-        <div className="project-passing__section">
+        <div className="project-passing__section project-passing__section--rounded">
           <ContentSection
             eyebrow="PROTOTYPE"
             title="사용자 경험 검증을 위한 프로토타입 제작"
@@ -235,6 +236,7 @@ export default function ProjectPassing() {
       {/* Frame 229 오버뷰 인디케이터는 검토 후 이어서 추가할 예정입니다. */}
 
       <FooterMore projects={moreProjects} />
+      <ScrollFadeImages selector=".project-passing__body" excludeSelector=".ut-group" />
     </article>
   )
 }

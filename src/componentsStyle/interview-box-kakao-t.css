@@ -70,4 +70,12 @@
   .interview-box-kakao-t__row {
     flex-direction: column;
   }
+
+  /* flex: 1 1 0 was sized for the desktop row's WIDTH — once the row
+     becomes a column, that same flex-basis: 0 collapses each item's
+     HEIGHT to 0 instead, making the top two images vanish. */
+  .interview-box-kakao-t__item {
+    flex: none;
+    width: 100%;
+  }
 }

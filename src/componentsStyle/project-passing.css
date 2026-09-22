@@ -16,6 +16,21 @@
   gap: 50px;
 }
 
+/* DESK RESEARCH / BRAIN STORMING / STORY BOARD / PROTOTYPE groups — explicit
+   rounding on both the shared ContentSection media wrapper AND the img/video
+   itself, so the corners are guaranteed rounded regardless of the wrapper's
+   own overflow state (belt-and-suspenders, same pattern used for the KakaoT
+   videos). */
+.project-passing__section--rounded .content-section__media {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.project-passing__section--rounded .content-section__media img,
+.project-passing__section--rounded .content-section__media video {
+  border-radius: 10px;
+}
+
 .project-passing__feature-definition {
   display: flex;
   width: 100%;
@@ -36,11 +51,11 @@
   overflow: hidden;
   border-radius: 10px;
   border: 1px solid #e6e6e6;
-  background: #dbdbdb;
 }
 
 .project-passing__feature-definition-image:empty {
   aspect-ratio: 1200 / 552;
+  background: #dbdbdb;
 }
 
 .project-passing__feature-definition-image img {
