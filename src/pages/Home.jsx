@@ -1,17 +1,21 @@
 import { useEffect, useLayoutEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import gsap from 'gsap'
+import { SplitText } from 'gsap/SplitText'
 import Header from '../components/Header'
 import HomeFooter from '../components/HomeFooter'
 import HomeProjectList from '../components/HomeProjectList'
 import GlassBox from '../components/glassBox'
 import '../componentsStyle/home.css'
 
+gsap.registerPlugin(SplitText)
+
 export default function Home({ loadingFinished = false }) {
   const { hash } = useLocation()
   const heroRef = useRef(null)
 
   useLayoutEffect(() => {
+    let splitText
     const context = gsap.context(() => {
       const boxes = gsap.utils.toArray([
         '.home__product_design_box',
@@ -20,11 +24,16 @@ export default function Home({ loadingFinished = false }) {
       ])
       const heroImage = '.home__hero-img-me'
       const heroText = '.home__hero-text'
+      const heroTextSplit = '.home__hero-text-split'
+
+      // 전체 텍스트가 아닌 내부 split 대상만 글자 단위로 분리합니다.
+      splitText = SplitText.create(heroTextSplit, { type: 'chars' })
 
       // 로딩이 끝나기 전에는 시작 상태만 준비하고 애니메이션을 대기합니다.
       gsap.set(boxes, { opacity: 0, filter: 'blur(5px)' })
       gsap.set(heroImage, { opacity: 0, filter: 'blur(5px)', scale: 0.8 })
       gsap.set(heroText, { x: '100%', y: '100%' })
+      gsap.set(splitText.chars, { yPercent: 100 })
       if (!loadingFinished) return
 
       const timeline = gsap.timeline()
@@ -34,6 +43,12 @@ export default function Home({ loadingFinished = false }) {
         duration: 0.8,
         ease: 'power2.out',
       })
+      timeline.to(splitText.chars, {
+        yPercent: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: 'power2.out',
+      }, '<')
       timeline.to(heroImage, {
         opacity: 1,
         filter: 'blur(0px)',
@@ -50,7 +65,10 @@ export default function Home({ loadingFinished = false }) {
       })
     }, heroRef)
 
-    return () => context.revert()
+    return () => {
+      splitText?.revert()
+      context.revert()
+    }
   }, [loadingFinished])
 
   // Lets Header's WORK link ("/#work") jump straight to the project list,
@@ -68,7 +86,11 @@ export default function Home({ loadingFinished = false }) {
       {/* TODO: rough placeholder — real interactive hero to be built separately */}
       <section className="home__hero" ref={heroRef} data-node-id="380:3921">
         <div className="home__hero-text-wrap">
-          <p className="home__hero-text">YEONSU</p>
+          {/* 우측아래에서 올라오면서 좌측상단으로 이동하는 애니메이션을 적용한 텍스트입니다. */}
+          <p className="home__hero-text">
+            {/* 각 텍스트를 쪼개서 글자 단위로 애니메이션을 적용할 수 있습니다. */}
+            <span className="home__hero-text-split">YEONSU</span>
+          </p>
         </div>
         <img src="/assets/home/image-me.png" alt="YEONSU" className="home__hero-img-me" />
         <div className="home__product_design_box" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(calc(-50% - 320px), calc(-50% + 80px))' }}>

@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 import '../componentsStyle/scroll-fade-images.css'
 
+// Set to true while developing to show the IntersectionObserver trigger line.
+const SHOW_SCROLL_FADE_MARKER = true
+
 // Must match the transform transition duration in scroll-fade-images.css —
 // used as a fallback in case 'transitionend' doesn't fire (e.g. the element
 // was already at its rest transform, so no transition actually runs).
@@ -17,8 +20,20 @@ const REVEAL_DURATION_MS = 500
  */
 export default function ScrollFadeImages({ selector, excludeSelector }) {
   useEffect(() => {
+    const revealThreshold = 0.1
     const container = document.querySelector(selector)
     if (!container) return
+
+    // Development aid: the observer reveals an element when this much of it
+    // is visible, so the trigger line sits at the corresponding viewport edge.
+    let marker = null
+    if (SHOW_SCROLL_FADE_MARKER) {
+      marker = document.createElement('div')
+      marker.className = 'scroll-fade-marker'
+      marker.style.top = `${(1 - revealThreshold) * 100}vh`
+      marker.innerHTML = `<span>ScrollFadeImages: ${Math.round(revealThreshold * 100)}% visible</span>`
+      document.body.appendChild(marker)
+    }
 
     const media = Array.from(container.querySelectorAll('img, video')).filter(
       (el) => !excludeSelector || !el.closest(excludeSelector)
@@ -79,12 +94,15 @@ export default function ScrollFadeImages({ selector, excludeSelector }) {
           obs.unobserve(el)
         })
       },
-      { threshold: 0.2 }
+      { threshold: revealThreshold }
     )
 
     media.forEach((el) => observer.observe(el))
 
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      marker?.remove()
+    }
   }, [selector, excludeSelector])
 
   return null

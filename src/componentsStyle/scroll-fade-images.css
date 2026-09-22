@@ -22,3 +22,22 @@
 .scroll-fade-parent {
   overflow: visible !important;
 }
+.scroll-fade-marker {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  width: 100%;
+  border-top: 1px dashed #ff3b30;
+  pointer-events: none;
+}
+
+.scroll-fade-marker span {
+  position: absolute;
+  top: -1.4rem;
+  right: 0.75rem;
+  padding: 0.2rem 0.4rem;
+  color: #ff3b30;
+  background: rgba(255, 255, 255, 0.9);
+  font: 11px/1.2 monospace;
+  white-space: nowrap;
+}
