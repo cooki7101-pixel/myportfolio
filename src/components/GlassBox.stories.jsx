@@ -5,15 +5,29 @@ export default {
   component: GlassBox,
   parameters: {
     layout: 'centered',
+<<<<<<< HEAD
     backgrounds: { default: 'light' },
   },
   decorators: [
     (Story) => (
+=======
+    backgrounds: { default: 'dark' },
+  },
+  decorators: [
+    (Story) => (
+      // 유리 효과(배경 왜곡)는 배경이 연하면 거의 안 보이므로,
+      // 대비가 뚜렷한 진한 배경 + 패턴을 깔아 효과가 잘 드러나게 함
+>>>>>>> master
       <div
         style={{
           width: '360px',
           padding: '80px 40px',
+<<<<<<< HEAD
           background: 'linear-gradient(135deg, #dceeff 0%, #f7d9e9 48%, #d7f2e2 100%)',
+=======
+          background:
+            'repeating-linear-gradient(45deg, #1a1440 0px, #1a1440 24px, #2d1f6e 24px, #2d1f6e 48px), radial-gradient(circle at 30% 20%, #ff5fa2 0%, transparent 45%), radial-gradient(circle at 75% 80%, #21d4c4 0%, transparent 45%)',
+>>>>>>> master
         }}
       >
         <Story />
@@ -24,12 +38,21 @@ export default {
     iconSrc: { control: 'text' },
     lines: { control: 'object' },
     items: { control: 'object' },
+<<<<<<< HEAD
     edgeRefraction: { control: { type: 'range', min: 0, max: 2, step: 0.05 } },
     distortion: { control: { type: 'range', min: 0, max: 2, step: 0.05 } },
     fresnel: { control: { type: 'range', min: 0, max: 2, step: 0.05 } },
     dispersion: { control: { type: 'range', min: 0, max: 2, step: 0.05 } },
     animationSpeed: { control: { type: 'range', min: 0, max: 4, step: 0.1 } },
     waveStrength: { control: { type: 'range', min: 0, max: 3, step: 0.1 } },
+=======
+    // 깊이 (depth) — 유리 카드의 곡률/입체감
+    curvature: { control: { type: 'range', min: -10, max: 30, step: 1 } },
+    // 왜곡 — 값이 커질수록 카드 뒤 배경이 실제로 더 많이 휘어 보임(배경 굴절 세기)
+    distortion: { control: { type: 'range', min: 0, max: 3, step: 0.05 } },
+    // 흐릿함 (blur)
+    blur: { control: { type: 'range', min: 0, max: 20, step: 0.5 } },
+>>>>>>> master
     flexDirection: { control: 'select', options: ['row', 'column'] },
     className: { control: 'text' },
   },
@@ -37,12 +60,18 @@ export default {
     iconSrc: '/assets/glass-box-icon.png',
     lines: ['product', 'DESIGNER'],
     items: null,
+<<<<<<< HEAD
     edgeRefraction: 0.8,
     distortion: 0.9,
     fresnel: 0.8,
     dispersion: 0.6,
     animationSpeed: 1.8,
     waveStrength: 1.4,
+=======
+    curvature: 0,
+    distortion: 1.2,
+    blur: 0,
+>>>>>>> master
     flexDirection: 'row',
     className: '',
   },

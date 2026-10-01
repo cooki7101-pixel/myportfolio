@@ -31,8 +31,24 @@ export default function LoadingScreen({ onFinish }) {
     }
 
     rafId = requestAnimationFrame(tick)
+<<<<<<< HEAD
     return () => {
       if (rafId) cancelAnimationFrame(rafId)
+=======
+
+    // 탭이 백그라운드 상태라 rAF가 throttle되어 위 tick이 거의 안 불려도,
+    // 실제 시간(setTimeout) 기준으로 COUNT_DURATION + 여유시간이 지나면
+    // 강제로 로딩을 끝냅니다 — 이러면 백그라운드 탭에서도 hero 애니메이션이
+    // 영원히 멈추는 일이 없습니다.
+    const fallbackId = setTimeout(() => {
+      setPercent(100)
+      setFadingOut(true)
+    }, COUNT_DURATION + 800)
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId)
+      clearTimeout(fallbackId)
+>>>>>>> master
     }
   }, [])
 

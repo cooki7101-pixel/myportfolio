@@ -1,7 +1,11 @@
 .project-passing__body {
   box-sizing: border-box;
   width: 100%;
+<<<<<<< HEAD
   max-width: 1280px; /* 1200px content + 40px side gutter on each side */
+=======
+  max-width: 1280px; /* 1200px 콘텐츠 + 양쪽 각 40px 여백 */
+>>>>>>> master
   margin: 0 auto;
   padding: 0 40px;
 }
@@ -16,11 +20,18 @@
   gap: 50px;
 }
 
+<<<<<<< HEAD
 /* DESK RESEARCH / BRAIN STORMING / STORY BOARD / PROTOTYPE groups — explicit
    rounding on both the shared ContentSection media wrapper AND the img/video
    itself, so the corners are guaranteed rounded regardless of the wrapper's
    own overflow state (belt-and-suspenders, same pattern used for the KakaoT
    videos). */
+=======
+/* DESK RESEARCH / BRAIN STORMING / STORY BOARD / PROTOTYPE 그룹 — 공통
+   ContentSection 미디어 래퍼와 img/video 자체 양쪽 모두에 확실하게 라운딩을
+   적용해서, 래퍼의 overflow 상태와 무관하게 모서리가 항상 둥글게 유지되도록
+   합니다(KakaoT 영상에서 쓴 것과 같은 이중 안전 패턴). */
+>>>>>>> master
 .project-passing__section--rounded .content-section__media {
   border-radius: 10px;
   overflow: hidden;
@@ -55,7 +66,11 @@
 
 .project-passing__feature-definition-image:empty {
   aspect-ratio: 1200 / 552;
+<<<<<<< HEAD
   background: #dbdbdb;
+=======
+  background: transparent;
+>>>>>>> master
 }
 
 .project-passing__feature-definition-image img {

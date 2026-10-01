@@ -6,6 +6,7 @@
   gap: 40px;
 }
 
+<<<<<<< HEAD
 /* Photos row — matches the Figma reference (node 609:8890) proportions:
    real source files are img-passing-ut1.svg (376x309) and
    img-passing-ut2.svg (433x309) — same natural height already. Each box
@@ -13,6 +14,14 @@
    (flex-grow set to that width), so the pair scales down TOGETHER as the
    row narrows, always staying the same height as each other with no
    letterboxing/leftover gap, and no crop. */
+=======
+/* 사진 행 — Figma 참고 디자인(node 609:8890)의 비율과 일치합니다:
+   실제 소스 파일은 img-passing-ut1.svg (376x309)와
+   img-passing-ut2.svg (433x309)로, 이미 자연 높이가 동일합니다. 각 박스는
+   자신의 aspect-ratio를 유지하면서 자연 너비에 비례해서 커지므로
+   (flex-grow를 그 너비로 설정), 행이 좁아질 때 두 박스가 함께 축소되어
+   레터박싱이나 남는 간격 없이, 크롭도 없이 서로 같은 높이를 유지합니다. */
+>>>>>>> master
 .ut-group__photos {
   display: flex;
   flex-wrap: nowrap;
@@ -39,9 +48,15 @@
   aspect-ratio: 433 / 309;
 }
 
+<<<<<<< HEAD
 /* No src yet: show a placeholder box. */
 .ut-group__photo:empty {
   background: #dbdbdb;
+=======
+/* 아직 src가 없을 때: 플레이스홀더 박스를 표시합니다. */
+.ut-group__photo:empty {
+  background: transparent;
+>>>>>>> master
 }
 
 .ut-group__photo img {
@@ -60,6 +75,7 @@
   line-height: 1.48;
 }
 
+<<<<<<< HEAD
 /* Docs row — same proportional-scaling idea as the photos row: real source
    files are img-passing-ut3.svg (658x490, the wide/first doc) and
    img-passing-ut4.svg (532x490, the second doc) — same natural height
@@ -67,6 +83,15 @@
    down together, staying the same height with no leftover gap and no crop.
    Only the first (UT TASKS SEQ) has a border + radius; the second (SUS) is
    plain and square-cornered. */
+=======
+/* 문서 행 — 사진 행과 같은 비례 축소 방식입니다: 실제 소스 파일은
+   img-passing-ut3.svg (658x490, 넓은/첫 번째 문서)와
+   img-passing-ut4.svg (532x490, 두 번째 문서)로, 이미 자연 높이가
+   동일합니다. flex-grow를 각각의 자연 너비로 설정해서 두 박스가 함께
+   축소되며, 남는 간격이나 크롭 없이 같은 높이를 유지합니다. 첫 번째
+   (UT TASKS SEQ)에만 테두리와 라운딩이 있고, 두 번째(SUS)는 각진
+   모서리의 단순한 형태입니다. */
+>>>>>>> master
 .ut-group__docs {
   display: flex;
   flex-wrap: nowrap;
@@ -107,7 +132,11 @@
   aspect-ratio: 532 / 490;
 }
 
+<<<<<<< HEAD
 /* Only the wide (first) doc gets the border + radius. */
+=======
+/* 넓은(첫 번째) 문서에만 테두리와 라운딩을 적용합니다. */
+>>>>>>> master
 .ut-group__doc--wide .ut-group__doc-media {
   border-radius: 10px;
   border: 1px solid #e6e6e6;
@@ -126,7 +155,11 @@
   font-size: 16px;
 }
 
+<<<<<<< HEAD
 /* Tablet (722–989px): photos row stays as on desktop; docs row stacks. */
+=======
+/* 태블릿(722–989px): 사진 행은 데스크탑과 동일하게 유지되고, 문서 행은 세로로 쌓입니다. */
+>>>>>>> master
 @media (max-width: 989px) {
   .ut-group__docs {
     flex-direction: column;
@@ -140,7 +173,11 @@
   }
 }
 
+<<<<<<< HEAD
 /* Mobile (<=721px): photos row also stacks. */
+=======
+/* 모바일(<=721px): 사진 행도 세로로 쌓입니다. */
+>>>>>>> master
 @media (max-width: 721px) {
   .ut-group__photos {
     flex-direction: column;

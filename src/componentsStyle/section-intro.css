@@ -48,5 +48,11 @@
   white-space: pre-line;
 }
 
+<<<<<<< HEAD
 /* No mobile font-size overrides — Figma keeps eyebrow/title/description at
    16px/24px/18px across every breakpoint for section-intro. */
+=======
+/* 모바일용 폰트 크기 오버라이드가 없습니다 — Figma에서는 section-intro의
+   eyebrow/title/description이 모든 브레이크포인트에서 16px/24px/18px로
+   동일하게 유지됩니다. */
+>>>>>>> master

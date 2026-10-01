@@ -1,9 +1,17 @@
 import { useEffect, useState } from 'react'
+<<<<<<< HEAD
 import { Link } from 'react-router-dom'
 import '../componentsStyle/home-footer.css'
 
 // Home-Footer component set breakpoints (Figma):
 // desktop >= 885px, tablet 682-884px, mobile <= 681px.
+=======
+import { Link, useLocation } from 'react-router-dom'
+import '../componentsStyle/home-footer.css'
+
+// Home-Footer 컴포넌트 브레이크포인트 (Figma 기준):
+// 데스크탑 >= 885px, 태블릿 682-884px, 모바일 <= 681px.
+>>>>>>> master
 const TABLET_MIN_WIDTH = 682
 const DESKTOP_MIN_WIDTH = 885
 
@@ -19,6 +27,7 @@ export default function HomeFooter({
   breakpoint,
   email = 'cooki7101@naver.com',
   copyright = '© 2026 Designed by Yeonsu Kim',
+<<<<<<< HEAD
   // TODO: swap in the real LinkedIn link whenever it's ready.
   linkedinUrl = '#',
   resumeUrl = `${import.meta.env.BASE_URL}assets/resume.pdf`,
@@ -26,6 +35,26 @@ export default function HomeFooter({
   homeUrl = '/',
 }) {
   const [viewportBreakpoint, setViewportBreakpoint] = useState('desktop')
+=======
+  linkedinUrl = 'https://www.linkedin.com/in/김연수-undefined-87758841b',
+  resumeUrl = '/assets/resume.pdf',
+  // TODO: 실제 index/홈 페이지 URL이 준비되면 교체할 것.
+  homeUrl = '/',
+}) {
+  const [viewportBreakpoint, setViewportBreakpoint] = useState('desktop')
+  const location = useLocation()
+
+  // 이미 home에 있는 상태에서 로고를 눌러도 react-router는 같은 경로로는
+  // 다시 이동하지 않아 아무 반응이 없어 보였습니다 — 이미 home이면 맨 위로
+  // 부드럽게 스크롤해서, 몇 번을 눌러도 계속 반응하게 합니다.
+  const goHome = (event) => {
+    const isAlreadyHome = location.pathname === homeUrl
+    if (isAlreadyHome) {
+      event.preventDefault()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+>>>>>>> master
 
   useEffect(() => {
     const updateBreakpoint = () => setViewportBreakpoint(getViewportBreakpoint())
@@ -34,7 +63,11 @@ export default function HomeFooter({
     return () => window.removeEventListener('resize', updateBreakpoint)
   }, [])
 
+<<<<<<< HEAD
   // `breakpoint` prop lets Storybook force a variant; otherwise it auto-detects from viewport width.
+=======
+  // `breakpoint` prop으로 Storybook에서 특정 변형을 강제로 지정할 수 있고, 없으면 뷰포트 너비로 자동 감지함.
+>>>>>>> master
   const resolvedBreakpoint = breakpoint ?? viewportBreakpoint
   const mobile = resolvedBreakpoint === 'mobile'
   const tablet = resolvedBreakpoint === 'tablet'
@@ -44,7 +77,11 @@ export default function HomeFooter({
       <div className="home-footer__top">
         <div className="home-footer__contact">
           <h2>Connect!<br />Get in touch<br />:)</h2>
+<<<<<<< HEAD
           <a href={`mailto:${email}`}>{email}<img src={`${import.meta.env.BASE_URL}assets/footer-icon.svg`} alt="" /></a>
+=======
+          <a href={`mailto:${email}`}>{email}<img src="/assets/footer-icon.svg" alt="" /></a>
+>>>>>>> master
         </div>
         <nav>
           <a href={linkedinUrl} target="_blank" rel="noopener noreferrer">LINKEDIN</a>
@@ -54,8 +91,13 @@ export default function HomeFooter({
         </nav>
       </div>
       <div className="home-footer__bottom">
+<<<<<<< HEAD
         <Link to={homeUrl} aria-label="Portfolio home">
           <img src={`${import.meta.env.BASE_URL}assets/footer-logo-desktop-white.svg`} alt="김연수 포트폴리오" />
+=======
+        <Link to={homeUrl} aria-label="Portfolio home" onClick={goHome}>
+          <img src="/assets/footer-logo-desktop-white.svg" alt="김연수 포트폴리오" />
+>>>>>>> master
         </Link>
         <small>{copyright}</small>
       </div>

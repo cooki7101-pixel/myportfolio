@@ -8,12 +8,20 @@ import ContentSection from '../../components/ContentSection'
 import ContentSection2 from '../../components/ContentSection2'
 import InterviewBox from '../../components/InterviewBox'
 import WireframeGroup from '../../components/WireframeGroup'
+<<<<<<< HEAD
 import UtGroup from '../../components/UtGroup'
+=======
+import UtGroupPassing from '../../components/UtGroupPassing'
+>>>>>>> master
 import FooterMore from '../../components/FooterMore'
 import ScrollFadeImages from '../../components/ScrollFadeImages'
 import '../../componentsStyle/project-passing.css'
 
+<<<<<<< HEAD
 // "MORE PROJECTS" footer shows the other two case studies (not this page's own).
+=======
+// "MORE PROJECTS" 푸터에는 이 페이지 자신을 제외한 나머지 두 개의 케이스 스터디를 표시합니다.
+>>>>>>> master
 const moreProjects = [
   { type: 'video', src: '/assets/moreproject/kakaot-MORE%20PROJECT-video.mp4', label: '카카오T with 시니어 맞춤 AI 보이스 에이전트', to: '/works/kakao-t' },
   { type: 'video', src: '/assets/moreproject/hyundai-MORE%20PROJECT-video.mp4', label: '현대자동차 홈페이지 개선', to: '/works/hyundai' },
@@ -204,7 +212,11 @@ export default function ProjectPassing() {
 
         {/* UtGroup */}
         <div className="project-passing__section">
+<<<<<<< HEAD
           <UtGroup
+=======
+          <UtGroupPassing
+>>>>>>> master
             photos={['/assets/passing/img-passing-ut1.svg', '/assets/passing/img-passing-ut2.svg']}
             docs={['/assets/passing/img-passing-ut3.svg', '/assets/passing/img-passing-ut4.svg']}
           />
@@ -236,7 +248,11 @@ export default function ProjectPassing() {
       {/* Frame 229 오버뷰 인디케이터는 검토 후 이어서 추가할 예정입니다. */}
 
       <FooterMore projects={moreProjects} />
+<<<<<<< HEAD
       <ScrollFadeImages selector=".project-passing__body" excludeSelector=".ut-group" />
+=======
+      <ScrollFadeImages selector=".project-passing__body" />
+>>>>>>> master
     </article>
   )
 }

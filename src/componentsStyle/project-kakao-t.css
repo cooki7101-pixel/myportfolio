@@ -1,7 +1,11 @@
 .project-kakao-t__body {
   box-sizing: border-box;
   width: 100%;
+<<<<<<< HEAD
   max-width: 1280px; /* 1200px content + 40px side gutter on each side */
+=======
+  max-width: 1280px; /* 1200px 콘텐츠 + 양쪽 각 40px 여백 */
+>>>>>>> master
   margin: 0 auto;
   padding: 0 40px;
 }
@@ -22,9 +26,15 @@
   gap: 40px;
 }
 
+<<<<<<< HEAD
 /* Explicit belt-and-suspenders rounding on the AFFINITY MAPPING video
    itself (not just its .content-section__media wrapper), so the corners
    stay rounded regardless of the wrapper's own overflow state. */
+=======
+/* .content-section__media 래퍼뿐 아니라 AFFINITY MAPPING 영상 자체에도
+   확실하게 라운딩을 중복 적용해서, 래퍼의 overflow 상태와 무관하게
+   모서리가 항상 둥글게 유지되도록 합니다. */
+>>>>>>> master
 .project-kakao-t__mapping-group video {
   display: block;
   border-radius: 10px;
@@ -39,7 +49,11 @@
 
 .project-kakao-t__wide-image:empty {
   aspect-ratio: 2400 / 2652;
+<<<<<<< HEAD
   background: #dbdbdb;
+=======
+  background: transparent;
+>>>>>>> master
 }
 
 .project-kakao-t__wide-image img,
@@ -70,10 +84,17 @@
   gap: 40px;
 }
 
+<<<<<<< HEAD
 /* Match image1's width to image3's rendered width (one of two equal items in
    a 1200px-wide row with a 12px gap: (1200 - 12) / 2 = 594px), keep its
    right edge flush with image3's right edge, without cropping — the real
    asset still renders at its own natural aspect ratio. */
+=======
+/* image1의 너비를 image3의 렌더링된 너비에 맞춥니다(12px 간격의 1200px
+   너비 행에서 동일한 두 항목 중 하나: (1200 - 12) / 2 = 594px). 자르지
+   않고 image3의 오른쪽 가장자리에 맞춰 정렬하며 — 실제 에셋은 여전히
+   자기 고유의 비율 그대로 렌더링됩니다. */
+>>>>>>> master
 .project-kakao-t__wireframe-group .content-section--split .content-section__block {
   max-width: 594px;
   margin-left: auto;
@@ -103,7 +124,11 @@
 
 .project-kakao-t__wireframe-image:empty {
   aspect-ratio: 1188 / 1160;
+<<<<<<< HEAD
   background: #d9d9d9;
+=======
+  background: transparent;
+>>>>>>> master
 }
 
 .project-kakao-t__wireframe-image img {
@@ -129,7 +154,11 @@
 
 .project-kakao-t__persona-image-media:empty {
   aspect-ratio: 1200 / 1078;
+<<<<<<< HEAD
   background: #d9d9d9;
+=======
+  background: transparent;
+>>>>>>> master
 }
 
 .project-kakao-t__persona-image-media--wide:empty {

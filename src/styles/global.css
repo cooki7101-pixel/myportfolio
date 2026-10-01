@@ -5,6 +5,27 @@ body {
   font-size: 16px;
   line-height: 1.5;
 }
+<<<<<<< HEAD
+=======
+/* 세로 스크롤바를 시각적으로만 숨김 — 스크롤 동작 자체는 그대로 유지됩니다. */
+html {
+  scrollbar-width: none;
+  /* WORK 카드 행이 일부러 오른쪽으로 넘치게(overflow: visible) 되어
+     있는데, 이걸 막아둔 곳이 없으면 창을 좁힐수록 그 넘친 만큼 페이지
+     자체의 가로 스크롤 영역이 생겨서 오른쪽에 빈 여백처럼 보였습니다.
+     페이지 레벨에서만 가로로는 넘치지 않게 잘라서, 카드가 화면 밖으로
+     보이는 디자인은 그대로 유지하면서 오른쪽 여백만 없앱니다.
+     주의: overflow-x를 hidden으로 주면 스펙상 overflow-y가 자동으로
+     'auto'로 강제되면서 html 자체가 스크롤 컨테이너로 취급돼, 그 안의
+     position:sticky(WORK 리스트 등)가 헤더에 붙어 고정되지 않고 그냥
+     흘러가버리는 문제가 생겼습니다 — clip은 같은 방식으로 가로만 잘라주면서
+     세로축(overflow-y)에는 영향을 주지 않아 sticky가 정상 동작합니다. */
+  overflow-x: clip;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+>>>>>>> master
 ::selection {
   background: var(--color-text);
   color: var(--color-background);

@@ -6,13 +6,21 @@ import PhaseIntro from '../../components/PhaseIntro'
 import ContentSection from '../../components/ContentSection'
 import ContentSection2 from '../../components/ContentSection2'
 import InterviewBoxKakaoT from '../../components/InterviewBoxKakaoT'
+<<<<<<< HEAD
 import UtGroup from '../../components/UtGroup'
+=======
+import UtGroupKakaoT from '../../components/UtGroupKakaoT'
+>>>>>>> master
 import SectionIntro from '../../components/SectionIntro'
 import FooterMore from '../../components/FooterMore'
 import ScrollFadeImages from '../../components/ScrollFadeImages'
 import '../../componentsStyle/project-kakao-t.css'
 
+<<<<<<< HEAD
 // "MORE PROJECTS" footer shows the other two case studies (not this page's own).
+=======
+// "MORE PROJECTS" 푸터는 (이 페이지 자신을 뺀) 나머지 두 케이스 스터디를 보여줌.
+>>>>>>> master
 const moreProjects = [
   { type: 'video', src: '/assets/moreproject/passing_MORE%20PROJECT-video..mp4', label: "AI 티켓 사기 예방 '패싱'", to: '/works/project-passing' },
   { type: 'video', src: '/assets/moreproject/hyundai-MORE%20PROJECT-video.mp4', label: '현대자동차 홈페이지 개선', to: '/works/hyundai' },
@@ -39,7 +47,11 @@ export default function ProjectKakaoT() {
           role={'리서치,\nUIUX디자인,\n프로토타입,\n사용성 테스트'}
         />
 
+<<<<<<< HEAD
         {/* BackgroundGroup */}
+=======
+        {/* 배경 그룹 */}
+>>>>>>> master
         <FeatureKakaoT
           eyebrow="MAIN FEATURES 01"
           title="시니어 맞춤형 간단 모드"
@@ -65,14 +77,22 @@ export default function ProjectKakaoT() {
           toBeVideo="/assets/kakaot/features1.mp4"
         />
 
+<<<<<<< HEAD
         {/* Discover-section */}
+=======
+        {/* DISCOVER 섹션 */}
+>>>>>>> master
         <PhaseIntro
           title="DISCOVER"
           headline={<>“Why Can’t Seniors Use<br /> Kakao T?”</>}
           desc="카카오T는 이미 전국 어디서나 택시가 잡히는 앱인데 왜 노인들은 택시를 부르지 못할까?"
         />
 
+<<<<<<< HEAD
         {/* DeskResearchGroup */}
+=======
+        {/* 데스크 리서치 그룹 */}
+>>>>>>> master
         <div className="project-kakao-t__section">
           <ContentSection
             eyebrow="DESK RESEARCH"
@@ -82,7 +102,11 @@ export default function ProjectKakaoT() {
           />
         </div>
 
+<<<<<<< HEAD
         {/* appReviewGroup */}
+=======
+        {/* 앱 리뷰 분석 그룹 */}
+>>>>>>> master
         <div className="project-kakao-t__section">
           <ContentSection
             eyebrow="APP REVIEW ANALYSIS"
@@ -92,7 +116,11 @@ export default function ProjectKakaoT() {
           />
         </div>
 
+<<<<<<< HEAD
         {/* User interviewsGroup — InterviewBox-KakaoT bundles its own section-intro */}
+=======
+        {/* 사용자 인터뷰 그룹 — InterviewBox-KakaoT가 자체 section-intro를 포함함 */}
+>>>>>>> master
         <div className="project-kakao-t__section">
           <InterviewBoxKakaoT
             eyebrow="USER INTERVIEWS"
@@ -106,7 +134,11 @@ export default function ProjectKakaoT() {
           />
         </div>
 
+<<<<<<< HEAD
         {/* mappingGroup — Affinity Mapping split section + one wide image below (Figma gap: 40, not 50) */}
+=======
+        {/* 매핑 그룹 — Affinity Mapping split 섹션 + 아래에 와이드 이미지 한 장 (Figma 간격: 50이 아니라 40) */}
+>>>>>>> master
         <div className="project-kakao-t__section project-kakao-t__mapping-group">
           <ContentSection
             layout="split"
@@ -120,7 +152,11 @@ export default function ProjectKakaoT() {
           </div>
         </div>
 
+<<<<<<< HEAD
         {/* CompetitorAnalysisGroup */}
+=======
+        {/* 경쟁사 분석 그룹 */}
+>>>>>>> master
         <div className="project-kakao-t__section">
           <ContentSection
             eyebrow="COMPETITOR ANALYSIS"
@@ -130,14 +166,22 @@ export default function ProjectKakaoT() {
           />
         </div>
 
+<<<<<<< HEAD
         {/* Define-section */}
+=======
+        {/* DEFINE 섹션 */}
+>>>>>>> master
         <PhaseIntro
           title="DEFINE"
           headline="“Seniors Feel Anxious and Struggle to Recover from Errors.”"
           desc={<>시니어 사용자는 일상에 문제없는 디지털 리터러시 수준을 갖추고도 카카오T에서는 불안을 느끼고,<br />리터러시 수준이 낮을수록 오류가 난 상황에서 스스로 복구하지 못해 서비스 이용을 끝맺지 못한다.</>}
         />
 
+<<<<<<< HEAD
         {/* empathymapGroup */}
+=======
+        {/* 공감 지도 그룹 */}
+>>>>>>> master
         <div className="project-kakao-t__section">
           <ContentSection2
             eyebrow="EMPATHY MAP"
@@ -147,7 +191,11 @@ export default function ProjectKakaoT() {
           />
         </div>
 
+<<<<<<< HEAD
         {/* personaGroup — section-intro + three full-width stacked images (not a 50/50 row); Figma gap between intro and images is 40 */}
+=======
+        {/* 퍼소나 그룹 — section-intro + 전체 폭 이미지 3장을 세로로 쌓음(50/50 배치 아님); intro와 이미지 사이 Figma 간격은 40 */}
+>>>>>>> master
         <div className="project-kakao-t__section project-kakao-t__persona-group">
           <SectionIntro
             eyebrow="PERSONA AND USER JOURNEY MAP"
@@ -173,14 +221,22 @@ export default function ProjectKakaoT() {
           </div>
         </div>
 
+<<<<<<< HEAD
         {/* develop-section */}
+=======
+        {/* DEVELOP 섹션 */}
+>>>>>>> master
         <PhaseIntro
           title="DEVELOP"
           headline="“How Might We Help Seniors Complete a Taxi Call?”"
           desc="디지털 리터러시 수준과 상관없이 모든 시니어 사용자가 호출을 끝까지 마치게 하려면 어떻게 도와야 할까?"
         />
 
+<<<<<<< HEAD
         {/* BrainStormingGroup */}
+=======
+        {/* 브레인스토밍 그룹 */}
+>>>>>>> master
         <div className="project-kakao-t__section">
           <ContentSection
             layout="split"
@@ -191,7 +247,11 @@ export default function ProjectKakaoT() {
           />
         </div>
 
+<<<<<<< HEAD
         {/* moscowGroup */}
+=======
+        {/* 모스코우 그룹 */}
+>>>>>>> master
         <div className="project-kakao-t__section">
           <ContentSection
             eyebrow="MoSCoW PRIOTIZATION"
@@ -201,7 +261,11 @@ export default function ProjectKakaoT() {
           />
         </div>
 
+<<<<<<< HEAD
         {/* StoryboardGroup */}
+=======
+        {/* 스토리보드 그룹 */}
+>>>>>>> master
         <div className="project-kakao-t__section">
           <ContentSection
             eyebrow="STORY BOARD"
@@ -211,7 +275,11 @@ export default function ProjectKakaoT() {
           />
         </div>
 
+<<<<<<< HEAD
         {/* UserflowGroup */}
+=======
+        {/* 유저플로우 그룹 */}
+>>>>>>> master
         <div className="project-kakao-t__section">
           <ContentSection
             eyebrow="USER FLOW"
@@ -221,7 +289,11 @@ export default function ProjectKakaoT() {
           />
         </div>
 
+<<<<<<< HEAD
         {/* sketchesGroup */}
+=======
+        {/* 스케치 그룹 */}
+>>>>>>> master
         <div className="project-kakao-t__section">
           <ContentSection2
             eyebrow="SKETCHES"
@@ -231,16 +303,26 @@ export default function ProjectKakaoT() {
           />
         </div>
 
+<<<<<<< HEAD
         {/* deliver-section */}
+=======
+        {/* DELIVER 섹션 */}
+>>>>>>> master
         <PhaseIntro
           title="DELIVER"
           headline={<>“Can Seniors Complete<br />the Call?”</>}
           desc="이 설계로 시니어 사용자가 실패해도 호출을 끝까지 마칠 수 있을까?"
         />
 
+<<<<<<< HEAD
         {/* wireframeGroup — a ContentSection split row (text + one screenshot)
             followed by two large sketch/wireframe images side by side, NOT
             the lavender full-bleed WireframeGroup used on the Passing page. */}
+=======
+        {/* 와이어프레임 그룹 — ContentSection split 행(텍스트 + 스크린샷 한 장) 뒤에
+            큰 스케치/와이어프레임 이미지 두 장이 나란히 이어짐. Passing 페이지에서
+            쓰는 라벤더색 풀블리드 WireframeGroup과는 다른 것임. */}
+>>>>>>> master
         <div className="project-kakao-t__section project-kakao-t__wireframe-group">
           <ContentSection
             layout="split"
@@ -259,7 +341,11 @@ export default function ProjectKakaoT() {
           </div>
         </div>
 
+<<<<<<< HEAD
         {/* designSystemGroup */}
+=======
+        {/* 디자인 시스템 그룹 */}
+>>>>>>> master
         <div className="project-kakao-t__section">
           <ContentSection
             eyebrow="DESIGN SYSTEM"
@@ -269,7 +355,11 @@ export default function ProjectKakaoT() {
           />
         </div>
 
+<<<<<<< HEAD
         {/* prototypeGroup */}
+=======
+        {/* 프로토타입 그룹 */}
+>>>>>>> master
         <div className="project-kakao-t__section">
           <ContentSection
             eyebrow="PROTOTYPE"
@@ -279,21 +369,34 @@ export default function ProjectKakaoT() {
           />
         </div>
 
+<<<<<<< HEAD
         {/* UtGroup */}
         <div className="project-kakao-t__section">
           <UtGroup
+=======
+        {/* UT 그룹 */}
+        <div className="project-kakao-t__section">
+          <UtGroupKakaoT
+>>>>>>> master
             eyebrow="USABILITY TEST"
             title="호출 과정의 사용성 평가"
             description="7명의 시니어를 대상으로 과업을 진행하여 호출 성공 여부와 오류 상황에서 스스로 복구할 수 있는지를 확인했습니다. SEQ 평균 98점, SUS 평균 94점으로 사용성은 긍정적이었고 평균 수행 시간도 4분 41초에서 1분 30초로 약 68% 단축되었습니다."
             photos={['/assets/kakaot/img-ut1.svg', '/assets/kakaot/img-ut2.svg']}
             docs={['/assets/kakaot/img-ut3.svg', '/assets/kakaot/img-ut4.svg']}
+<<<<<<< HEAD
             resultText=""
+=======
+>>>>>>> master
             docCaption1="UT TASKS SEQ 점수"
             docCaption2="SUS 점수"
           />
         </div>
 
+<<<<<<< HEAD
         {/* ITERATIONGroup */}
+=======
+        {/* ITERATION 그룹 */}
+>>>>>>> master
         <div className="project-kakao-t__section">
           <SectionIntro
             eyebrow="ITERATION"
@@ -320,7 +423,11 @@ export default function ProjectKakaoT() {
           toBeImage="/assets/kakaot/img-ITERATION4.png"
         />
 
+<<<<<<< HEAD
         {/* TakeawaysBody */}
+=======
+        {/* 배움 정리 본문 */}
+>>>>>>> master
         <div className="project-kakao-t__takeaways">
           <div className="project-kakao-t__takeaways-heading">
             <p className="project-kakao-t__takeaways-eyebrow">TAKEAWAYS</p>
@@ -346,7 +453,11 @@ export default function ProjectKakaoT() {
       {/* Frame 229 오버뷰 인디케이터는 검토 후 이어서 추가할 예정입니다. */}
 
       <FooterMore projects={moreProjects} />
+<<<<<<< HEAD
       <ScrollFadeImages selector=".project-kakao-t__body" excludeSelector=".feature-kakao-t__to-be-media, .ut-group" />
+=======
+      <ScrollFadeImages selector=".project-kakao-t__body" excludeSelector=".feature-kakao-t__to-be-media" />
+>>>>>>> master
     </article>
   )
 }

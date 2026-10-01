@@ -1,5 +1,9 @@
 @import url("/webfonts/static/neueMachina/neueMachina.css");
 @import url("/webfonts/static/wantedSans/WantedSans.css");
+<<<<<<< HEAD
+=======
+@import url("/webfonts/static/ppNeueMachina/ppNeueMachina.css");
+>>>>>>> master
 
 .home {
   box-sizing: border-box;
@@ -10,19 +14,37 @@
   background: #c9d2e7;
 }
 
+<<<<<<< HEAD
 /* TODO: rough placeholder only — the real interactive hero (name reveal,
    photo, floating chips) will be built separately. */
+=======
+/* TODO: 대략적인 임시 구현일 뿐입니다 — 실제 인터랙티브 히어로(이름 등장,
+   사진, 떠다니는 칩)는 별도로 제작 예정입니다. */
+>>>>>>> master
 .home__hero {
   box-sizing: border-box;
   display: flex;
   width: 100%;
+<<<<<<< HEAD
   height: 100vh;
+=======
+  /* aspect-ratio(1920/800)는 너비가 1920px를 넘어도 계속 커지는데,
+     .home__hero-stage는 transform: scale(min(100vw,1920px)/1920px)라서
+     1920px부터는 더이상 안 커집니다 — 그래서 화면이 1920px보다 넓어질수록
+     .home__hero 박스만 계속 커지고 스테이지(실제 보이는 내용)는 그대로라,
+     스테이지 위/아래로 빈 여백이 계속 늘어났습니다. 여기서도 스테이지와
+     똑같이 min(100vw,1920px) 기준으로 높이를 계산해서, 1920px 이상에서는
+     더 이상 커지지 않게(스테이지와 정확히 같은 크기로) 맞춥니다. */
+  height: calc(800px * min(100vw, 1920px) / 1920px);
+  min-height: 0;
+>>>>>>> master
   flex-direction: column;
   justify-content: center;
   gap: 16px;
   /* padding: 150px 68px 0 40px; */
   color: #333;
   position: relative;
+<<<<<<< HEAD
 }
 .home__hero-text-wrap {
   position: absolute;
@@ -40,10 +62,103 @@
   font-size: calc((100vw - 200px) / 3.7);
   text-align: center;
   letter-spacing: -15px;
+=======
+  /* padding-top은 여기서 아무 효과가 없었습니다 — .home__hero는
+     aspect-ratio로 전체(테두리 포함) 높이가 너비만으로 고정되기 때문에,
+     padding을 늘려도 총 높이는 그대로고 내부에서만 재배치될 뿐이라
+     .home__hero-stage(position:absolute, top:%)의 위치 계산 기준이 되는
+     "전체 높이"가 안 바뀝니다 — 그래서 스테이지가 그대로 헤더 뒤에
+     가려졌던 것입니다. margin은 aspect-ratio/box-sizing 계산에
+     포함되지 않아서, margin-top을 주면 박스 자체가 진짜로 아래로
+     밀려나(전체 높이 계산에 영향 없이) 헤더 높이만큼 진짜 여백이
+     생깁니다. */
+  margin-bottom: 400px;
+
+}
+/* YEONSU 텍스트 + 사진 + 글래스박스를 담는 고정 크기 "무대". 1440px 기준
+   디자인을 그대로 담고 있다가, 뷰포트 너비에 맞춰 전체를 통째로
+   확대/축소합니다 — 그래서 내부의 폰트 크기, 아이콘 크기, 위치 간격이
+   모두 항상 같은 비율을 유지한 채 함께 커지고 작아집니다. */
+.home__hero-stage {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  width: 1920px;
+  height: 800px;
+  /* 코드에 적힌 px 값(예: hero-desc 16px)은 1920px 화면에서 딱 그 크기로
+     보이는 게 "최대치"입니다 — 그래서 기준을 1440이 아니라 1920으로
+     삼습니다. 1920px 이상에서는 scale이 1을 넘지 않도록 min()으로 막아서
+     코드 그대로의 px 크기가 상한이 되고, 1920px보다 좁아지면 그 지점부터
+     화면 너비에 비례해서 점점 작아집니다. */
+  transform: translate(-50%, -50%) scale(calc(min(100vw, 1920px) / 1920px));
+  transform-origin: top center;
+  /* 이 안에는 클릭 가능한 요소(버튼/링크)가 없는 순수 장식용 텍스트·이미지·
+     글래스박스뿐입니다 — transform이 걸려 있어서 자체 스택 컨텍스트가
+     생기는데, 혹시라도 이 박스의 투명한 영역이 헤더(WORK 링크 등) 위의
+     클릭을 가로채는 일이 없도록 포인터 이벤트를 아예 꺼둡니다. */
+  pointer-events: none;
+}
+
+
+/* 글래스박스 위치 조정-desektop. */
+.home__hero-stage .home__product_design_box {
+  position: absolute;
+  top: 49.3%;
+  left: 45.2%;
+  transform: translate(calc(-50% - 320px), calc(-50% + 80px));
+}
+
+.home__hero-stage .home__department_of_visual_design_box {
+  position: absolute;
+  top: 82%;
+  left: 11.5%;
+  transform: translate(calc(-50% + 380px), calc(-50% + 0px));
+}
+
+.home__hero-stage .home__skills_box {
+  position: absolute;
+  top: 59%;
+  left: 61.5%;
+  transform: translate(calc(-50% + 380px), calc(-50% + 0px));
+}
+
+
+@media (max-width: 1920px) {
+  .home__hero-stage {
+    top: 120px;
+    transform: translate(-50%, 0%) scale(calc(min(100vw, 1920px) / 1920px));
+    transform-origin: top center;
+  }
+}
+
+.home__hero-text-wrap {
+  position: absolute;
+  top: 78%;
+  left: 50%;
+  transform: translate(-50.5%, -90%);
+  overflow: hidden;
+  width: 100%;
+  height: 640px;
+}
+.home__hero-text {
+  width: calc(100% - 80px);
+  margin: 0 auto;
+  font-family: "PP Neue Machina";
+  font-weight: 400;
+  font-size: 465px;
+  /* 이 폰트(PP Neue Machina)는 라인 높이(line-height:normal 기준)가 실제
+     글자 잉크보다 좁아서, 큰 사이즈에서는 아래쪽(예: U, Y 등)이 살짝
+     잘려 보였습니다 — 줄 높이를 조금 넉넉하게 줘서 glyph가 들어갈 공간을
+     확보합니다. */
+  line-height: 1.15;
+  text-align: center;
+  letter-spacing: -18px;
+>>>>>>> master
   text-transform: uppercase;
   color: #121212;
 }
 
+<<<<<<< HEAD
 .home__hero-img-text {
   width: calc(100% - 80px);
   position: absolute;
@@ -55,10 +170,17 @@
   width: calc(100% - 400px);
   position: absolute;
   top: 50%;
+=======
+.home__hero-img-me {
+  width: calc(100% - 30px);
+  position: absolute;
+  top: 67%;
+>>>>>>> master
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
+<<<<<<< HEAD
 .home__hero-desc {
   margin: 0;
   max-width: 337px;
@@ -75,12 +197,190 @@
    "window" width HomeProjectList's pinned scroll math measures against.
    The card row itself (3 x 500px + gaps = 1660px) is wider than this box;
    see home-project-list.css for how it slides into view on scroll. */
+=======
+/* home__hero-stage 밖으로 옮겨서(위치를 뷰포트 높이 기준으로 계산하기
+   위해) 더 이상 스테이지의 transform: scale()에 자동으로 얹혀가지
+   않습니다 — 그래서 왼쪽 여백·폰트 크기·최대 너비를 스테이지와 똑같은
+   축소 비율(min(100vw, 1920px) / 1920px)로 직접 계산해서, 화면을
+   줄이면 스테이지의 다른 요소들처럼 같이 작아지게 합니다. */
+.home__hero-desc {
+  margin: 0;
+  max-width: calc(337px * min(100vw, 1920px) / 1920px);
+  color: #333;
+  font-family: "Wanted Sans", var(--font-sans);
+  font-size: calc(16px * min(100vw, 1920px) / 1920px);
+  line-height: 1.32;
+  /* position:fixed로 두면 처음엔 화면 하단에 잘 고정되지만, 스크롤해도
+     계속 화면에 떠 있어서(hero를 벗어나도 안 사라짐) 부자연스러웠습니다.
+     원하는 동작은 "처음 화면(첫 페이지)에서는 me 이미지 하단 쪽, 화면
+     기준 아래에서 100px 위치에 있다가, 스크롤하면 hero의 다른
+     요소들(이미지 등)과 함께 자연스럽게 같이 스크롤되어 사라지는" 것이라,
+     fixed 대신 hero를 기준으로 한 absolute를 쓰고, 처음 위치만 100vh(현재
+     보이는 화면 높이) 기준으로 계산합니다 — hero가 문서 맨 위(y=0)에서
+     시작하기 때문에, "화면 높이 - 100px" 지점이 곧 hero 안에서의 위치와
+     같습니다. 모니터 세로 크기가 다르거나 F11로 뷰포트 높이가 바뀌어도
+     vh 단위라 항상 그 순간 화면 기준으로 다시 계산됩니다. */
+  position: absolute;
+  top: calc(100vh - 50px);
+  transform: translateY(-100%);
+  left: calc(40px * min(100vw, 1920px) / 1920px);
+}
+
+/* 태블릿(682~1199px, hero-stage가 위쪽으로 앵커 전환되는 구간과 동일)에서는
+   데스크탑처럼 100vh(실제 화면 높이) 기준으로 계산하면 모니터마다
+   위치가 들쭉날쭉해서, 대신 hero 자신의 높이(%) 기준 고정 위치로 둡니다
+   — hero-stage와 마찬가지로 hero 안에서 항상 같은 상대 위치를 유지합니다. */
+@media (max-width: 1100px) {
+.home__hero {
+margin-bottom: 19vh;
+}
+  .home__hero-desc {
+  top: 50vh;  
+  max-width: calc(337px * min(100vw, 1100px) / 1100px);
+  font-size: calc(13px * min(100vw, 1100px) / 1100px);
+  }
+  .home__hero-img-me {
+  width: calc(120% - 10px);
+  position: absolute;
+  top: 61%;
+  transform: translate(-50%, -50%);
+}
+
+.home__hero-text-wrap {
+  top: 74%;}
+
+/* 글래스박스 위치 조정 — .home__hero-stage로 범위를 한정합니다. 이 클래스
+   이름들(.home__product_design_box 등)은 데스크탑/태블릿용 스테이지와
+   모바일 전용 스테이지(.home__hero-mobile-stage) 양쪽에 똑같이 쓰이는데,
+   범위를 안 주면 이 !important 규칙이 681px 이하(모바일)에서도 계속
+   적용돼서, 모바일 전용 위치 규칙(!important 없음)을 specificity와
+   상관없이 덮어써버립니다 — 그래서 모바일에서 위치가 안 먹는 것처럼
+   보였습니다. */
+  .home__hero-stage .home__product_design_box {
+    top: 57% !important;
+    left: 26% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .home__hero-stage .home__department_of_visual_design_box {
+    top: 90% !important;
+    left: 29% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .home__hero-stage .home__skills_box {
+    top: 60% !important;
+    left: 75% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}
+/* 기본적으로는 숨겨두고, 아래 @media (max-width: 681px)에서만 보이게
+   합니다 — 이 display:none이 없으면 브라우저 기본값(display:block)이
+   적용돼서 데스크탑/태블릿 화면에서도 모바일 전용 히어로가 계속 보이게
+   됩니다. */
+.home__hero-mobile-stage {
+  display: none;
+}
+
+
+@media (max-width: 681px) {
+  .home__hero {
+    margin-bottom: 620px;
+  }
+  .home__hero-stage {
+    display: none;
+  }
+
+  .home__hero-mobile-stage {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 487px;
+    height: 847px;
+    transform: translate(-50%, 0%) scale(calc(100vw / 487px));
+    transform-origin: top center;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .home__hero-text {
+    position: absolute;
+    top: 116px;
+    left: 17px;
+    right: 10px;
+    margin: 0;
+    font-family: "PP Neue Machina";
+    font-weight: 400;
+    font-size: 115px;
+    text-align: center;
+    letter-spacing: -5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: #121212;
+  }
+
+  .home__hero-mobile-img-me {
+    position: absolute;
+    top: 95px;
+    left: 78px;
+    width: calc(100% + 123.5px);
+    aspect-ratio: 900 / 1208;
+    object-fit: cover;
+  }
+
+  .home__hero-mobile-stage .home__department_of_visual_design_box {
+    position: absolute;
+    top: 35%;
+    left: 45.2%;
+    transform: translate(calc(-50% - 105.5px), 0);
+  }
+
+  .home__hero-mobile-stage .home__product_design_box {
+    position: absolute;
+    top: 39.8%;
+    left: 56%;
+    transform: translate(calc(-50% + 101.5px), 0);
+  }
+
+  .home__hero-mobile-stage .home__skills_box {
+    position: absolute;
+    top: 57.5%;
+    left: 45%;
+    transform: translate(calc(-50% - 77px), calc(-50% + 153.31px));
+  }
+
+  .home__hero-mobile-desc {
+    position: absolute;
+    top: 762px;
+    left: 17px;
+    margin: 0;
+    width: 324px;
+    color: #333;
+    font-family: "Wanted Sans", var(--font-sans);
+    font-size: 14px;
+    line-height: 1.32;
+  }
+  /* 기존 데스크탑용 desc 숨김 처리 */
+   .home__hero-desc {
+    display: none;}
+}
+
+/* 다른 모든 섹션과 마찬가지로 표준 1200px 콘텐츠 박스입니다 — HomeProjectList의
+   고정 스크롤 계산이 기준으로 삼는 "윈도우" 너비입니다. 카드 행 자체
+   (3 x 500px + 간격 = 1660px)는 이 박스보다 넓습니다. 스크롤 시 어떻게
+   슬라이드하며 나타나는지는 home-project-list.css를 참고하세요.
+   (실수로 위 @media (max-width: 681px) 블록 안에 갇혀 있어서 데스크탑/
+   태블릿에서는 이 스타일이 전혀 적용되지 않고 있었습니다 — 블록 밖으로
+   꺼냈습니다.) */
+>>>>>>> master
 .home__project-wrap {
   box-sizing: border-box;
   width: 100%;
   /* max-width: 1280px;  iki - 20260920 - 스크롤 인터렉션이 들어가는 부분 max-width 1280px를 주면 양 옆이 짤리게 된다*/
   margin: 0 auto;
   /* padding: 0 40px; iki - 20260920 - padding을 자식 요소에 넣는게 좋다*/
+<<<<<<< HEAD
 }
 
 @media (max-width: 700px) {
@@ -97,4 +397,13 @@
   .home__project-wrap {
     padding: 0 17px;
   }
+=======
+  /* HomeProjectList의 pinned-scroll 높이는 JS로 뷰포트 너비 기반 계산되는데
+     (entranceDistance = trackWrap.clientWidth), 좁은 화면에서는 그 값이
+     작아져서 카드 섹션이 끝나자마자 푸터가 바로 붙거나 카드 하단이
+     잘려 보일 수 있습니다 — 화면 크기와 무관하게 항상 충분한 여백이
+     남도록 고정 margin을 더해줍니다. */
+  margin-bottom: 100px;
+  overflow: visible;
+>>>>>>> master
 }

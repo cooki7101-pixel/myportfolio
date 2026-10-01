@@ -6,6 +6,23 @@
     <meta name="description" content="UX/UI Portfolio Starter Kit" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Portfolio Starter Kit</title>
+
+    <!-- Google Analytics 4 — analytics.google.com에서 속성을 만들고 받은
+         측정 ID(G-XXXXXXXXXX)로 아래 두 군데(src, gtag 호출)를 바꿔주세요.
+         체류시간, 방문자 수, 유입경로 등은 GA4 리포트(참여도 > 참여 시간)에서
+         자동으로 볼 수 있어서 별도 코드가 더 필요하지 않습니다. -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-XXXXXXXXXX");
+    </script>
   </head>
   <body>
     <div id="root"></div>

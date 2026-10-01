@@ -59,10 +59,17 @@
   overflow: hidden;
 }
 
+<<<<<<< HEAD
 /* No src yet: show a placeholder box. */
 .comparison-hyundai__media:empty {
   aspect-ratio: 1 / 1.4;
   background: #dbdbdb;
+=======
+/* 아직 src가 없을 때: 플레이스홀더 박스를 표시합니다. */
+.comparison-hyundai__media:empty {
+  aspect-ratio: 1 / 1.4;
+  background: transparent;
+>>>>>>> master
 }
 
 .comparison-hyundai__media img {

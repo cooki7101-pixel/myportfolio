@@ -4,7 +4,11 @@
 .hero h1 { margin: 0; color: #333; font-family: 'Wanted Sans', var(--font-sans); font-size: 88px; font-weight: 500; line-height: 1.1; }
 .hero__title-wrap a { color: #333; font-family: 'Wanted Sans', var(--font-sans); font-size: 20px; line-height: 1.1; text-transform: uppercase; }
 .hero__title-wrap a img { display: inline-block; width: 28.2px; height: 15.2px; margin-left: 6px; vertical-align: middle; }
+<<<<<<< HEAD
 .hero__media { width: 100%; aspect-ratio: 1840 / 832; overflow: hidden; border-radius: 10px; background: #dbdbdb; }
+=======
+.hero__media { width: 100%; aspect-ratio: 1840 / 832; overflow: hidden; border-radius: 10px; background: transparent; }
+>>>>>>> master
 .hero__media > * { width: 100%; height: 100%; object-fit: cover; }
 .hero--laptop, .hero--tablet { gap: 40px; padding: 76px 40px 0; }
 .hero--laptop .hero__title-wrap, .hero--tablet .hero__title-wrap { padding-top: 80px; }

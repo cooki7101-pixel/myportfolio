@@ -50,8 +50,13 @@
 .phase-intro--mobile { padding: 100px 0; }
 .phase-intro--mobile .phase-intro__headline { font-size: 36px; line-height: 1.14; }
 
+<<<<<<< HEAD
 /* Manual <br /> line breaks in headline/description are desktop-only —
    let text wrap naturally at tablet/mobile widths instead. */
+=======
+/* headline/description의 수동 <br /> 줄바꿈은 데스크탑 전용입니다 —
+   태블릿/모바일 너비에서는 텍스트가 자연스럽게 줄바꿈되도록 둡니다. */
+>>>>>>> master
 .phase-intro--tablet .phase-intro__headline br,
 .phase-intro--tablet .phase-intro__description br,
 .phase-intro--mobile .phase-intro__headline br,

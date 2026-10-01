@@ -17,8 +17,14 @@
 .main-features__video--mobile { width: 359px; height: 660px; }
 
 @media (max-width: 700px) {
+<<<<<<< HEAD
   /* No side padding here — MainFeatures has none of its own on mobile per Figma
      (pl-[0px]); it relies on the page's own 17px gutter like every other section. */
+=======
+  /* 여기에는 좌우 패딩이 없습니다 — Figma 기준으로 MainFeatures는 모바일에서
+     자체 패딩이 없으며(pl-[0px]), 다른 모든 섹션과 마찬가지로 페이지 자체의
+     17px 여백에 의존합니다. */
+>>>>>>> master
   .main-features { padding: 40px 0; }
   .main-features--state, .main-features--reverse { flex-direction: column; }
   .main-features__intro { min-width: 0; width: 100%; }

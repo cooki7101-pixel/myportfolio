@@ -1,0 +1,7 @@
+@font-face {
+    font-family: "PP Neue Machina";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: local("PP Neue Machina Inktrap Regular"), url("./PPNeueMachina-InktrapRegular.otf") format("opentype");
+}

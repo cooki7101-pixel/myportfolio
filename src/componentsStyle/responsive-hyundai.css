@@ -22,8 +22,13 @@
   gap: 16px;
 }
 
+<<<<<<< HEAD
 /* Desktop/tablet/mobile mockups keep Figma's relative widths so the trio
    doesn't end up evenly split into thirds. */
+=======
+/* 데스크탑/태블릿/모바일 목업은 셋이 균등하게 3등분되지 않도록 Figma의
+   상대적 너비 비율을 그대로 유지합니다. */
+>>>>>>> master
 .responsive-hyundai__item--desktop {
   flex-grow: 570;
 }
@@ -52,10 +57,17 @@
   overflow: hidden;
 }
 
+<<<<<<< HEAD
 /* No src yet: show a placeholder box. */
 .responsive-hyundai__media:empty {
   aspect-ratio: 570 / 1598;
   background: #dbdbdb;
+=======
+/* 아직 src가 없을 때: 플레이스홀더 박스를 표시합니다. */
+.responsive-hyundai__media:empty {
+  aspect-ratio: 570 / 1598;
+  background: transparent;
+>>>>>>> master
 }
 
 .responsive-hyundai__media img {
