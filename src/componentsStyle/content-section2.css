@@ -1,0 +1,24 @@
+.content-section2 { display: flex; width: 100%; max-width: 1200px; flex-direction: column; gap: 40px; }
+.content-section2__group { display: flex; flex-direction: column; gap: 40px; }
+.content-section2__row { display: flex; flex-wrap: wrap; align-items: stretch; gap: 40px 16px; }
+.content-section2 figure { display: flex; width: calc(50% - 8px); margin: 0; flex-direction: column; align-items: center; gap: 4px; }
+.content-section2__media, .content-section2__placeholder { width: 100%; overflow: hidden; border-radius: 10px; }
+.content-section2__placeholder { background: transparent; }
+/* 비어 있는 플레이스홀더(아직 실제 이미지가 없는 경우)에만 Figma 스펙의
+   박스 비율과 회색 채우기를 유지합니다. 실제 이미지는 잘리지 않고 원래의
+   크기/비율 그대로 표시되며, 박스 자체에는 배경이 없어서 스크롤 인
+   이미지 애니메이션 중에 가장자리에 회색이 비치는 일이 없습니다. */
+.content-section2__media:has(.content-section2__placeholder) { aspect-ratio: 592 / 532; background: transparent; }
+.content-section2__media > img, .content-section2__media > video { display: block; width: 100%; height: auto; }
+/* .content-section2__media 래퍼뿐 아니라 video 자체에도 확실하게 라운딩을
+   중복 적용해서, 래퍼의 overflow 상태와 무관하게 모서리가 항상 둥글게
+   유지되도록 합니다. */
+.content-section2__media > video { border-radius: 10px; overflow: hidden; }
+.content-section2__media > .content-section2__placeholder { width: 100%; height: 100%; }
+.content-section2__wide { display: flex; width: 100%; flex-direction: column; border-radius: 10px; }
+.content-section2__wide:has(.content-section2__placeholder) { background: transparent; }
+.content-section2__wide > .content-section2__media { width: 100%; border-radius: 10px; }
+.content-section2__wide > .content-section2__media:has(.content-section2__placeholder) { aspect-ratio: 1200 / 647; }
+.content-section2__wide > .content-section2__media > .content-section2__placeholder { width: 100%; height: 100%; aspect-ratio: auto; background: transparent; }
+.content-section2__wide figcaption { display: block; text-align: center; }
+.content-section2--mobile .content-section2__row { flex-direction: column; gap: 24px; }.content-section2--mobile figure { width: 100%; }.content-section2--mobile .content-section2__group { gap: 24px; }.content-section2--mobile .content-section2__wide, .content-section2--mobile .content-section2__wide > .content-section2__media:has(.content-section2__placeholder) { aspect-ratio: 1200 / 647; }

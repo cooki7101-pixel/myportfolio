@@ -1,0 +1,86 @@
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+}
+/* 세로 스크롤바를 시각적으로만 숨김 — 스크롤 동작 자체는 그대로 유지됩니다. */
+html {
+  scrollbar-width: none;
+  /* WORK 카드 행이 일부러 오른쪽으로 넘치게(overflow: visible) 되어
+     있는데, 이걸 막아둔 곳이 없으면 창을 좁힐수록 그 넘친 만큼 페이지
+     자체의 가로 스크롤 영역이 생겨서 오른쪽에 빈 여백처럼 보였습니다.
+     페이지 레벨에서만 가로로는 넘치지 않게 잘라서, 카드가 화면 밖으로
+     보이는 디자인은 그대로 유지하면서 오른쪽 여백만 없앱니다.
+     주의: overflow-x를 hidden으로 주면 스펙상 overflow-y가 자동으로
+     'auto'로 강제되면서 html 자체가 스크롤 컨테이너로 취급돼, 그 안의
+     position:sticky(WORK 리스트 등)가 헤더에 붙어 고정되지 않고 그냥
+     흘러가버리는 문제가 생겼습니다 — clip은 같은 방식으로 가로만 잘라주면서
+     세로축(overflow-y)에는 영향을 주지 않아 sticky가 정상 동작합니다. */
+  overflow-x: clip;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+::selection {
+  background: var(--color-text);
+  color: var(--color-background);
+}
+:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 5px;
+}
+.eyebrow {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+h1,
+h2,
+h3 {
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+h1 {
+  font-size: clamp(3.5rem, 9vw, 9rem);
+}
+h2 {
+  font-size: clamp(2rem, 4vw, 4.5rem);
+}
+h3 {
+  font-size: 1.35rem;
+}
+em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+.lede {
+  color: var(--color-muted);
+  font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+  max-width: 32rem;
+}
+.muted {
+  color: var(--color-muted);
+}
+.text-link {
+  border-bottom: 1px solid var(--color-text);
+  display: inline-flex;
+  gap: 0.75rem;
+  padding-bottom: 0.25rem;
+  transition: opacity 0.2s ease;
+}
+.text-link:hover {
+  opacity: 0.55;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

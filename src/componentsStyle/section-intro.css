@@ -1,0 +1,53 @@
+@import url('/webfonts/static/neueMachina/neueMachina.css');
+@import url('/webfonts/static/wantedSans/WantedSans.css');
+
+.section-intro {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  max-width: 664px;
+  word-break: break-word;
+  color: #212121;
+  font-style: normal;
+}
+
+.section-intro__eyebrow,
+.section-intro__title,
+.section-intro__description {
+  width: 100%;
+  margin: 0;
+}
+
+.section-intro__eyebrow {
+  color: #757575;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 16px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.section-intro__title {
+  color: #333;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: normal;
+  line-height: 1.38;
+}
+
+.section-intro__description {
+  color: #333;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.48;
+  white-space: pre-line;
+}
+
+/* 모바일용 폰트 크기 오버라이드가 없습니다 — Figma에서는 section-intro의
+   eyebrow/title/description이 모든 브레이크포인트에서 16px/24px/18px로
+   동일하게 유지됩니다. */

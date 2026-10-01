@@ -1,0 +1,52 @@
+@font-face {
+    font-family: "Wanted Sans";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 900;
+    src: local("Neue Machina Black"), url("./woff2/NeueMachina-Black.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Neue Machina";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 800;
+    src: local("Neue Machina Ultrabold"), url("./woff2/NeueMachina-Ultrabold.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Neue Machina";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 700;
+    src: local("Neue Machina Medium"), url("./woff2/NeueMachina-Bold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Neue Machina";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: local("Neue Machina Medium"), url("./woff2/NeueMachina-Medium.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Neue Machina";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: local("Neue Machina Regular"), url("./woff2/NeueMachina-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Neue Machina";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 200;
+    src: local("Neue Machina Light"), url("./woff2/NeueMachina-Light.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Neue Machina";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100;
+    src: local("Neue Machina Ultralight"), url("./woff2/NeueMachina-Ultralight.woff2") format("woff2");
+}

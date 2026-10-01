@@ -1,0 +1,7 @@
+@font-face {
+    font-family: "PP Neue Machina Plain";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: local("PP Neue Machina Plain Regular"), url("./PPNeueMachina-PlainRegular.otf") format("opentype");
+}

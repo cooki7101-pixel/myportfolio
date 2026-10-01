@@ -1,0 +1,23 @@
+.project-hyundai__body {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1280px; /* 1200px 콘텐츠 + 양쪽 각 40px 여백 */
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.project-hyundai__section {
+  padding: 40px 0;
+}
+
+/* 이 페이지의 이미지는 각진 모서리를 유지해야 합니다 — 공통 ContentSection
+   컴포넌트의 둥근 미디어 박스를 이 페이지에서만 오버라이드합니다. */
+.project-hyundai .content-section__media {
+  border-radius: 0;
+}
+
+@media (max-width: 700px) {
+  .project-hyundai__body {
+    padding: 0 17px;
+  }
+}

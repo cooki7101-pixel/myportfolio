@@ -1,0 +1,229 @@
+.project-kakao-t__body {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1280px; /* 1200px 콘텐츠 + 양쪽 각 40px 여백 */
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.project-kakao-t__section {
+  padding: 40px 0;
+}
+
+.project-kakao-t__group {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.project-kakao-t__mapping-group {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* .content-section__media 래퍼뿐 아니라 AFFINITY MAPPING 영상 자체에도
+   확실하게 라운딩을 중복 적용해서, 래퍼의 overflow 상태와 무관하게
+   모서리가 항상 둥글게 유지되도록 합니다. */
+.project-kakao-t__mapping-group video {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.project-kakao-t__wide-image {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.project-kakao-t__wide-image:empty {
+  aspect-ratio: 2400 / 2652;
+  background: transparent;
+}
+
+.project-kakao-t__wide-image img,
+.project-kakao-t__wide-image video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-kakao-t__persona-group {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.project-kakao-t__persona-images {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.project-kakao-t__wireframe-group {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* image1의 너비를 image3의 렌더링된 너비에 맞춥니다(12px 간격의 1200px
+   너비 행에서 동일한 두 항목 중 하나: (1200 - 12) / 2 = 594px). 자르지
+   않고 image3의 오른쪽 가장자리에 맞춰 정렬하며 — 실제 에셋은 여전히
+   자기 고유의 비율 그대로 렌더링됩니다. */
+.project-kakao-t__wireframe-group .content-section--split .content-section__block {
+  max-width: 594px;
+  margin-left: auto;
+}
+
+@media (max-width: 989px) {
+  .project-kakao-t__wireframe-group .content-section--split .content-section__block {
+    margin-left: 0;
+    max-width: 100%;
+  }
+}
+
+
+.project-kakao-t__wireframe-images {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.project-kakao-t__wireframe-image {
+  flex: 1 1 0;
+  min-width: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.project-kakao-t__wireframe-image:empty {
+  aspect-ratio: 1188 / 1160;
+  background: transparent;
+}
+
+.project-kakao-t__wireframe-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-kakao-t__persona-image {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.project-kakao-t__persona-image-media {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.project-kakao-t__persona-image-media:empty {
+  aspect-ratio: 1200 / 1078;
+  background: transparent;
+}
+
+.project-kakao-t__persona-image-media--wide:empty {
+  aspect-ratio: 1200 / 647;
+}
+
+.project-kakao-t__persona-image-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-kakao-t__persona-image figcaption {
+  color: #6c6f71;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 14px;
+  line-height: 1.48;
+}
+
+.project-kakao-t__takeaways {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 40px 0 80px;
+}
+
+.project-kakao-t__takeaways-heading {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  white-space: nowrap;
+}
+
+.project-kakao-t__takeaways-eyebrow {
+  margin: 0;
+  color: #757575;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.project-kakao-t__takeaways-title {
+  margin: 0;
+  color: #333;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.38;
+}
+
+.project-kakao-t__takeaways-list {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 280px;
+  max-width: 817px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-kakao-t__takeaway {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  color: #333;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 18px;
+  line-height: 1.48;
+}
+
+.project-kakao-t__takeaway-row {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.project-kakao-t__takeaway p {
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .project-kakao-t__body {
+    padding: 0 17px;
+  }
+
+  .project-kakao-t__takeaways {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .project-kakao-t__takeaways-heading {
+    white-space: normal;
+  }
+}

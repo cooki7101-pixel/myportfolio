@@ -1,0 +1,158 @@
+.ut-group {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* 사진 행 — Figma 참고 디자인(node 609:8890)의 비율과 일치합니다:
+   실제 소스 파일은 img-passing-ut1.svg (376x309)와
+   img-passing-ut2.svg (433x309)로, 이미 자연 높이가 동일합니다. 각 박스는
+   자신의 aspect-ratio를 유지하면서 자연 너비에 비례해서 커지므로
+   (flex-grow를 그 너비로 설정), 행이 좁아질 때 두 박스가 함께 축소되어
+   레터박싱이나 남는 간격 없이, 크롭도 없이 서로 같은 높이를 유지합니다. */
+.ut-group__photos {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 10px;
+  width: 100%;
+}
+
+.ut-group__photo {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  aspect-ratio: 347 / 379;
+}
+
+.ut-group__photo:nth-child(1) {
+  flex-grow: 376;
+  aspect-ratio: 376 / 309;
+}
+
+.ut-group__photo:nth-child(2) {
+  flex-grow: 433;
+  aspect-ratio: 433 / 309;
+}
+
+/* 아직 src가 없을 때: 플레이스홀더 박스를 표시합니다. */
+.ut-group__photo:empty {
+  background: transparent;
+}
+
+.ut-group__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ut-group__result {
+  width: 100%;
+  margin: 0;
+  color: #333;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 18px;
+  line-height: 1.48;
+}
+
+/* 문서 행 — 사진 행과 같은 비례 축소 방식입니다: 실제 소스 파일은
+   img-passing-ut3.svg (658x490, 넓은/첫 번째 문서)와
+   img-passing-ut4.svg (532x490, 두 번째 문서)로, 이미 자연 높이가
+   동일합니다. flex-grow를 각각의 자연 너비로 설정해서 두 박스가 함께
+   축소되며, 남는 간격이나 크롭 없이 같은 높이를 유지합니다. 첫 번째
+   (UT TASKS SEQ)에만 테두리와 라운딩이 있고, 두 번째(SUS)는 각진
+   모서리의 단순한 형태입니다. */
+.ut-group__docs {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 40px 10px;
+  width: 100%;
+}
+
+.ut-group__doc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.ut-group__doc-media {
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 592 / 442;
+}
+
+.ut-group__doc--wide {
+  flex-grow: 658;
+}
+
+.ut-group__doc--wide .ut-group__doc-media {
+  aspect-ratio: 658 / 490;
+}
+
+.ut-group__doc:not(.ut-group__doc--wide) {
+  flex-grow: 532;
+}
+
+.ut-group__doc:not(.ut-group__doc--wide) .ut-group__doc-media {
+  aspect-ratio: 532 / 490;
+}
+
+/* 넓은(첫 번째) 문서에만 테두리와 라운딩을 적용합니다. */
+.ut-group__doc--wide .ut-group__doc-media {
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
+}
+
+.ut-group__doc-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ut-group__doc figcaption {
+  color: #6c6f71;
+  font-family: 'Wanted Sans', var(--font-sans);
+  font-size: 16px;
+}
+
+/* 태블릿(722–989px): 사진 행은 데스크탑과 동일하게 유지되고, 문서 행은 세로로 쌓입니다. */
+@media (max-width: 989px) {
+  .ut-group__docs {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 24px;
+  }
+
+  .ut-group__doc {
+    width: 100%;
+    flex: none;
+  }
+}
+
+/* 모바일(<=721px): 사진 행도 세로로 쌓입니다. */
+@media (max-width: 721px) {
+  .ut-group__photos {
+    flex-direction: column;
+    max-width: 100%;
+    gap: 24px;
+  }
+
+  .ut-group__photo {
+    flex: none;
+    width: 100%;
+  }
+
+  .ut-group__docs {
+    gap: 24px;
+  }
+}

@@ -1,0 +1,121 @@
+@import url('/webfonts/static/neueMachina/neueMachina.css');
+
+.header {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  /* isolation:isolate로 헤더 스스로 독립된 스택 컨텍스트를 만들어서,
+     아래 콘텐츠(예: home hero의 transform이 걸린 요소들)가 어떤 이유로든
+     헤더보다 위에 그려지는 일이 없게 확실히 고정합니다. */
+  isolation: isolate;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 68px;
+  background: rgba(255, 255, 255, 0.35);
+  border-bottom: 0.7px solid rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(20px) saturate(125%);
+  backdrop-filter: blur(20px) saturate(125%);
+}
+
+/* 모바일 메뉴가 열려있을 때는 헤더 바 자체의 반투명 유리 효과를 꺼서,
+   오버레이의 불투명한 배경색과 겹쳐 보이며 뒤가 비치는 것처럼 보이는
+   문제를 없앱니다. */
+.header--menu-open {
+  background: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border-bottom-color: transparent;
+}
+
+.header__logo { position: relative; z-index: 1101; line-height: 0; }
+.header__menu { display: flex; align-items: center; justify-content: flex-end; gap: 40px; }
+.header__menu a {
+  color: #333;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+/* 태블릿(682-1279px, Figma node 579:8433) — 데스크탑과 동일한 가로형 내비를
+   그대로 쓰되 좌우 패딩만 좁게 유지합니다. */
+.header--tablet { padding: 18px 40px; }
+
+.header--mobile { width: 100%; min-height: 70px; padding: 18px 17px; }
+.header--mobile .header__menu { gap: 0; }
+.header--mobile .header__menu a { font-size: 18px; }
+
+/* 모바일 메뉴 트리거 — 기존 트리거와 같은 스타일의 단순한 "MENU"/"CLOSE"
+   텍스트 링크로, 헤더 우측 상단에 위치합니다. */
+.header__menu-toggle {
+  border: none;
+  background: transparent;
+  padding: 0;
+  color: #333;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+  cursor: pointer;
+  z-index: 1101;
+}
+
+/* 전체화면 오버레이 내비 — 링크는 헤더 바로 아래, 로고와 같은 왼쪽 여백을
+   기준으로 좌측 상단에 고정됩니다(가운데 정렬이 아니라 참고 디자인처럼
+   좌측 상단에 앵커된 모바일 메뉴). */
+.header__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1099;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 106px 17px 100px;
+  background: #c9d2e7;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition: opacity 280ms ease, transform 280ms ease, visibility 280ms;
+}
+.header--menu-open .header__overlay {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.header__overlay-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.header__overlay-list a {
+  color: #333;
+  font-family: 'Neue Machina', var(--font-sans);
+  font-size: 32px;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* "LET'S WORK TOGETHER" 문의 CTA — 내비 목록과 분리되어(오버레이 자체의
+   space-between 레이아웃을 통해) 오버레이 하단에 고정됩니다. */
+.header__overlay-cta {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  font-size: 16px !important;
+  color: #333333 !important;
+  text-decoration: underline !important;
+  text-transform: none !important;
+}
