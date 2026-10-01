@@ -5,8 +5,6 @@ body {
   font-size: 16px;
   line-height: 1.5;
 }
-<<<<<<< HEAD
-=======
 /* 세로 스크롤바를 시각적으로만 숨김 — 스크롤 동작 자체는 그대로 유지됩니다. */
 html {
   scrollbar-width: none;
@@ -25,7 +23,6 @@ html {
 html::-webkit-scrollbar {
   display: none;
 }
->>>>>>> master
 ::selection {
   background: var(--color-text);
   color: var(--color-background);

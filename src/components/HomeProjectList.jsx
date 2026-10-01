@@ -8,33 +8,21 @@ const defaultProjects = [
     title: 'AI 티켓 사기 예방 ‘패싱’',
     description: 'SNS 티켓 거래의 사기 취약점을 해결해 AI 사전 검증으로 보호하는 티켓 거래 플랫폼',
     to: '/works/project-passing',
-<<<<<<< HEAD
-    video: `${import.meta.env.BASE_URL}assets/home-passing.mp4`,
-=======
     video: '/assets/home-passing.mp4',
->>>>>>> master
   },
   {
     tags: ['#AI AGENT', '#SENIOR', '#REVAMP'],
     title: ['카카오T with 시니어 맞춤', 'AI 보이스 에이전트'],
     description: '디지털 사용에 어려움 겪는 시니어도 택시 호출을 끝까지 완료할 수 있도록 개선',
     to: '/works/kakao-t',
-<<<<<<< HEAD
-    video: `${import.meta.env.BASE_URL}assets/home-kakaot.mp4`,
-=======
     video: '/assets/home-kakaot.mp4',
->>>>>>> master
   },
   {
     tags: ['#반응형', '#WEB', '#REVAMP'],
     title: '현대자동차 홈페이지 개선',
     description: ['일관성 없는 레이아웃과 끊기는 구매흐름을', '반응형에 맞춰 재설계'],
     to: '/works/hyundai',
-<<<<<<< HEAD
-    video: `${import.meta.env.BASE_URL}assets/home-hyundai.mp4`,
-=======
     video: '/assets/home-hyundai.mp4',
->>>>>>> master
   },
 ]
 
@@ -92,26 +80,13 @@ export default function HomeProjectList({ projects = defaultProjects, id }) {
 
     let startTranslate = 0
     let endTranslate = 0
-<<<<<<< HEAD
-=======
     let progressFloor = 0.4
->>>>>>> master
     let rafId = null
 
     const measure = () => {
       // transform이 적용되지 않은 상태에서 트랙의 실제 너비를 측정합니다.
       track.style.transform = 'none'
       // 트랙이 래퍼를 넘어가는 전체 오버플로 거리를 계산합니다.
-<<<<<<< HEAD
-
-      // 초기 보여질 영역까지를 계산한다
-      const overflow = Math.max(track.scrollWidth - trackWrap.clientWidth, 0)
-      endTranslate = -overflow
-      // 화면 너비만큼 오른쪽에서 시작해 스크롤 중 왼쪽으로 진입하게 합니다.
-      const entranceDistance = trackWrap.clientWidth;
-      startTranslate = endTranslate + entranceDistance
-      section.style.height = `${window.innerHeight + entranceDistance}px`
-=======
       //
       // trackWrap 자체는 WORK 헤딩과 왼쪽을 맞추려고 max-width:1200으로
       // 좁혀뒀지만(home-project-list.css), 오버플로 판단은 그 1200 박스가
@@ -155,7 +130,6 @@ export default function HomeProjectList({ projects = defaultProjects, id }) {
       // 측정되어 카드 행이 완전히 자리잡기 전에 sticky가 풀려버릴 수
       // 있음 — 그래서 카드 하단이 잘려 보이는 것처럼 느껴짐.
       section.style.height = `${window.innerHeight + entranceDistance + 140}px`
->>>>>>> master
     }
 
     const update = () => {
@@ -165,16 +139,11 @@ export default function HomeProjectList({ projects = defaultProjects, id }) {
       const rect = section.getBoundingClientRect()
       const runway = startTranslate - endTranslate
 
-<<<<<<< HEAD
-      // 여기 위치의 0.2~0.9 구간에서만 트랙이 이동하도록 제한합니다.
-      const progress = Math.min(Math.max(-rect.top / runway, 0.2), 0.9)
-=======
       // 여기 위치의 0.4~1 구간에서만 트랙이 이동하도록 제한합니다 — 시작
       // 지점을 더 왼쪽으로(0.2 → 0.4) 당겨서 처음부터 더 안쪽에서
       // 보이게 하고, 끝 지점은 1까지 채워서 스크롤이 끝나면 트랙이 화면
       // 왼쪽 끝까지 다 밀려 잘리듯 끝나게 합니다.
       const progress = Math.min(Math.max(-rect.top / runway, progressFloor), 1)
->>>>>>> master
 
       track.style.transform = `translateX(${startTranslate - progress * runway}px)`
     }

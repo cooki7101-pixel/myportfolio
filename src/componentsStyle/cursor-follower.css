@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-/* Hide the native arrow only where the follower is actually active (fine
-   pointer, JS ran) — never on touch, and never before the effect mounts. */
-=======
 /* 팔로워가 실제로 활성화된 경우(정밀 포인터, JS 실행됨)에만 네이티브
    화살표를 숨깁니다 — 터치 기기에서는 절대 숨기지 않고, 효과가 마운트되기
    전에도 숨기지 않습니다. */
->>>>>>> master
 body.cursor-follower-active,
 body.cursor-follower-active * {
   cursor: none;
@@ -24,7 +19,10 @@ body.cursor-follower-active * {
   z-index: 9999;
   opacity: 0;
   transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
-  transition: width 0.25s ease, height 0.25s ease, opacity 0.2s ease;
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    opacity 0.2s ease;
   will-change: transform;
 }
 

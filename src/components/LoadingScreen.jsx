@@ -31,10 +31,6 @@ export default function LoadingScreen({ onFinish }) {
     }
 
     rafId = requestAnimationFrame(tick)
-<<<<<<< HEAD
-    return () => {
-      if (rafId) cancelAnimationFrame(rafId)
-=======
 
     // 탭이 백그라운드 상태라 rAF가 throttle되어 위 tick이 거의 안 불려도,
     // 실제 시간(setTimeout) 기준으로 COUNT_DURATION + 여유시간이 지나면
@@ -48,7 +44,6 @@ export default function LoadingScreen({ onFinish }) {
     return () => {
       if (rafId) cancelAnimationFrame(rafId)
       clearTimeout(fallbackId)
->>>>>>> master
     }
   }, [])
 

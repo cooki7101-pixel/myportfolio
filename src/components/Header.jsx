@@ -1,23 +1,12 @@
-<<<<<<< HEAD
-import { NavLink } from 'react-router-dom'
-=======
 import { NavLink, useLocation } from 'react-router-dom'
->>>>>>> master
 import { useEffect, useState } from 'react'
 import Logo from './Logo'
 import '../componentsStyle/header.css'
 
-<<<<<<< HEAD
-// Header component set breakpoints (Figma, updated — a real tablet variant
-// now exists at 682-1279px: same horizontal WORK/ABOUT/RESUME nav as
-// desktop, just narrower side padding): desktop >= 1280px, tablet
-// 682-1279px, mobile <= 681px.
-=======
 // Header 컴포넌트 브레이크포인트 (Figma 기준, 업데이트됨 — 682-1279px에
 // 실제 태블릿 변형이 추가됨: 데스크탑과 동일한 가로형 WORK/ABOUT/RESUME
 // 내비게이션에 좌우 패딩만 좁게): 데스크탑 >= 1280px, 태블릿
 // 682-1279px, 모바일 <= 681px.
->>>>>>> master
 const MOBILE_MAX_WIDTH = 681
 const TABLET_MAX_WIDTH = 1279
 
@@ -29,15 +18,6 @@ function getViewportBreakpoint() {
   return 'desktop'
 }
 
-<<<<<<< HEAD
-// Mobile menu pattern referenced from noomoagency.com's mobile nav: a small
-// text trigger opens a full-screen overlay with the nav links stacked large,
-// plus a close control — rather than a dropdown. Tablet keeps the desktop's
-// plain horizontal nav, just narrower.
-export default function Header({ breakpoint, homeUrl = '/' }) {
-  const [viewportBreakpoint, setViewportBreakpoint] = useState(getViewportBreakpoint)
-  const [menuOpen, setMenuOpen] = useState(false)
-=======
 // 모바일 메뉴 패턴은 noomoagency.com의 모바일 내비게이션을 참고함: 작은
 // 텍스트 트리거를 누르면 드롭다운이 아니라 전체화면 오버레이가 열리고,
 // 그 안에 내비 링크들이 크게 세로로 쌓이며 닫기 버튼이 함께 표시됨.
@@ -46,7 +26,6 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
   const [viewportBreakpoint, setViewportBreakpoint] = useState(getViewportBreakpoint)
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
->>>>>>> master
 
   useEffect(() => {
     const updateBreakpoint = () => setViewportBreakpoint(getViewportBreakpoint())
@@ -55,29 +34,17 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
     return () => window.removeEventListener('resize', updateBreakpoint)
   }, [])
 
-<<<<<<< HEAD
-  // `breakpoint` prop lets Storybook force a variant; otherwise it auto-detects from viewport width.
-=======
   // `breakpoint` prop으로 Storybook에서 특정 변형을 강제로 지정할 수 있고, 없으면 뷰포트 너비로 자동 감지함.
->>>>>>> master
   const resolvedBreakpoint = breakpoint ?? viewportBreakpoint
   const isMobile = resolvedBreakpoint === 'mobile'
   const isTablet = resolvedBreakpoint === 'tablet'
 
-<<<<<<< HEAD
-  // Overlay should never be left open if the viewport grows back past mobile.
-=======
   // 뷰포트가 다시 모바일 폭 이상으로 커지면 오버레이가 열린 채로 남아있지 않도록 함.
->>>>>>> master
   useEffect(() => {
     if (!isMobile) setMenuOpen(false)
   }, [isMobile])
 
-<<<<<<< HEAD
-  // Lock page scroll while the full-screen overlay is open.
-=======
   // 전체화면 오버레이가 열려 있는 동안에는 페이지 스크롤을 잠금.
->>>>>>> master
   useEffect(() => {
     if (!isMobile) return
     document.body.style.overflow = menuOpen ? 'hidden' : ''
@@ -86,11 +53,6 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
 
   const closeMenu = () => setMenuOpen(false)
 
-<<<<<<< HEAD
-  return (
-    <header className={`header header--${resolvedBreakpoint}${menuOpen ? ' header--menu-open' : ''}`} data-node-id="291:1660">
-      <NavLink className="header__logo" to={homeUrl} aria-label="Portfolio home" onClick={closeMenu}>
-=======
   // 로고는 어느 페이지에서 눌러도 항상 홈으로 이동해야 합니다. 이미
   // 홈(homeUrl)에 있을 때는 NavLink가 같은 경로라서 아무 일도 안
   // 일어나므로, 이 경우엔 페이지를 완전히 새로고침합니다.
@@ -120,7 +82,6 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
   return (
     <header className={`header header--${resolvedBreakpoint}${menuOpen ? ' header--menu-open' : ''}`} data-node-id="291:1660">
       <NavLink className="header__logo" to={homeUrl} aria-label="Portfolio home" onClick={goHome}>
->>>>>>> master
         <Logo variant={isMobile ? 'mobile-black' : 'desktop-black'} alt="김연수 포트폴리오" />
       </NavLink>
       {isMobile ? (
@@ -141,11 +102,7 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
             aria-hidden={!menuOpen}
           >
             <ol className="header__overlay-list">
-<<<<<<< HEAD
-              <li><NavLink to="/#work" onClick={closeMenu}>WORK</NavLink></li>
-=======
               <li><NavLink to="/#work" onClick={goToWork}>WORK</NavLink></li>
->>>>>>> master
               <li><NavLink to="/about" onClick={closeMenu}>ABOUT</NavLink></li>
               <li><a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>RESUME</a></li>
             </ol>
@@ -154,11 +111,7 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
         </>
       ) : (
         <nav className="header__menu" aria-label="Main navigation">
-<<<<<<< HEAD
-          <NavLink to="/#work">WORK</NavLink><NavLink to="/about">ABOUT</NavLink><a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer">RESUME</a>
-=======
           <NavLink to="/#work" onClick={goToWork}>WORK</NavLink><NavLink to="/about">ABOUT</NavLink><a href="/assets/resume.pdf" target="_blank" rel="noopener noreferrer">RESUME</a>
->>>>>>> master
         </nav>
       )}
     </header>

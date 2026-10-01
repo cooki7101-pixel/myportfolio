@@ -1,5 +1,5 @@
-@import url('/webfonts/static/neueMachina/neueMachina.css');
-@import url('/webfonts/static/wantedSans/WantedSans.css');
+@import url("/webfonts/static/neueMachina/neueMachina.css");
+@import url("/webfonts/static/wantedSans/WantedSans.css");
 
 .feature-kakao-t {
   display: flex;
@@ -38,11 +38,7 @@
   gap: 4px;
 }
 
-<<<<<<< HEAD
-/* ITERATION instances: gap under the TO BE logo is 10px, not 4px. */
-=======
 /* ITERATION 인스턴스: TO BE 로고 아래 간격은 4px가 아니라 10px입니다. */
->>>>>>> master
 .feature-kakao-t--iteration .feature-kakao-t__to-be {
   gap: 10px;
 }
@@ -50,7 +46,7 @@
 .feature-kakao-t__label {
   margin: 0;
   color: #757575;
-  font-family: 'Neue Machina', var(--font-sans);
+  font-family: "Neue Machina", var(--font-sans);
   font-size: 16px;
   line-height: 1.1;
   white-space: nowrap;
@@ -76,11 +72,7 @@
 }
 
 .feature-kakao-t__as-is-media:empty {
-<<<<<<< HEAD
-  background: #dbdbdb;
-=======
   background: transparent;
->>>>>>> master
 }
 
 .feature-kakao-t__as-is-media img {
@@ -97,11 +89,7 @@
 
 .feature-kakao-t__to-be-media:empty {
   aspect-ratio: 344 / 696;
-<<<<<<< HEAD
-  background: #d9d9d9;
-=======
   background: transparent;
->>>>>>> master
 }
 
 .feature-kakao-t__to-be-media img,
@@ -126,7 +114,7 @@
   width: 100%;
   margin: 0;
   color: #757575;
-  font-family: 'Neue Machina', var(--font-sans);
+  font-family: "Neue Machina", var(--font-sans);
   font-size: 16px;
   line-height: 1.1;
   text-transform: uppercase;
@@ -136,7 +124,7 @@
   width: 100%;
   margin: 0;
   color: #212121;
-  font-family: 'Wanted Sans', var(--font-sans);
+  font-family: "Wanted Sans", var(--font-sans);
   font-size: 24px;
   font-weight: 700;
   line-height: 1.38;
@@ -146,7 +134,7 @@
   width: 100%;
   margin: 0;
   color: #212121;
-  font-family: 'Wanted Sans', var(--font-sans);
+  font-family: "Wanted Sans", var(--font-sans);
   font-size: 18px;
   font-weight: 400;
   line-height: 1.48;
@@ -159,13 +147,8 @@
     gap: 24px;
   }
 
-<<<<<<< HEAD
-  /* Mobile Figma spec stacks the text intro above the AS IS/TO BE comparison,
-     but the comparison markup comes first in the DOM — flip the visual order. */
-=======
   /* 모바일 Figma 스펙에서는 텍스트 소개가 AS IS/TO BE 비교보다 위에
      쌓이지만, DOM에서는 비교 마크업이 먼저 오므로 시각적 순서만 뒤집습니다. */
->>>>>>> master
   .feature-kakao-t__intro {
     order: -1;
   }

@@ -1,4 +1,4 @@
-@import url('/webfonts/static/neueMachina/neueMachina.css');
+@import url("/webfonts/static/neueMachina/neueMachina.css");
 
 .header {
   box-sizing: border-box;
@@ -7,13 +7,6 @@
   position: fixed;
   top: 0;
   left: 0;
-<<<<<<< HEAD
-  z-index: 1000;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 68px;
-  background: rgba(222, 228, 242, 0.2);
-=======
   z-index: 2000;
   /* isolation:isolate로 헤더 스스로 독립된 스택 컨텍스트를 만들어서,
      아래 콘텐츠(예: home hero의 transform이 걸린 요소들)가 어떤 이유로든
@@ -36,14 +29,22 @@
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
   border-bottom-color: transparent;
->>>>>>> master
 }
 
-.header__logo { position: relative; z-index: 1101; line-height: 0; }
-.header__menu { display: flex; align-items: center; justify-content: flex-end; gap: 40px; }
+.header__logo {
+  position: relative;
+  z-index: 1101;
+  line-height: 0;
+}
+.header__menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 40px;
+}
 .header__menu a {
   color: #333;
-  font-family: 'Neue Machina', var(--font-sans);
+  font-family: "Neue Machina", var(--font-sans);
   font-size: 24px;
   font-weight: 400;
   line-height: 1.2;
@@ -51,32 +52,32 @@
   text-decoration: none;
   white-space: nowrap;
 }
-<<<<<<< HEAD
-/* Tablet (682-1279px, Figma node 579:8433) — same plain horizontal nav as
-   desktop, just narrower side padding. */
-=======
 /* 태블릿(682-1279px, Figma node 579:8433) — 데스크탑과 동일한 가로형 내비를
    그대로 쓰되 좌우 패딩만 좁게 유지합니다. */
->>>>>>> master
-.header--tablet { padding: 18px 40px; }
+.header--tablet {
+  padding: 18px 40px;
+}
 
-.header--mobile { width: 100%; min-height: 70px; padding: 18px 17px; }
-.header--mobile .header__menu { gap: 0; }
-.header--mobile .header__menu a { font-size: 18px; }
+.header--mobile {
+  width: 100%;
+  min-height: 70px;
+  padding: 18px 17px;
+}
+.header--mobile .header__menu {
+  gap: 0;
+}
+.header--mobile .header__menu a {
+  font-size: 18px;
+}
 
-<<<<<<< HEAD
-/* Mobile menu trigger — plain "MENU"/"CLOSE" text link, same style as the
-   original trigger, in the header's top-right corner. */
-=======
 /* 모바일 메뉴 트리거 — 기존 트리거와 같은 스타일의 단순한 "MENU"/"CLOSE"
    텍스트 링크로, 헤더 우측 상단에 위치합니다. */
->>>>>>> master
 .header__menu-toggle {
   border: none;
   background: transparent;
   padding: 0;
   color: #333;
-  font-family: 'Neue Machina', var(--font-sans);
+  font-family: "Neue Machina", var(--font-sans);
   font-size: 18px;
   font-weight: 400;
   line-height: 1.2;
@@ -84,15 +85,9 @@
   z-index: 1101;
 }
 
-<<<<<<< HEAD
-/* Full-screen overlay nav — links pinned to the top-left, right under the
-   header, at the same left inset as the logo (matches the reference's
-   top/left-anchored mobile menu rather than a centered one). */
-=======
 /* 전체화면 오버레이 내비 — 링크는 헤더 바로 아래, 로고와 같은 왼쪽 여백을
    기준으로 좌측 상단에 고정됩니다(가운데 정렬이 아니라 참고 디자인처럼
    좌측 상단에 앵커된 모바일 메뉴). */
->>>>>>> master
 .header__overlay {
   position: fixed;
   inset: 0;
@@ -103,15 +98,14 @@
   align-items: flex-start;
   justify-content: space-between;
   padding: 106px 17px 100px;
-<<<<<<< HEAD
-  background: #dee4f2;
-=======
   background: #c9d2e7;
->>>>>>> master
   opacity: 0;
   visibility: hidden;
   transform: translateY(-12px);
-  transition: opacity 280ms ease, transform 280ms ease, visibility 280ms;
+  transition:
+    opacity 280ms ease,
+    transform 280ms ease,
+    visibility 280ms;
 }
 .header--menu-open .header__overlay {
   opacity: 1;
@@ -129,20 +123,15 @@
 }
 .header__overlay-list a {
   color: #333;
-  font-family: 'Neue Machina', var(--font-sans);
+  font-family: "Neue Machina", var(--font-sans);
   font-size: 32px;
   font-weight: 400;
   text-decoration: none;
   text-transform: uppercase;
 }
 
-<<<<<<< HEAD
-/* "LET'S WORK TOGETHER" contact CTA — pinned to the bottom of the overlay,
-   separate from the nav list (via the overlay's own space-between layout). */
-=======
 /* "LET'S WORK TOGETHER" 문의 CTA — 내비 목록과 분리되어(오버레이 자체의
    space-between 레이아웃을 통해) 오버레이 하단에 고정됩니다. */
->>>>>>> master
 .header__overlay-cta {
   display: inline-block;
   margin: 0;

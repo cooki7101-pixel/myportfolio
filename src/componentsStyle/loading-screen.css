@@ -1,12 +1,7 @@
-@import url('/webfonts/static/neueMachina/neueMachina.css');
+@import url("/webfonts/static/neueMachina/neueMachina.css");
 
-<<<<<<< HEAD
-/* Figma node 573:8409 ("ING") — full-screen percentage counter shown while
-   the site loads, then faded out and removed. */
-=======
 /* Figma node 573:8409("ING") — 사이트가 로드되는 동안 표시되는 전체화면
    퍼센트 카운터로, 이후 페이드아웃되며 제거됩니다. */
->>>>>>> master
 .loading-screen {
   position: fixed;
   inset: 0;
@@ -28,7 +23,7 @@
 .loading-screen__percent {
   margin: 0;
   color: #333;
-  font-family: 'Neue Machina', var(--font-sans);
+  font-family: "Neue Machina", var(--font-sans);
   font-size: 80px;
   font-weight: 400;
   line-height: 1.05;

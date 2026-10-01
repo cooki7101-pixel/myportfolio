@@ -1,17 +1,10 @@
 @import url("/webfonts/static/neueMachina/neueMachina.css");
 @import url("/webfonts/static/wantedSans/WantedSans.css");
-<<<<<<< HEAD
-
-/* Pinned horizontal-scroll runway (see the scroll math in HomeProjectList.jsx)
-   — this section's own height is set in JS to viewport height + however far
-   the card track overflows, so scrolling through it 1:1 drags the track left. */
-=======
 @import url("/webfonts/static/ppNeueMachinaPlain/ppNeueMachinaPlain.css");
 
 /* 고정(sticky)된 가로 스크롤 구간입니다(스크롤 계산은 HomeProjectList.jsx
    참고) — 이 섹션 자체의 높이는 JS에서 뷰포트 높이 + 카드 트랙이 넘치는
    만큼으로 설정되어, 1:1로 스크롤하면 트랙이 왼쪽으로 끌려가게 됩니다. */
->>>>>>> master
 .home-project-list {
   position: relative;
   box-sizing: border-box;
@@ -19,24 +12,6 @@
 }
 
 .home-project-list__sticky {
-<<<<<<< HEAD
-  position: sticky;
-  top: 0;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
-  flex-direction: column;
-  justify-content: center;
-  gap: 30px;
-}
-
-.home-project-list__heading {
-  margin: 0;
-  color: #333;
-  font-family: "Neue Machina", var(--font-sans);
-=======
   /* 진짜 원인: display:flex + height:100vh 조합에서는, 콘텐츠(헤딩+카드)가
      100vh보다 커지는 순간 flex 레이아웃이 아이템들을 박스 안에 우겨넣으려
      하면서 헤딩이 찌그러지듯 잘려 보였습니다. flex를 아예 걷어내고 일반
@@ -59,24 +34,10 @@
   margin: 0 auto 30px;
   color: #333;
   font-family: "PP Neue Machina Plain", var(--font-sans);
->>>>>>> master
   font-size: 56px;
   font-weight: 400;
   line-height: 1.2;
   width: 100%;
-<<<<<<< HEAD
-  max-width: 1280px; /* iki - 20260920 - 부모 영역보다 여기 자식 요소에 max-width를 주는게 좋다*/
-  padding: 0 40px; /* iki - 20260920 - 패딩도 부모 영역보다 여기에 준다 */
-}
-
-/* Intentionally NOT clipped — the card row is left fully visible/overflowing
-   past the 1200 box at all times; the JS transform is a slide-in entrance,
-   not a reveal-from-behind-a-mask effect. */
-.home-project-list__track-wrap {
-  width: 100%;
-  /* overflow: visible; iki - 20260920 - 스크롤을 없애려면 여기를 visible로 하면 안되고 hidden 처리 */
-  overflow: hidden;
-=======
   max-width: 1200px; /* iki - 20260920 - 부모 영역보다 여기 자식 요소에 max-width를 주는게 좋다*/
   padding: 0 40px; /* iki - 20260920 - 패딩도 부모 영역보다 여기에 준다 */
   box-sizing: border-box;
@@ -101,7 +62,6 @@
      둡니다. 가로 스크롤 자체는 JS의 transform으로 처리되고 있어서 이
      컨테이너의 overflow는 시각적 클리핑 여부만 결정합니다. */
   overflow: visible;
->>>>>>> master
 }
 
 .home-project-list__grid {
@@ -109,12 +69,9 @@
   flex-wrap: nowrap;
   gap: 40px;
   width: max-content;
-<<<<<<< HEAD
-=======
   /* 가로 슬라이드가 끝까지 갔을 때 마지막 카드가 화면 오른쪽 끝에 딱
      붙지 않고 여백을 두도록 트랙 자체 오른쪽에 패딩을 둡니다. */
   padding-right: 40px;
->>>>>>> master
   will-change: transform;
 }
 
@@ -122,12 +79,9 @@
   box-sizing: border-box;
   position: relative;
   display: flex;
-<<<<<<< HEAD
-=======
   /* 카드 사이즈는 컴포넌트 원래 값(500x632) 그대로 유지합니다 — 잘림
      문제는 카드 크기가 아니라 위의 .home-project-list__sticky 정렬
      방식에서 고쳤습니다. */
->>>>>>> master
   flex: 0 0 500px;
   width: 500px;
   height: 632px;
@@ -186,11 +140,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 1.1;
-<<<<<<< HEAD
-  text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.32);
-=======
   text-shadow: 0px 0px 25px rgba(0, 0, 0, 0.45);
->>>>>>> master
   white-space: nowrap;
 }
 
@@ -222,22 +172,14 @@
   line-height: 1.5;
 }
 
-<<<<<<< HEAD
-/* Tablet (722–989px): same pinned/scroll-jacked motion as desktop — only the
-   card size shrinks (per Figma's tablet frame), everything else about the
-   sticky/overflow-visible setup above stays the same, so the row keeps
-   sliding in on scroll and stays unclipped past the page's side gutters. */
-@media (max-width: 989px) {
-=======
 /* 태블릿(722–989px): 데스크탑과 동일한 고정/스크롤 재킹 모션 — Figma의
    태블릿 프레임에 따라 카드 크기만 줄어들고, 위쪽의 sticky/overflow-visible
    설정은 그대로 유지되어, 스크롤 시 행이 계속 슬라이드 인 되고 페이지
    좌우 여백을 넘어서도 잘리지 않습니다. */
 @media (max-width: 1100px) {
   .home-project-list__heading {
-  font-size: 40px;
+    font-size: 40px;
   }
->>>>>>> master
   .home-project-list__grid {
     gap: 28px;
   }
@@ -253,23 +195,6 @@
   }
 }
 
-<<<<<<< HEAD
-/* Site-wide mobile breakpoint (<= 721px) — same pinned/scroll-jacked motion
-   as desktop/tablet (per the reference), just a smaller card size. Still a
-   horizontal row of cards, not a vertical stack. */
-@media (max-width: 721px) {
-  /* Figma's mobile frame is pt-142/pb-80 with content pinned to the bottom
-     (justify-end), not the top/bottom-60 centered box used above. */
-  .home-project-list__sticky {
-    justify-content: flex-end;
-    gap: 20px;
-    padding: 142px 0 80px;
-  }
-
-  .home-project-list__heading {
-    font-size: 32px;
-=======
-
 /* 사이트 전체 모바일 브레이크포인트(<= 721px) — 참고 디자인에 따라
    데스크탑/태블릿과 동일한 고정/스크롤 재킹 모션에 카드 크기만 작아집니다.
    여전히 세로로 쌓이지 않고 카드의 가로 행 형태를 유지합니다. */
@@ -277,14 +202,13 @@
   /* Figma의 모바일 프레임은 위에서 쓴 top/bottom-60 중앙 정렬 박스가 아니라,
      콘텐츠가 하단에 고정된 pt-142/pb-80 구조입니다. */
   .home-project-list__sticky {
-  padding: 100px 0 0;
-}
+    padding: 100px 0 0;
+  }
 
   .home-project-list__heading {
     margin-bottom: 20px;
     font-size: 32px;
     padding: 0 17px 0 17px;
->>>>>>> master
   }
 
   .home-project-list__grid {
@@ -298,12 +222,6 @@
     padding: 18px;
   }
 
-<<<<<<< HEAD
-  /* At this size the tag row is a razor-tight fit in Figma (270px available,
-     ~268px of tags+gaps) — any tiny font-metric difference pushes it onto a
-     second line. Force nowrap so it stays a single row like the design;
-     the card's own overflow:hidden clips the sub-pixel sliver if it occurs. */
-=======
   /* 데스크탑에서는 카드가 몇 개 없어서 1200 박스 밖으로 살짝 넘치는
      정도라 overflow: visible로 그대로 보여줬지만, 모바일처럼 화면이
      훨씬 좁으면 아직 슬라이드해서 들어오지 않은 카드들 사이·뒤로
@@ -318,7 +236,6 @@
      태그+간격 약 268px) — 폰트 메트릭이 아주 조금만 달라도 두 번째 줄로
      밀립니다. nowrap을 강제해서 디자인처럼 한 줄로 유지하고, 만약 서브
      픽셀 정도로 넘치더라도 카드 자체의 overflow:hidden이 잘라냅니다. */
->>>>>>> master
   .home-project-list__tags {
     flex-wrap: nowrap;
     gap: 8px;

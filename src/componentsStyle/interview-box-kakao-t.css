@@ -56,16 +56,12 @@
 .interview-box-kakao-t__placeholder {
   width: 100%;
   aspect-ratio: 592 / 350;
-<<<<<<< HEAD
-  background: #dbdbdb;
-=======
   background: transparent;
->>>>>>> master
 }
 
 .interview-box-kakao-t__item figcaption {
   color: #6c6f71;
-  font-family: 'Wanted Sans', var(--font-sans);
+  font-family: "Wanted Sans", var(--font-sans);
   font-size: 16px;
   white-space: nowrap;
 }
@@ -75,15 +71,9 @@
     flex-direction: column;
   }
 
-<<<<<<< HEAD
-  /* flex: 1 1 0 was sized for the desktop row's WIDTH — once the row
-     becomes a column, that same flex-basis: 0 collapses each item's
-     HEIGHT to 0 instead, making the top two images vanish. */
-=======
   /* flex: 1 1 0은 데스크탑 행의 너비 기준으로 설정된 값입니다 — 행이
      열(column)이 되면 같은 flex-basis: 0이 각 아이템의 높이를 0으로
      찌그러뜨려서 위쪽 두 이미지가 사라지게 됩니다. */
->>>>>>> master
   .interview-box-kakao-t__item {
     flex: none;
     width: 100%;
