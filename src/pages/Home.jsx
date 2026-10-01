@@ -92,14 +92,14 @@ export default function Home({ loadingFinished = false }) {
             <span className="home__hero-text-split">YEONSU</span>
           </p>
         </div>
-        <img src="/assets/home/image-me.png" alt="YEONSU" className="home__hero-img-me" />
+        <img src={`${import.meta.env.BASE_URL}assets/home/image-me.png`} alt="YEONSU" className="home__hero-img-me" />
         <div className="home__product_design_box" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(calc(-50% - 320px), calc(-50% + 80px))' }}>
           <GlassBox width='235px'
             blur={3} opacity={0.2} curvature='12px'
             edgeRefraction={0.1} dispersion={0.2}
             distortion={2} fresnel={0.2}
             animationSpeed={0.5} waveStrength={0.2}
-            iconSrc='/assets/home/icon-x2.png'
+            iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-x2.png`}
             lines={['Product', 'Designer']}
           />
         </div>
@@ -115,7 +115,7 @@ export default function Home({ loadingFinished = false }) {
             edgeRefraction={0.1} dispersion={0.2}
             distortion={2} fresnel={0.2}
             animationSpeed={0.5} waveStrength={0.2}
-            iconSrc='/assets/home/icon-01-x2.png'
+            iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-01-x2.png`}
             lines={['DEPARTMENT', 'OF VISUAL', 'DESIGN']}
             flexDirection='column'
           />
@@ -132,13 +132,13 @@ export default function Home({ loadingFinished = false }) {
             edgeRefraction={0.1} dispersion={0.2}
             distortion={2} fresnel={0.2}
             animationSpeed={0.5} waveStrength={0.2}
-            iconSrc='/assets/home/icon-01-x2.png'
+            iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-01-x2.png`}
             flexDirection='column'
             items={[
-              { iconSrc: '/assets/glass-box-fast-worker.png', text: 'Fast Worker' },
-              { iconSrc: '/assets/glass-box-communication.png', text: 'Communication' },
-              { iconSrc: '/assets/glass-box-perseverance.png', text: 'Perseverance' },
-              { iconSrc: '/assets/glass-box-ai.png', text: 'AI Proficiency' },
+              { iconSrc: `${import.meta.env.BASE_URL}assets/glass-box-fast-worker.png`, text: 'Fast Worker' },
+              { iconSrc: `${import.meta.env.BASE_URL}assets/glass-box-communication.png`, text: 'Communication' },
+              { iconSrc: `${import.meta.env.BASE_URL}assets/glass-box-perseverance.png`, text: 'Perseverance' },
+              { iconSrc: `${import.meta.env.BASE_URL}assets/glass-box-ai.png`, text: 'AI Proficiency' },
             ]}
           />
         </div>

@@ -96,7 +96,7 @@ function createProgram(gl) {
 
 // 유리처럼 투명하게 비치는 아이콘과 두 줄의 라벨을 담는 카드입니다.
 export default function GlassBox({
-  iconSrc = '/assets/glass-box-icon.png',
+  iconSrc = `${import.meta.env.BASE_URL}assets/glass-box-icon.png`,
   lines = ['product', 'DESIGNER'],
   items = null,
   width = '100%',

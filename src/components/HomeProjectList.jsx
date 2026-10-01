@@ -8,21 +8,21 @@ const defaultProjects = [
     title: 'AI 티켓 사기 예방 ‘패싱’',
     description: 'SNS 티켓 거래의 사기 취약점을 해결해 AI 사전 검증으로 보호하는 티켓 거래 플랫폼',
     to: '/works/project-passing',
-    video: '/assets/home-passing.mp4',
+    video: `${import.meta.env.BASE_URL}assets/home-passing.mp4`,
   },
   {
     tags: ['#AI AGENT', '#SENIOR', '#REVAMP'],
     title: ['카카오T with 시니어 맞춤', 'AI 보이스 에이전트'],
     description: '디지털 사용에 어려움 겪는 시니어도 택시 호출을 끝까지 완료할 수 있도록 개선',
     to: '/works/kakao-t',
-    video: '/assets/home-kakaot.mp4',
+    video: `${import.meta.env.BASE_URL}assets/home-kakaot.mp4`,
   },
   {
     tags: ['#반응형', '#WEB', '#REVAMP'],
     title: '현대자동차 홈페이지 개선',
     description: ['일관성 없는 레이아웃과 끊기는 구매흐름을', '반응형에 맞춰 재설계'],
     to: '/works/hyundai',
-    video: '/assets/home-hyundai.mp4',
+    video: `${import.meta.env.BASE_URL}assets/home-hyundai.mp4`,
   },
 ]
 

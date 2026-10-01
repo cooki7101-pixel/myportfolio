@@ -21,7 +21,7 @@ export default function HomeFooter({
   copyright = '© 2026 Designed by Yeonsu Kim',
   // TODO: swap in the real LinkedIn link whenever it's ready.
   linkedinUrl = '#',
-  resumeUrl = '/assets/resume.pdf',
+  resumeUrl = `${import.meta.env.BASE_URL}assets/resume.pdf`,
   // TODO: point this at the real index/home page URL whenever it's ready.
   homeUrl = '/',
 }) {
@@ -44,7 +44,7 @@ export default function HomeFooter({
       <div className="home-footer__top">
         <div className="home-footer__contact">
           <h2>Connect!<br />Get in touch<br />:)</h2>
-          <a href={`mailto:${email}`}>{email}<img src="/assets/footer-icon.svg" alt="" /></a>
+          <a href={`mailto:${email}`}>{email}<img src={`${import.meta.env.BASE_URL}assets/footer-icon.svg`} alt="" /></a>
         </div>
         <nav>
           <a href={linkedinUrl} target="_blank" rel="noopener noreferrer">LINKEDIN</a>
@@ -55,7 +55,7 @@ export default function HomeFooter({
       </div>
       <div className="home-footer__bottom">
         <Link to={homeUrl} aria-label="Portfolio home">
-          <img src="/assets/footer-logo-desktop-white.svg" alt="김연수 포트폴리오" />
+          <img src={`${import.meta.env.BASE_URL}assets/footer-logo-desktop-white.svg`} alt="김연수 포트폴리오" />
         </Link>
         <small>{copyright}</small>
       </div>
