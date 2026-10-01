@@ -5,7 +5,7 @@ import { SplitText } from 'gsap/SplitText'
 import Header from '../components/Header'
 import HomeFooter from '../components/HomeFooter'
 import HomeProjectList from '../components/HomeProjectList'
-import GlassBox from '../components/glassBox'
+import GlassBox from '../components/GlassBox'
 import '../componentsStyle/home.css'
 
 gsap.registerPlugin(SplitText)
