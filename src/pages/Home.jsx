@@ -87,7 +87,7 @@ export default function Home({ loadingFinished = false }) {
   return (
     <div className="home" data-node-id="380:3913" >
       <Header />
-      {/* TODO: rough placeholder — real interactive hero to be built separately */}
+      {/* TODO: 대략적인 임시 구현 — 실제 인터랙티브 히어로는 별도로 제작 예정 */}
       <section className="home__hero" ref={heroRef} data-node-id="380:3921">
         <div className="home__hero-text-wrap">
           {/* 우측아래에서 올라오면서 좌측상단으로 이동하는 애니메이션을 적용한 텍스트입니다. */}
@@ -96,10 +96,15 @@ export default function Home({ loadingFinished = false }) {
             <span className="home__hero-text-split">YEONSU</span>
           </p>
         </div>
-        <img src={`${import.meta.env.BASE_URL}assets/home/image-me.png`} alt="YEONSU" className="home__hero-img-me" />
+        <img src={`${import.meta.env.BASE_URL}assets/home/image-me.svg`} alt="YEONSU" className="home__hero-img-me" />
 
 
-        <div className="home__product_design_box" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(calc(-50% - 320px), calc(-50% + 80px))' }}>
+        {/* YEONSU 텍스트(font-size)와 me 이미지(width)는 min(100vw,1920px)/1920px
+            비율로 줄어드는데, 이 박스들은 transform의 px 오프셋(320px, 80px 등)이
+            고정값이라 화면이 좁아져도 그대로 유지돼서 다른 요소들과 같은 자리에서
+            줄어들지 않고 점점 어긋나 보였습니다 — 오프셋에도 똑같은 비율을 곱해서
+            같은 기준으로 함께 줄어들게 맞춥니다. */}
+        <div className="home__product_design_box" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(calc(-50% - 320px * min(100vw, 1920px) / 1920px), calc(-50% + 80px * min(100vw, 1920px) / 1920px))' }}>
           {liquidGlassActive ? (
             <LiquidGlass
               blur={6}
@@ -119,7 +124,7 @@ export default function Home({ loadingFinished = false }) {
               style={{ backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
             >
               <GlassBox width='235px' blur={0} opacity={0}
-                iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-x2.png`}
+                iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-product-designer2.png`}
                 lines={['Product', 'Designer']}
               />
             </LiquidGlass>
@@ -132,14 +137,14 @@ export default function Home({ loadingFinished = false }) {
           style={{
             position: 'absolute'
             , top: '50%', left: '50%'
-            , transform: 'translate(calc(-50% - 320px), calc(-50% + 230px))'
+            , transform: 'translate(calc(-50% - 320px * min(100vw, 1920px) / 1920px), calc(-50% + 230px * min(100vw, 1920px) / 1920px))'
           }}>
           <GlassBox width='189px'
             blur={3} opacity={0.2} curvature='12px'
             edgeRefraction={0.1} dispersion={0.2}
             distortion={2} fresnel={0.2}
             animationSpeed={0.5} waveStrength={0.2}
-            iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-01-x2.png`}
+            iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-design.png`}
             lines={['DEPARTMENT', 'OF VISUAL', 'DESIGN']}
             flexDirection='column'
           />
@@ -149,20 +154,20 @@ export default function Home({ loadingFinished = false }) {
           style={{
             position: 'absolute'
             , top: '50%', left: '50%'
-            , transform: 'translate(calc(-50% + 380px), calc(-50% + 0px))'
+            , transform: 'translate(calc(-50% + 380px * min(100vw, 1920px) / 1920px), calc(-50% + 0px))'
           }}>
           <GlassBox width='264px'
             blur={3} opacity={0.2} curvature='12px'
             edgeRefraction={0.1} dispersion={0.2}
             distortion={2} fresnel={0.2}
             animationSpeed={0.5} waveStrength={0.2}
-            iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-01-x2.png`}
+            iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-design.png`}
             flexDirection='column'
             items={[
-              { iconSrc: `${import.meta.env.BASE_URL}assets/glass-box-fast-worker.png`, text: 'Fast Worker' },
-              { iconSrc: `${import.meta.env.BASE_URL}assets/glass-box-communication.png`, text: 'Communication' },
-              { iconSrc: `${import.meta.env.BASE_URL}assets/glass-box-perseverance.png`, text: 'Perseverance' },
-              { iconSrc: `${import.meta.env.BASE_URL}assets/glass-box-ai.png`, text: 'AI Proficiency' },
+              { iconSrc: `${import.meta.env.BASE_URL}assets/home/icon-fast.png`, text: 'Fast Worker' },
+              { iconSrc: `${import.meta.env.BASE_URL}assets/home/Icon-communication.png`, text: 'Communication' },
+              { iconSrc: `${import.meta.env.BASE_URL}assets/home/Icon-Perseverance.png`, text: 'Perseverance' },
+              { iconSrc: `${import.meta.env.BASE_URL}assets/home/Icon-ai.png`, text: 'AI Proficiency' },
             ]}
           />
         </div>

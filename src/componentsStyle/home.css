@@ -99,7 +99,7 @@
 
 .home__hero-text-wrap {
   position: absolute;
-  top: 78%;
+  top: 95%;
   left: 50%;
   transform: translate(-50.5%, -90%);
   overflow: hidden;
@@ -111,22 +111,28 @@
   margin: 0 auto;
   font-family: "PP Neue Machina";
   font-weight: 400;
-  font-size: 465px;
+  /* home__hero-img-me, home__hero-desc와 동일하게 min(100vw, 1920px) 기준
+     비율로 계산합니다 — .home__hero-stage(transform: scale())는 실제로는
+     어떤 DOM 요소에도 적용되고 있지 않아서(JSX에 해당 클래스를 가진
+     엘리먼트가 없습니다), 고정 px(465px)로만 두면 화면 폭이 줄어도 글자
+     크기가 전혀 줄지 않아 좁은 화면에서 잘려 보였습니다. */
+  font-size: calc(465px * min(100vw, 1920px) / 1920px);
   /* 이 폰트(PP Neue Machina)는 라인 높이(line-height:normal 기준)가 실제
      글자 잉크보다 좁아서, 큰 사이즈에서는 아래쪽(예: U, Y 등)이 살짝
      잘려 보였습니다 — 줄 높이를 조금 넉넉하게 줘서 glyph가 들어갈 공간을
      확보합니다. */
   line-height: 1.15;
   text-align: center;
-  letter-spacing: -18px;
+  letter-spacing: calc(-18px * min(100vw, 1920px) / 1920px);
   text-transform: uppercase;
+  white-space: nowrap;
   color: #121212;
 }
 
 .home__hero-img-me {
   width: calc(100% - 30px);
   position: absolute;
-  top: 67%;
+  top: 84%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
