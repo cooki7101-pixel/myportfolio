@@ -192,12 +192,12 @@ export default function Home({ loadingFinished = false }) {
               <span className="home__hero-text-split">YEONSU</span>
             </p>
           </div>
-          <img src="/assets/home/image-me-mobile.svg" alt="YEONSU" className="home__hero-mobile-img-me" />
+          <img src={`${import.meta.env.BASE_URL}assets/home/image-me-mobile.svg`} alt="YEONSU" className="home__hero-mobile-img-me" />
 
           <div className="home__department_of_visual_design_box">
             <div className="glass-box glass-box--column" style={{ width: '122px' }}>
               <div className="glass-box__icon" aria-hidden="true">
-                <img src="/assets/home/igon-design.png" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/home/igon-design.png`} alt="" />
               </div>
               <div className="glass-box__label">
                 <span>DEPARTMENT</span>
@@ -210,7 +210,7 @@ export default function Home({ loadingFinished = false }) {
           <div className="home__product_design_box">
             <div className="glass-box" style={{ width: '235px', height: '118px' }}>
               <div className="glass-box__icon glass-box__icon--small" aria-hidden="true">
-                <img src="/assets/home/icon-product-designer2.png" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/home/icon-product-designer2.png`} alt="" />
               </div>
               <div className="glass-box__label">
                 <span>Product</span>
@@ -223,10 +223,10 @@ export default function Home({ loadingFinished = false }) {
             <div className="glass-box glass-box--column" style={{ width: '191px' }}>
               <div className="glass-box__items">
                 {[
-                  { iconSrc: '/assets/home/igon-fast.png', text: 'Fast Worker' },
-                  { iconSrc: '/assets/home/Icon-communication.png', text: 'Communication' },
-                  { iconSrc: '/assets/home/Icon-Perseverance.png', text: 'Perseverance' },
-                  { iconSrc: '/assets/home/Icon-ai.png', text: 'AI Proficiency' },
+                  { iconSrc: `${import.meta.env.BASE_URL}assets/home/igon-fast.png`, text: 'Fast Worker' },
+                  { iconSrc: `${import.meta.env.BASE_URL}assets/home/Icon-communication.png`, text: 'Communication' },
+                  { iconSrc: `${import.meta.env.BASE_URL}assets/home/Icon-Perseverance.png`, text: 'Perseverance' },
+                  { iconSrc: `${import.meta.env.BASE_URL}assets/home/Icon-ai.png`, text: 'AI Proficiency' },
                 ].map((item) => (
                   <div className="glass-box__item" key={item.text}>
                     <div className="glass-box__item-icon" aria-hidden="true">
