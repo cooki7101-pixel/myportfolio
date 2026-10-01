@@ -14,8 +14,8 @@ import '../../componentsStyle/project-kakao-t.css'
 
 // "MORE PROJECTS" 푸터는 (이 페이지 자신을 뺀) 나머지 두 케이스 스터디를 보여줌.
 const moreProjects = [
-  { type: 'video', src: '/assets/moreproject/passing_MORE%20PROJECT-video..mp4', label: "AI 티켓 사기 예방 '패싱'", to: '/works/project-passing' },
-  { type: 'video', src: '/assets/moreproject/hyundai-MORE%20PROJECT-video.mp4', label: '현대자동차 홈페이지 개선', to: '/works/hyundai' },
+  { type: 'video', src: `${import.meta.env.BASE_URL}assets/moreproject/passing_MORE%20PROJECT-video..mp4`, label: "AI 티켓 사기 예방 '패싱'", to: '/works/project-passing' },
+  { type: 'video', src: `${import.meta.env.BASE_URL}assets/moreproject/hyundai-MORE%20PROJECT-video.mp4`, label: '현대자동차 홈페이지 개선', to: '/works/hyundai' },
 ]
 
 export default function ProjectKakaoT() {
@@ -26,7 +26,7 @@ export default function ProjectKakaoT() {
       <Hero
         title={'카카오T with 시니어 맞춤 AI 보이스 에이전트'}
         mediaType="video"
-        mediaSrc="/assets/hero-kakaot.mp4"
+        mediaSrc={`${import.meta.env.BASE_URL}assets/hero-kakaot.mp4`}
         showTitleLink
       />
 
@@ -44,25 +44,25 @@ export default function ProjectKakaoT() {
           eyebrow="MAIN FEATURES 01"
           title="시니어 맞춤형 간단 모드"
           description="홈 화면에 택시 외 기능이 많고 고객센터도 내정보 탭 내 깊숙이 있어 시니어들이 필요한 기능을 찾기 어려웠습니다. 간단 모드를 별도로 제공하여 필요한 기능만 전면에 배치함으로서 기존 사용자의 이용 경험은 유지하면서 시니어의 탐색 부담을 줄였습니다."
-          asIsImage="/assets/kakaot/img-features1.svg"
-          toBeLogo="/assets/kakaot/feature-tobe.svg"
-          toBeVideo="/assets/kakaot/features3.mp4"
+          asIsImage={`${import.meta.env.BASE_URL}assets/kakaot/img-features1.svg`}
+          toBeLogo={`${import.meta.env.BASE_URL}assets/kakaot/feature-tobe.svg`}
+          toBeVideo={`${import.meta.env.BASE_URL}assets/kakaot/features3.mp4`}
         />
         <FeatureKakaoT
           eyebrow="MAIN FEATURES 02"
           title="AI 보이스 에이전트로 화면 조작 부담 감소"
           description="호출 시 타이핑과 지도 핀 조작의 부담을 줄이기 위해 목적지 입력 등 각 단계의 입력을 말로 대신하고, 어려운 용어도 쉽게 바꿨습니다. 이로써 직접 조작해야 하는 부담을 줄였고, 화면 조작이 필요한 경우에는 화면 보고 호출로 자유롭게 전환할 수 있도록 했습니다."
-          asIsImage="/assets/kakaot/img-features2.svg"
-          toBeLogo="/assets/kakaot/feature-tobe.svg"
-          toBeVideo="/assets/kakaot/features2.mp4"
+          asIsImage={`${import.meta.env.BASE_URL}assets/kakaot/img-features2.svg`}
+          toBeLogo={`${import.meta.env.BASE_URL}assets/kakaot/feature-tobe.svg`}
+          toBeVideo={`${import.meta.env.BASE_URL}assets/kakaot/features2.mp4`}
         />
         <FeatureKakaoT
           eyebrow="MAIN FEATURES 03"
           title="실패 상황의 즉각적인 대응"
           description="배차 실패 시, 직접 재시도하거나 다른 방법을 찾아야 하는지 판단이 어려워 호출을 포기하는 경우를 위해 자동 재배차 기능과 실패 원인 안내를 제공했습니다. 호출 중 문제 발생 시에는 행동 가이드를 제공하여 문제를 스스로 대응 가능하게 해 호출을 무사히 완료할 수 있도록 했습니다."
-          asIsImage="/assets/kakaot/img-features3.svg"
-          toBeLogo="/assets/kakaot/feature-tobe.svg"
-          toBeVideo="/assets/kakaot/features1.mp4"
+          asIsImage={`${import.meta.env.BASE_URL}assets/kakaot/img-features3.svg`}
+          toBeLogo={`${import.meta.env.BASE_URL}assets/kakaot/feature-tobe.svg`}
+          toBeVideo={`${import.meta.env.BASE_URL}assets/kakaot/features1.mp4`}
         />
 
         {/* DISCOVER 섹션 */}
@@ -78,7 +78,7 @@ export default function ProjectKakaoT() {
             eyebrow="DESK RESEARCH"
             title="시니어는 왜 여전히 길에서 택시를 잡을까?"
             description="카카오T가 있음에도 노인들이 여전히 길에서 택시를 잡는 이유를 알고자 학술논문 13건과 뉴스기사 7건을 분석했습니다. 조사 결과, 시니어가 디지털 기기 사용 전반에서 어려움을 겪고 있다는 점을 확인했고, 이러한 어려움이 택시를 직접 잡는 행동으로 이어질 수 있다고 판단했습니다."
-            items={[{ src: '/assets/kakaot/img-research.svg' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/kakaot/img-research.svg` }]}
           />
         </div>
 
@@ -88,7 +88,7 @@ export default function ProjectKakaoT() {
             eyebrow="APP REVIEW ANALYSIS"
             title="시니어 사용자들은 정확히 어디서 막힐까?"
             description="시니어가 카카오T를 사용할 때 구체적으로 어떤 어려움을 겪는지 확인하기 위해 사용자와 그들의 가족의 앱 리뷰를 분석했습니다. 그 결과 호출 과정 자체의 문제가 가장 많았으며 문제 발생 후 대응의 어려움 또한 반복적으로 나타났습니다."
-            items={[{ src: '/assets/kakaot/img-appReview.svg' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/kakaot/img-appReview.svg` }]}
           />
         </div>
 
@@ -99,9 +99,9 @@ export default function ProjectKakaoT() {
             title="실제로 어느 화면에서 얼마나 오래 멈춰 설까?"
             description="사용자의 디지털 기기 사용 수준에 따라 어려운 지점을 확인하기 위해 10명의 참가자를 대상으로 디지털 리터러시 진단과 4단계 과업을 진행했습니다. 그 결과 수행 시간에는 차이가 있었지만 공통적으로 목적지 설정과 배차 실패·오류 대응에서 가장 크게 막혔습니다. 앞선 리뷰에서 발견한 호출 과정의 어려움이 실제 사용자에게서도 나타나는 것을 확인했습니다."
             items={[
-              { src: '/assets/kakaot/img-interview1.svg', label: '인터뷰 스크립트' },
-              { src: '/assets/kakaot/img-interview2.svg', label: "'참여자B'와 인터뷰 과정" },
-              { src: '/assets/kakaot/img-interview3.svg', label: '인터뷰 분석 결과' },
+              { src: `${import.meta.env.BASE_URL}assets/kakaot/img-interview1.svg`, label: '인터뷰 스크립트' },
+              { src: `${import.meta.env.BASE_URL}assets/kakaot/img-interview2.svg`, label: "'참여자B'와 인터뷰 과정" },
+              { src: `${import.meta.env.BASE_URL}assets/kakaot/img-interview3.svg`, label: '인터뷰 분석 결과' },
             ]}
           />
         </div>
@@ -113,10 +113,10 @@ export default function ProjectKakaoT() {
             eyebrow="AFFINITY MAPPING"
             title="호출 단계별 사용자 행동 구조화"
             description="사용자의 말과 행동을 단계별로 모아 호출 과정에서 반복되는 어려움을 유형별로 정리했습니다. 이를 인지·언어·신체·심리적 요인으로 나누어 살펴보며 시니어의 호출을 어렵게 만드는 원인을 구체적으로 파악했습니다."
-            items={[{ type: 'video', src: '/assets/kakaot/IMG-kakaot-mapping.mp4', label: 'AFFINITY MAPPING' }]}
+            items={[{ type: 'video', src: `${import.meta.env.BASE_URL}assets/kakaot/IMG-kakaot-mapping.mp4`, label: 'AFFINITY MAPPING' }]}
           />
           <div className="project-kakao-t__wide-image">
-            <img src="/assets/kakaot/img-mapping.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}assets/kakaot/img-mapping.svg`} alt="" />
           </div>
         </div>
 
@@ -126,7 +126,7 @@ export default function ProjectKakaoT() {
             eyebrow="COMPETITOR ANALYSIS"
             title="시니어를 위한 기능이 있어도 정말 쉽게 사용할 수 있을까?"
             description="택시 호출 서비스 중 국내에서 이용 가능한 우버의 경우, 시니어 유저가 직접 시니어 모드로 호출해봤음에도 과정이 쉽지 않았고 낮은 인지도와 국내 이용 환경의 한계도 있었습니다. 반면 카카오T는 높은 점유율과 인지도를 갖고 있어 익숙한 서비스를 시니어도 쉽게 사용할 수 있도록 개선한다면 경쟁력을 만들 수 있다고 판단했습니다."
-            items={[{ src: '/assets/kakaot/img-Competitor.svg' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/kakaot/img-Competitor.svg` }]}
           />
         </div>
 
@@ -143,7 +143,7 @@ export default function ProjectKakaoT() {
             eyebrow="EMPATHY MAP"
             title="사용자의 감정, 요구 및 행동 이해하기"
             description="고령 사용자의 경험을 더 깊이 이해하기 위해 공감 지도를 작성했습니다. 이를 통해 사용자가 호출 과정에서 느끼는 불안과 망설임, 문제 상황에서 보이는 행동과 필요한 도움을 구체적으로 파악했습니다."
-            items={[{ src: '/assets/kakaot/img-empathymap1.svg', label: '디지털 러터러시 ‘중상’수준 유저 공감 지도' }, { src: '/assets/kakaot/img-empathymap2.svg', label: '디지털 러터러시 ‘하’수준 유저 공감 지도' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/kakaot/img-empathymap1.svg`, label: '디지털 러터러시 ‘중상’수준 유저 공감 지도' }, { src: `${import.meta.env.BASE_URL}assets/kakaot/img-empathymap2.svg`, label: '디지털 러터러시 ‘하’수준 유저 공감 지도' }]}
           />
         </div>
 
@@ -157,18 +157,18 @@ export default function ProjectKakaoT() {
           <div className="project-kakao-t__persona-images">
             <figure className="project-kakao-t__persona-image">
               <div className="project-kakao-t__persona-image-media">
-                <img src="/assets/kakaot/img-persona1.svg" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/kakaot/img-persona1.svg`} alt="" />
               </div>
               <figcaption>디지털 러터러시 ‘하’ 수준 유저 퍼소나</figcaption>
             </figure>
             <figure className="project-kakao-t__persona-image">
               <div className="project-kakao-t__persona-image-media">
-                <img src="/assets/kakaot/img-persona2.svg" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/kakaot/img-persona2.svg`} alt="" />
               </div>
               <figcaption>디지털 러터러시 ‘중상’ 수준 유저 퍼소나</figcaption>
             </figure>
             <div className="project-kakao-t__persona-image-media project-kakao-t__persona-image-media--wide">
-              <img src="/assets/kakaot/img-persona3.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/kakaot/img-persona3.svg`} alt="" />
             </div>
           </div>
         </div>
@@ -187,7 +187,7 @@ export default function ProjectKakaoT() {
             eyebrow="BRAIN STORMING"
             title="시니어가 호출을 끝맺지 못하는 문제를 해결하기 위한 아이디어 발산"
             description="저희는 택시 호출 과정을 4단계로 나누어 각 단계의 문제를 해결하고, 디지털 리터러시 수준과 관계없이 화면 조작의 부담을 줄여 호출을 끝까지 완료할 방법을 찾기 위해 90개 이상의 아이디어를 도출했습니다."
-            items={[{ src: '/assets/kakaot/img-brain.svg' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/kakaot/img-brain.svg` }]}
           />
         </div>
 
@@ -197,7 +197,7 @@ export default function ProjectKakaoT() {
             eyebrow="MoSCoW PRIOTIZATION"
             title="시니어가 혼자서도 무사히 호출을 끝낼 수 있는 기능 설계"
             description="“이 기능이 없어도 사용자가 혼자 빠져나올 수 있는가?”를 기준으로 우선순위를 정했습니다. 고객센터 홈 배치, AI 보이스 에이전트 호출, 앱 안의 간단 모드는 카카오T의 사용 환경을 유지하면서도 시니어가 혼자 쉽게 호출을 끝낼 수 있도록 만드는 기능이기 때문에 Must로 선정했습니다."
-            items={[{ src: '/assets/kakaot/img-moscow.svg' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/kakaot/img-moscow.svg` }]}
           />
         </div>
 
@@ -207,7 +207,7 @@ export default function ProjectKakaoT() {
             eyebrow="STORY BOARD"
             title="시니어의 호출 경험은 어떻게 달라질까?"
             description="실제 시니어가 택시를 호출하는 상황을 바탕으로 문제가 발생하는 순간과 이를 해결하는 과정을 스토리보드로 구체화했습니다. 이를 통해 AI 보이스 에이전트가 각 상황에서 어떻게 사용자를 돕고, 호출을 끝까지 완료하게 하는지 보여주고자 했습니다."
-            items={[{ src: '/assets/kakaot/img-story.svg' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/kakaot/img-story.svg` }]}
           />
         </div>
 
@@ -217,7 +217,7 @@ export default function ProjectKakaoT() {
             eyebrow="USER FLOW"
             title="쉬운 호출을 먼저, 필요한 기능만 간결하게"
             description="화면 조작 부담을 줄이기 위해 말로 호출할 수 있는 AI 보이스 에이전트를 간단 모드의 가장 앞에 배치했습니다. 그 밖에 화면 호출과 고객센터,즐겨찾기만 남기고, 나머지 기능은 더보기로 숨겨 필요한 기능에 바로 접근하도록 IA를 재구성했습니다."
-            items={[{ src: '/assets/kakaot/img-flow.svg' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/kakaot/img-flow.svg` }]}
           />
         </div>
 
@@ -227,7 +227,7 @@ export default function ProjectKakaoT() {
             eyebrow="SKETCHES"
             title="빠른 스케치를 통해 아이디어 공유하기"
             description="크레이지 8’을 통해 쉬운 택시 호출과 오류 대응에 초점을 맞춘 아이디어 스케치를 진행했습니다. 이를 통해 팀 내에서 짧은 시간 안에 다양한 아이디어를 비교하고 구체화할 수 있었습니다."
-            items={[{ type: 'video', src: '/assets/kakaot/IMG-kakaot-crazy8.mp4', label: '스케치하는 과정' }, { src: '/assets/kakaot/img-sketch.svg', label: '크레이지 8’' }]}
+            items={[{ type: 'video', src: `${import.meta.env.BASE_URL}assets/kakaot/IMG-kakaot-crazy8.mp4`, label: '스케치하는 과정' }, { src: `${import.meta.env.BASE_URL}assets/kakaot/img-sketch.svg`, label: '크레이지 8’' }]}
           />
         </div>
 
@@ -247,14 +247,14 @@ export default function ProjectKakaoT() {
             eyebrow="WIREFRAME"
             title="호출 흐름을 구체화"
             description="팀원과 실시간으로 소통하며 와이어프레임을 함께 제작하며 아이디어와 화면 구성을 빠르게 공유하고 수정했습니다."
-            items={[{ src: '/assets/kakaot/img-wireframe1.svg' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/kakaot/img-wireframe1.svg` }]}
           />
           <div className="project-kakao-t__wireframe-images">
             <div className="project-kakao-t__wireframe-image">
-              <img src="/assets/kakaot/img-wireframe2.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/kakaot/img-wireframe2.svg`} alt="" />
             </div>
             <div className="project-kakao-t__wireframe-image">
-              <img src="/assets/kakaot/img-wireframe3.svg" alt="" />
+              <img src={`${import.meta.env.BASE_URL}assets/kakaot/img-wireframe3.svg`} alt="" />
             </div>
           </div>
         </div>
@@ -265,7 +265,7 @@ export default function ProjectKakaoT() {
             eyebrow="DESIGN SYSTEM"
             title="일관된 화면 시스템 설계"
             description="기존 카카오T의 디자인 정체성은 유지하면서 시니어의 가독성과 인지성을 높일 수 있도록 색상·큰 글씨·굵은 아이콘 등의 기준을 정했습니다. 이를 디자인 시스템으로 체계화해 팀원 모두가 같은 기준으로 작업하고 일관된 UI를 만들 수 있도록 했습니다."
-            items={[{ src: '/assets/kakaot/img-designsytem.svg' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/kakaot/img-designsytem.svg` }]}
           />
         </div>
 
@@ -275,7 +275,7 @@ export default function ProjectKakaoT() {
             eyebrow="PROTOTYPE"
             title="사용자 경험 검증을 위한 프로토타입 제작"
             description="AI 보이스 호출부터 화면 호출, 목적지 설정, 오류 대응까지의 핵심 흐름을 연결해 실제 사용과 유사하게 프로토타입을 제작했습니다."
-            items={[{ src: '/assets/kakaot/img-prototype.svg' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/kakaot/img-prototype.svg` }]}
           />
         </div>
 
@@ -285,8 +285,9 @@ export default function ProjectKakaoT() {
             eyebrow="USABILITY TEST"
             title="호출 과정의 사용성 평가"
             description="7명의 시니어를 대상으로 과업을 진행하여 호출 성공 여부와 오류 상황에서 스스로 복구할 수 있는지를 확인했습니다. SEQ 평균 98점, SUS 평균 94점으로 사용성은 긍정적이었고 평균 수행 시간도 4분 41초에서 1분 30초로 약 68% 단축되었습니다."
-            photos={['/assets/kakaot/img-ut1.svg', '/assets/kakaot/img-ut2.svg']}
-            docs={['/assets/kakaot/img-ut3.svg', '/assets/kakaot/img-ut4.svg']}
+            photos={[`${import.meta.env.BASE_URL}assets/kakaot/img-ut1.svg`, `${import.meta.env.BASE_URL}assets/kakaot/img-ut2.svg`]}
+            docs={[`${import.meta.env.BASE_URL}assets/kakaot/img-ut3.svg`, `${import.meta.env.BASE_URL}assets/kakaot/img-ut4.svg`]}
+            resultText=""
             docCaption1="UT TASKS SEQ 점수"
             docCaption2="SUS 점수"
           />
@@ -305,18 +306,18 @@ export default function ProjectKakaoT() {
           eyebrow="FEATURES 01"
           title="간단 모드 발견성 개선"
           description="간단 모드 안내 툴팁을 제공했지만 일부 사용자가 이를 인지하지 못해 진입조차 하지 못했습니다. 이에 배경에 딤드 오버레이를 적용하고 간단모드CTA와의 시각적 대비를 높여 간단 모드를 빠르게 찾을 수 있도록 하였습니다."
-          toBeLogo="/assets/kakaot/feature-tobe.svg"
-          asIsImage="/assets/kakaot/img-ITERATION1.svg"
-          toBeImage="/assets/kakaot/img-ITERATION2.png"
+          toBeLogo={`${import.meta.env.BASE_URL}assets/kakaot/feature-tobe.svg`}
+          asIsImage={`${import.meta.env.BASE_URL}assets/kakaot/img-ITERATION1.svg`}
+          toBeImage={`${import.meta.env.BASE_URL}assets/kakaot/img-ITERATION2.png`}
         />
         <FeatureKakaoT
           variant="iteration"
           eyebrow="FEATURES 02"
           title="아이콘 터치 및 가독성 개선"
           description="텍스트 크기를 키웠음에도 일부 사용자가 여전히 작게 느끼고, 즐겨찾기 아이콘도 정확히 터치하기 어려워했습니다. 사용자 피드백을 기준으로 텍스트 크기와 레이아웃을 재조정하고 아이콘과 터치 영역을 더 쉽게 인식하고 선택할 수 있도록 개선했습니다."
-          toBeLogo="/assets/kakaot/feature-tobe.svg"
-          asIsImage="/assets/kakaot/img-ITERATION3.svg"
-          toBeImage="/assets/kakaot/img-ITERATION4.png"
+          toBeLogo={`${import.meta.env.BASE_URL}assets/kakaot/feature-tobe.svg`}
+          asIsImage={`${import.meta.env.BASE_URL}assets/kakaot/img-ITERATION3.svg`}
+          toBeImage={`${import.meta.env.BASE_URL}assets/kakaot/img-ITERATION4.png`}
         />
 
         {/* 배움 정리 본문 */}

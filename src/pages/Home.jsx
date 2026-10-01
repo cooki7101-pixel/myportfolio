@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import gsap from 'gsap'
 import { SplitText } from 'gsap/SplitText'
@@ -6,6 +6,8 @@ import Header from '../components/Header'
 import HomeFooter from '../components/HomeFooter'
 import HomeProjectList from '../components/HomeProjectList'
 import '../componentsStyle/glassBox.css'
+import GlassBox from '../components/GlassBox'
+import { LiquidGlass } from 'quidlass';
 import '../componentsStyle/home.css'
 
 gsap.registerPlugin(SplitText)
@@ -13,12 +15,13 @@ gsap.registerPlugin(SplitText)
 export default function Home({ loadingFinished = false }) {
   const { hash } = useLocation()
   const heroRef = useRef(null)
+  const [liquidGlassActive, setLiquidGlassActive] = useState(false)
 
   useLayoutEffect(() => {
     let splitText
     const context = gsap.context(() => {
       const boxes = gsap.utils.toArray([
-        '.home__product_design_box',
+        // '.home__product_design_box',
         '.home__department_of_visual_design_box',
         '.home__skills_box',
       ])
@@ -34,6 +37,7 @@ export default function Home({ loadingFinished = false }) {
       gsap.set(heroImage, { opacity: 0, filter: 'blur(5px)', scale: 0.8 })
       gsap.set(heroText, { x: '100%', y: '100%' })
       gsap.set(splitText.chars, { yPercent: 100 })
+      setLiquidGlassActive(false)
       if (!loadingFinished) return
 
       const timeline = gsap.timeline()
@@ -62,6 +66,7 @@ export default function Home({ loadingFinished = false }) {
         duration: 0.8,
         stagger: 0.35,
         ease: 'power2.out',
+        onComplete: () => setLiquidGlassActive(true),
       })
     }, heroRef)
 
@@ -82,72 +87,84 @@ export default function Home({ loadingFinished = false }) {
   return (
     <div className="home" data-node-id="380:3913" >
       <Header />
-
-      {/* TODO: 대략적인 임시 구현 — 실제 인터랙티브 히어로는 별도로 제작 예정 */}
+      {/* TODO: rough placeholder — real interactive hero to be built separately */}
       <section className="home__hero" ref={heroRef} data-node-id="380:3921">
-        {/* YEONSU 텍스트, 사진, 글래스박스 전부를 하나의 고정 크기 "무대"
-            안에 넣고, 그 무대 전체를 뷰포트 너비에 맞춰 transform: scale()로
-            줄이고 키웁니다. 그래서 텍스트/사진/글래스박스(안의 아이콘과
-            글자까지)가 항상 같은 비율로, 서로 붙은 채로 함께 커지고
-            작아집니다 (heynesh.com 참고). */}
-        <div className="home__hero-stage">
-          <div className="home__hero-text-wrap">
-            {/* 우측아래에서 올라오면서 좌측상단으로 이동하는 애니메이션을 적용한 텍스트입니다. */}
-            <p className="home__hero-text">
-              {/* 각 텍스트를 쪼개서 글자 단위로 애니메이션을 적용할 수 있습니다. */}
-              <span className="home__hero-text-split">YEONSU</span>
-            </p>
-          </div>
-          <img src="/assets/home/image-me.svg" alt="YEONSU" className="home__hero-img-me" />
+        <div className="home__hero-text-wrap">
+          {/* 우측아래에서 올라오면서 좌측상단으로 이동하는 애니메이션을 적용한 텍스트입니다. */}
+          <p className="home__hero-text">
+            {/* 각 텍스트를 쪼개서 글자 단위로 애니메이션을 적용할 수 있습니다. */}
+            <span className="home__hero-text-split">YEONSU</span>
+          </p>
+        </div>
+        <img src={`${import.meta.env.BASE_URL}assets/home/image-me.png`} alt="YEONSU" className="home__hero-img-me" />
 
 
+        <div className="home__product_design_box" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(calc(-50% - 320px), calc(-50% + 80px))' }}>
+          {liquidGlassActive ? (
+            <LiquidGlass
+              blur={6}
+              contrast={1.2}
+              brightness={1.05}
+              saturation={1.2}
+              shadowIntensity={0.28}
+              elasticity={0.27}
+              elasticityActivationZone={100}
+              swirlIntensity={12.3}
+              swirlScale={0.8}
+              swirlRadius={1.1}
+              edgeThicknessPx={24}
+              swirlEdges="all"
+              zIndex={3}
+              enableInnerGlow
+              style={{ backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
+            >
+              <GlassBox width='235px' blur={0} opacity={0}
+                iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-x2.png`}
+                lines={['Product', 'Designer']}
+              />
+            </LiquidGlass>
+          ) : ("")}
+        </div>
 
 
-          <div className="home__product_design_box">
-            <div className="glass-box" style={{ width: '235px', height: '118px' }}>
-              <div className="glass-box__icon glass-box__icon--small" aria-hidden="true">
-                <img src="/assets/home/icon-product-designer2.png" alt="" />
-              </div>
-              <div className="glass-box__label">
-                <span>Product</span>
-                <span>Designer</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="home__department_of_visual_design_box">
-            <div className="glass-box glass-box--column" style={{ width: '188px', height: '185px' }}>
-              <div className="glass-box__icon" aria-hidden="true">
-                <img src="/assets/home/igon-design.png" alt="" />
-              </div>
-              <div className="glass-box__label">
-                <span>DEPARTMENT</span>
-                <span>OF VISUAL</span>
-                <span>DESIGN</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="home__skills_box">
-            <div className="glass-box glass-box--column" style={{ width: '264px', height: '200px' }}>
-              <div className="glass-box__items">
-                {[
-                  { iconSrc: '/assets/home/igon-fast.png', text: 'Fast Worker' },
-                  { iconSrc: '/assets/home/Icon-communication.png', text: 'Communication' },
-                  { iconSrc: '/assets/home/Icon-Perseverance.png', text: 'Perseverance' },
-                  { iconSrc: '/assets/home/Icon-ai.png', text: 'AI Proficiency' },
-                ].map((item) => (
-                  <div className="glass-box__item" key={item.text}>
-                    <div className="glass-box__item-icon" aria-hidden="true">
-                      <img src={item.iconSrc} alt="" />
-                    </div>
-                    <span className="glass-box__item-text">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
+        <div
+          className="home__department_of_visual_design_box"
+          style={{
+            position: 'absolute'
+            , top: '50%', left: '50%'
+            , transform: 'translate(calc(-50% - 320px), calc(-50% + 230px))'
+          }}>
+          <GlassBox width='189px'
+            blur={3} opacity={0.2} curvature='12px'
+            edgeRefraction={0.1} dispersion={0.2}
+            distortion={2} fresnel={0.2}
+            animationSpeed={0.5} waveStrength={0.2}
+            iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-01-x2.png`}
+            lines={['DEPARTMENT', 'OF VISUAL', 'DESIGN']}
+            flexDirection='column'
+          />
+        </div>
+        <div
+          className="home__skills_box"
+          style={{
+            position: 'absolute'
+            , top: '50%', left: '50%'
+            , transform: 'translate(calc(-50% + 380px), calc(-50% + 0px))'
+          }}>
+          <GlassBox width='264px'
+            blur={3} opacity={0.2} curvature='12px'
+            edgeRefraction={0.1} dispersion={0.2}
+            distortion={2} fresnel={0.2}
+            animationSpeed={0.5} waveStrength={0.2}
+            iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-01-x2.png`}
+            flexDirection='column'
+            items={[
+              { iconSrc: `${import.meta.env.BASE_URL}assets/glass-box-fast-worker.png`, text: 'Fast Worker' },
+              { iconSrc: `${import.meta.env.BASE_URL}assets/glass-box-communication.png`, text: 'Communication' },
+              { iconSrc: `${import.meta.env.BASE_URL}assets/glass-box-perseverance.png`, text: 'Perseverance' },
+              { iconSrc: `${import.meta.env.BASE_URL}assets/glass-box-ai.png`, text: 'AI Proficiency' },
+            ]}
+          />
         </div>
 
         {/* home__hero-desc는 일부러 home__hero-stage 밖에 둡니다 — stage에
@@ -235,7 +252,7 @@ export default function Home({ loadingFinished = false }) {
       </div>
 
       <HomeFooter />
-    </div>
+    </div >
   )
 
 

@@ -11,8 +11,8 @@ import '../../componentsStyle/project-hyundai.css'
 
 // "MORE PROJECTS" footer shows the other two case studies (not this page's own).
 const moreProjects = [
-  { type: 'video', src: '/assets/moreproject/passing_MORE%20PROJECT-video..mp4', label: "AI 티켓 사기 예방 '패싱'", to: '/works/project-passing' },
-  { type: 'video', src: '/assets/moreproject/kakaot-MORE%20PROJECT-video.mp4', label: '카카오T with 시니어 맞춤 AI 보이스 에이전트', to: '/works/kakao-t' },
+  { type: 'video', src: `${import.meta.env.BASE_URL}assets/moreproject/passing_MORE%20PROJECT-video..mp4`, label: "AI 티켓 사기 예방 '패싱'", to: '/works/project-passing' },
+  { type: 'video', src: `${import.meta.env.BASE_URL}assets/moreproject/kakaot-MORE%20PROJECT-video.mp4`, label: '카카오T with 시니어 맞춤 AI 보이스 에이전트', to: '/works/kakao-t' },
 ]
 
 export default function ProjectHyundai() {
@@ -23,7 +23,7 @@ export default function ProjectHyundai() {
       <Hero
         title={'현대 자동차 홈페이지 개선'}
         mediaType="video"
-        mediaSrc="/assets/hero-hyundai.mp4"
+        mediaSrc={`${import.meta.env.BASE_URL}assets/hero-hyundai.mp4`}
       />
 
       <div className="project-hyundai__body">
@@ -34,19 +34,18 @@ export default function ProjectHyundai() {
           tools={'Figma, \nFigmaMake'}
           role={'UIUX디자인,\n프로토타입'}
         />
-
         {/* ComparisonSummary: Comparison-Hyundai + ASISTOBE-section */}
         <ComparisonHyundai
           title="메인 페이지"
-          asIsImage="/assets/hyundai/img-mainASIS.svg"
-          toBeImage="/assets/hyundai/img-mainTOBE.svg"
-          toBeLogo="/assets/hyundai/feature-tobe.svg"
+          asIsImage={`${import.meta.env.BASE_URL}assets/hyundai/img-mainASIS.svg`}
+          toBeImage={`${import.meta.env.BASE_URL}assets/hyundai/img-mainTOBE.svg`}
+          toBeLogo={`${import.meta.env.BASE_URL}assets/hyundai/feature-tobe.svg`}
         />
         <ComparisonHyundai
           title="견적내기 페이지"
-          asIsImage="/assets/hyundai/img-subASIS.svg"
-          toBeImage="/assets/hyundai/img-subTOBE.svg"
-          toBeLogo="/assets/hyundai/feature-tobe.svg"
+          asIsImage={`${import.meta.env.BASE_URL}assets/hyundai/img-subASIS.svg`}
+          toBeImage={`${import.meta.env.BASE_URL}assets/hyundai/img-subTOBE.svg`}
+          toBeLogo={`${import.meta.env.BASE_URL}assets/hyundai/feature-tobe.svg`}
         />
 
         {/* CURRENT PROBLEM Section — MainpageGroup (with eyebrow) + SubPageGroup (no eyebrow) */}
@@ -55,7 +54,7 @@ export default function ProjectHyundai() {
             eyebrow="CURRENT PROBLEM"
             title="메인 페이지"
             description="기존 현대자동차 랜딩페이지는 섹션마다 다른 그리드와 카드 규격을 사용해 스캔 피로도를 높이고, 정지 이미지 중심의 히어로 구성으로 브랜드 몰입감과 구매 전환 유도력을 동시에 제한했습니다."
-            items={[{ src: '/assets/hyundai/img-currentMain.svg' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/hyundai/img-currentMain.svg` }]}
           />
         </div>
         <div className="project-hyundai__section">
@@ -63,7 +62,7 @@ export default function ProjectHyundai() {
             showEyebrow={false}
             title="견적내기 페이지"
             description="옵션 정보가 분산되어 선택 결과와 최종 견적의 변화를 한눈에 파악하기 어려웠습니다. 또한 모델 비교를 위해 페이지를 반복 이동해야 했으며 섹션별 레이아웃이 일관되지 않아 탐색 피로도가 높았습니다."
-            items={[{ src: '/assets/hyundai/img-currentSub.svg' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/hyundai/img-currentSub.svg` }]}
           />
         </div>
 
@@ -79,7 +78,7 @@ export default function ProjectHyundai() {
             eyebrow="SOLUTION"
             title="메인 페이지"
             description="기존 현대자동차 랜딩페이지는 섹션마다 다른 그리드와 카드 규격을 사용해 스캔 피로도를 높이고, 정지 이미지 중심의 히어로 구성으로 브랜드 몰입감과 구매 전환 유도력을 동시에 제한했습니다."
-            items={[{ src: '/assets/hyundai/img-solutionMain.svg' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/hyundai/img-solutionMain.svg` }]}
           />
         </div>
         <div className="project-hyundai__section">
@@ -87,7 +86,7 @@ export default function ProjectHyundai() {
             showEyebrow={false}
             title="견적내기 페이지"
             description="사람이 좌→우, 위→아래로 읽는 흐름에 맞춰 옵션 선택 시 이미지와 가격이 같은 화면 안에서 즉시 반영되도록 재구성했습니다."
-            items={[{ src: '/assets/hyundai/img-solutionSub.svg' }]}
+            items={[{ src: `${import.meta.env.BASE_URL}assets/hyundai/img-solutionSub.svg` }]}
           />
         </div>
 
@@ -96,17 +95,17 @@ export default function ProjectHyundai() {
           <ResponsiveHyundai
             eyebrow="RESPONSIVE WEB DESIGN"
             title="메인 페이지"
-            desktopImage="/assets/hyundai/img-responsiveMain1.svg"
-            tabletImage="/assets/hyundai/img-responsiveMain2.svg"
-            mobileImage="/assets/hyundai/img-responsiveMain3.svg"
+            desktopImage={`${import.meta.env.BASE_URL}assets/hyundai/img-responsiveMain1.svg`}
+            tabletImage={`${import.meta.env.BASE_URL}assets/hyundai/img-responsiveMain2.svg`}
+            mobileImage={`${import.meta.env.BASE_URL}assets/hyundai/img-responsiveMain3.svg`}
           />
         </div>
         <div className="project-hyundai__section">
           <ResponsiveHyundai
             title="견적내기 페이지"
-            desktopImage="/assets/hyundai/img-responsiveSub1.svg"
-            tabletImage="/assets/hyundai/img-responsiveSub2.svg"
-            mobileImage="/assets/hyundai/img-responsiveSub3.svg"
+            desktopImage={`${import.meta.env.BASE_URL}assets/hyundai/img-responsiveSub1.svg`}
+            tabletImage={`${import.meta.env.BASE_URL}assets/hyundai/img-responsiveSub2.svg`}
+            mobileImage={`${import.meta.env.BASE_URL}assets/hyundai/img-responsiveSub3.svg`}
           />
         </div>
       </div>

@@ -13,6 +13,7 @@
   "dependencies": {
     "@vitejs/plugin-react": "latest",
     "gsap": "^3.15.0",
+    "quidlass": "^1.2.2",
     "react": "latest",
     "react-dom": "latest",
     "react-router-dom": "latest",
