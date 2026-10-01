@@ -20,7 +20,7 @@ export default function HomeFooter({
   email = 'cooki7101@naver.com',
   copyright = '© 2026 Designed by Yeonsu Kim',
   linkedinUrl = 'https://www.linkedin.com/in/김연수-undefined-87758841b',
-  resumeUrl = '/assets/resume.pdf',
+  resumeUrl = `${import.meta.env.BASE_URL}assets/resume.pdf`,
   // TODO: 실제 index/홈 페이지 URL이 준비되면 교체할 것.
   homeUrl = '/',
 }) {
@@ -55,7 +55,7 @@ export default function HomeFooter({
       <div className="home-footer__top">
         <div className="home-footer__contact">
           <h2>Connect!<br />Get in touch<br />:)</h2>
-          <a href={`mailto:${email}`}>{email}<img src="/assets/footer-icon.svg" alt="" /></a>
+          <a href={`mailto:${email}`}>{email}<img src={`${import.meta.env.BASE_URL}assets/footer-icon.svg`} alt="" /></a>
         </div>
         <nav>
           <a href={linkedinUrl} target="_blank" rel="noopener noreferrer">LINKEDIN</a>
@@ -66,7 +66,7 @@ export default function HomeFooter({
       </div>
       <div className="home-footer__bottom">
         <Link to={homeUrl} aria-label="Portfolio home" onClick={goHome}>
-          <img src="/assets/footer-logo-desktop-white.svg" alt="김연수 포트폴리오" />
+          <img src={`${import.meta.env.BASE_URL}assets/footer-logo-desktop-white.svg`} alt="김연수 포트폴리오" />
         </Link>
         <small>{copyright}</small>
       </div>
