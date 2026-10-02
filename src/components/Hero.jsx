@@ -41,7 +41,7 @@ export default function Hero({
   return <section className={`hero hero--${isMobile ? 'mobile' : isTablet ? 'tablet' : isLaptop ? 'laptop' : 'desktop'}`} data-node-id="348:4017">
     <div className="hero__title-wrap">
       <h1>{title}</h1>
-      {showTitleLink && <a href={titleLink} target="_blank" rel="noreferrer">보이스 에이전트 체험해보기 <img src="/assets/title-link-right-arrow.svg" alt="" /></a>}
+      {showTitleLink && <a href={titleLink} target="_blank" rel="noreferrer">보이스 에이전트 체험해보기 <img src={`${import.meta.env.BASE_URL}assets/title-link-right-arrow.svg`} alt="" /></a>}
     </div>
     <div className="hero__media">{children || (mediaType === 'img' ? <img src={mediaSrc} alt="" /> : <video autoPlay muted loop playsInline preload="auto" aria-label="Hero video"><source src={mediaSrc} /></video>)}</div>
   </section>

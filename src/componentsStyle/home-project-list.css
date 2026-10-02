@@ -202,7 +202,7 @@
   /* Figma의 모바일 프레임은 위에서 쓴 top/bottom-60 중앙 정렬 박스가 아니라,
      콘텐츠가 하단에 고정된 pt-142/pb-80 구조입니다. */
   .home-project-list__sticky {
-    padding: 100px 0 0;
+    padding: 228px 0 0;
   }
 
   .home-project-list__heading {

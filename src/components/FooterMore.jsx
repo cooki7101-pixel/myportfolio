@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import '../componentsStyle/footer-more.css'
 
 const defaultProjects = [
-  { type: 'img', src: `${import.meta.env.BASE_URL}assets/buyer-mapping.png`, label: '카카오T with 시니어 맞춤 AI 보이스 에이전트', to: '/works/kakao-t' },
-  { type: 'img', src: `${import.meta.env.BASE_URL}assets/seller-mapping.png`, label: '카카오T with 시니어 맞춤 AI 보이스 에이전트', to: '/works/kakao-t' },
+  { type: 'img', src: `${import.meta.env.BASE_URL}assets/passing/buyer-mapping.png`, label: '카카오T with 시니어 맞춤 AI 보이스 에이전트', to: '/works/kakao-t' },
+  { type: 'img', src: `${import.meta.env.BASE_URL}assets/passing/seller-mapping.png`, label: '카카오T with 시니어 맞춤 AI 보이스 에이전트', to: '/works/kakao-t' },
 ]
 
 // FooterMore component set breakpoints (Figma, updated): desktop >= 990px, tablet 722-989px, mobile <= 721px.

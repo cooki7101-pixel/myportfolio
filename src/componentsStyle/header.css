@@ -15,10 +15,22 @@
   align-items: center;
   justify-content: space-between;
   padding: 18px 68px;
-  background: rgba(255, 255, 255, 0.35);
+  /* 배경/backdrop-filter는 Header.jsx의 .header__glass(LiquidGlass)가 담당 */
   border-bottom: 0.7px solid rgba(255, 255, 255, 0.95);
-  -webkit-backdrop-filter: blur(20px) saturate(125%);
-  backdrop-filter: blur(20px) saturate(125%);
+}
+
+.header__glass {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.header__logo,
+.header__menu,
+.header__menu-toggle {
+  position: relative;
+  z-index: 1;
 }
 
 /* 모바일 메뉴가 열려있을 때는 헤더 바 자체의 반투명 유리 효과를 꺼서,

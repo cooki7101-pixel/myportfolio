@@ -106,6 +106,14 @@ function PageTransitionRoutes({ loadingFinished }) {
 
     const timeline = gsap.timeline({
       onComplete: () => {
+        // 전환이 끝나도 incoming 래퍼에 inline으로 남는 filter: blur(0px)/opacity는
+        // 이 래퍼를 position:fixed의 기준(containing block)으로 만들어버려서,
+        // 안에 있는 고정 헤더가 화면이 아니라 이 래퍼 기준으로 같이 스크롤돼
+        // 버립니다(페이지를 이동한 뒤에만 헤더가 안 고정되던 원인). 전환
+        // 직후 이 값들을 완전히 제거합니다.
+        if (incomingRef.current) {
+          gsap.set(incomingRef.current, { clearProps: 'opacity,filter' });
+        }
         setOutgoingLocation(null);
         setIsTransitioning(false);
       },

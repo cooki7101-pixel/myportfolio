@@ -134,7 +134,10 @@
   position: absolute;
   top: 84%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* transform이 아니라 개별 translate 속성으로 중앙 정렬 — GSAP이 transform을
+     쓰는 시점에 이미지가 아직 로드 전이라 높이가 0이면 %가 잘못된 px로
+     굳어져 새로고침 때 가끔 위치가 틀어졌습니다. */
+  translate: -50% -50%;
 }
 
 /* home__hero-stage 밖으로 옮겨서(위치를 뷰포트 높이 기준으로 계산하기
@@ -182,7 +185,7 @@
     width: calc(120% - 10px);
     position: absolute;
     top: 61%;
-    transform: translate(-50%, -50%);
+    translate: -50% -50%;
   }
 
   .home__hero-text-wrap {
@@ -224,16 +227,32 @@
 
 @media (max-width: 681px) {
   .home__hero {
-    margin-bottom: 620px;
+    margin-bottom: 540px;
   }
   .home__hero-stage {
     display: none;
   }
 
+  /* 모바일에서는 데스크탑용 히어로 요소(YEONSU 텍스트, me 이미지, 글래스박스 3개)를
+     숨기고 .home__hero-mobile-stage만 보이게 합니다. */
+  .home__hero > .home__hero-text-wrap,
+  .home__hero > .home__hero-img-me,
+  .home__hero > .home__product_design_box,
+  .home__hero > .home__department_of_visual_design_box,
+  .home__hero > .home__skills_box {
+    display: none !important;
+  }
+
+  /* top이 0이면 고정(position:fixed) 헤더 바로 밑에 콘텐츠가 깔려서,
+     transform-origin: top center 덕분에 이 top 값 자체는 scale()의 영향을
+     안 받고 항상 같은 px로 유지되는데도(화면이 좁아져도 안 줄어듦)
+     값 자체가 0이라 여유가 전혀 없었습니다 — 헤더 높이(약 70px)보다
+     넉넉하게 80px를 줘서, 화면이 아무리 좁아져도 헤더와 겹치지 않게
+     고정 여백을 확보합니다. */
   .home__hero-mobile-stage {
     display: block;
     position: absolute;
-    top: 0;
+    top: 50px;
     left: 50%;
     width: 487px;
     height: 847px;
@@ -245,7 +264,7 @@
 
   .home__hero-text {
     position: absolute;
-    top: 116px;
+    top: 67px;
     left: 17px;
     right: 10px;
     margin: 0;
@@ -261,7 +280,7 @@
 
   .home__hero-mobile-img-me {
     position: absolute;
-    top: 95px;
+    top: 46px;
     left: 78px;
     width: calc(100% + 123.5px);
     aspect-ratio: 900 / 1208;
@@ -270,28 +289,28 @@
 
   .home__hero-mobile-stage .home__department_of_visual_design_box {
     position: absolute;
-    top: 35%;
+    top: 29%;
     left: 45.2%;
     transform: translate(calc(-50% - 105.5px), 0);
   }
 
   .home__hero-mobile-stage .home__product_design_box {
     position: absolute;
-    top: 39.8%;
+    top: 33.8%;
     left: 56%;
     transform: translate(calc(-50% + 101.5px), 0);
   }
 
   .home__hero-mobile-stage .home__skills_box {
     position: absolute;
-    top: 57.5%;
+    top: 52%;
     left: 45%;
     transform: translate(calc(-50% - 77px), calc(-50% + 153.31px));
   }
 
   .home__hero-mobile-desc {
     position: absolute;
-    top: 762px;
+    top: 726px;
     left: 17px;
     margin: 0;
     width: 324px;

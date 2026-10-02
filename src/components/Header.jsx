@@ -1,5 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { LiquidGlass } from 'quidlass'
 import Logo from './Logo'
 import '../componentsStyle/header.css'
 
@@ -60,8 +61,10 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
     closeMenu()
     const isAlreadyHome = location.pathname === homeUrl.split('#')[0].split('?')[0]
     if (isAlreadyHome) {
+      // 이미 홈(예: WORK 섹션까지 스크롤한 상태)이면 새로고침 대신 히어로가
+      // 있는 맨 위로 부드럽게 스크롤합니다.
       event.preventDefault()
-      window.location.href = homeUrl
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 
@@ -81,6 +84,32 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
 
   return (
     <header className={`header header--${resolvedBreakpoint}${menuOpen ? ' header--menu-open' : ''}`} data-node-id="291:1660">
+      {/* 헤더 뒤에 깔리는 유리 효과 전용 레이어(모션 없음) — 헤더 자체에
+          backdrop-filter가 걸려 있으면 그 안쪽 유리가 뒤를 못 봐서, 기존
+          헤더의 backdrop-filter/배경은 header.css에서 걷어내고 이 레이어가
+          대신 담당합니다. 모바일 메뉴가 열려 있을 땐 숨깁니다. */}
+      {!menuOpen && (
+        <div className="header__glass" aria-hidden="true">
+          <LiquidGlass
+            borderRadius={0}
+            blur={6}
+            contrast={1.1}
+            brightness={1.05}
+            saturation={1.2}
+            shadowIntensity={0}
+            elasticity={0}
+            swirlIntensity={6}
+            swirlScale={0.8}
+            swirlRadius={1.1}
+            edgeThicknessPx={14}
+            swirlEdges="all"
+            zIndex={0}
+            style={{ width: '100%', height: '100%', backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
+          >
+            <div style={{ width: '100%', height: '100%' }} />
+          </LiquidGlass>
+        </div>
+      )}
       <NavLink className="header__logo" to={homeUrl} aria-label="Portfolio home" onClick={goHome}>
         <Logo variant={isMobile ? 'mobile-black' : 'desktop-black'} alt="김연수 포트폴리오" />
       </NavLink>
