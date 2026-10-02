@@ -6,13 +6,15 @@ import '../../componentsStyle/about.css'
 // Each trait has its own photo — they cycle together, one at a time, in
 // lockstep: the highlighted trait label, the quote icon's row, and the
 // visible photo all advance on the same beat.
+const ASSET_BASE = `${import.meta.env.BASE_URL}assets`
+
 const traits = [
-  { label: 'I AM SOCIABLE', image: '/assets/about/image-sociable.png' },
-  { label: 'I AM ENTHUSIASTIC', image: '/assets/about/image-ENTHUSIASTIC.png' },
-  { label: 'I LOVE TAKING PICTURES', image: '/assets/about/image-TAKING%20PICTURES.png' },
-  { label: 'I LOVE ART', image: '/assets/about/image-art.png' },
-  { label: 'I LOVE MUSIC', image: '/assets/about/image-music.png' },
-  { label: 'I LOVE DOG', image: '/assets/about/image-dog.png' },
+  { label: 'I AM SOCIABLE', image: `${ASSET_BASE}/about/image-sociable.png` },
+  { label: 'I AM ENTHUSIASTIC', image: `${ASSET_BASE}/about/image-ENTHUSIASTIC.png` },
+  { label: 'I LOVE TAKING PICTURES', image: `${ASSET_BASE}/about/image-TAKING%20PICTURES.png` },
+  { label: 'I LOVE ART', image: `${ASSET_BASE}/about/image-art.png` },
+  { label: 'I LOVE MUSIC', image: `${ASSET_BASE}/about/image-music.png` },
+  { label: 'I LOVE DOG', image: `${ASSET_BASE}/about/image-dog.png` },
 ]
 
 // How long each trait stays active before advancing to the next one — the
@@ -91,7 +93,7 @@ export default function About() {
           <div className="about__traits" data-node-id="435:1669">
             <img
               className="about__quote-icon"
-              src="/assets/about-quote-icon.svg"
+              src={`${ASSET_BASE}/about-quote-icon.svg`}
               alt=""
               data-node-id="435:1670"
               style={{ transform: `translateY(${iconOffset}px)` }}
