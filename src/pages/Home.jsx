@@ -35,7 +35,7 @@ const MOBILE_GLASS_PROPS = {
 const MOBILE_BOX_VARS = { '--glass-box-opacity': 0, '--glass-box-blur': '0px' }
 
 export default function Home({ loadingFinished = false }) {
-  const { hash } = useLocation()
+  const { state } = useLocation()
   const heroRef = useRef(null)
   const [liquidGlassActive, setLiquidGlassActive] = useState(false)
 
@@ -78,7 +78,7 @@ export default function Home({ loadingFinished = false }) {
         { backgroundColor: 'rgba(255, 255, 255, 0)' },
       )
       gsap.set(allGlassContent, { opacity: 0, filter: 'blur(5px)' })
-      gsap.set(heroImage, { opacity: 0, filter: 'blur(5px)', scale: 0.8 })
+      gsap.set(heroImage, { opacity: 0, filter: 'blur(5px)', scale: 0.8, transformOrigin: '50% 50%' })
       gsap.set(heroText, { x: '100%', y: '100%' })
       gsap.set(splitText.chars, { yPercent: 100 })
       setLiquidGlassActive(false)
@@ -143,13 +143,14 @@ export default function Home({ loadingFinished = false }) {
     }
   }, [loadingFinished])
 
-  // Header의 WORK 링크("/#work")를 눌렀을 때 프로젝트 목록으로 바로
-  // 이동하게 함 — 다른 페이지에서 들어오는 경우도 포함.
+  // Header의 WORK 링크를 눌렀을 때(다른 페이지에서 올 때 포함) 주소에 "#work"를
+  // 붙이지 않고, 라우터 state로만 신호를 받아 프로젝트 목록으로 스크롤합니다.
+  // 새로고침해도 같은 스크롤이 반복되지 않게 처리 후 state는 비웁니다.
   useEffect(() => {
-    if (hash !== '#work') return
-    const target = document.getElementById('work')
-    target?.scrollIntoView({ behavior: 'smooth' })
-  }, [hash])
+    if (state?.scrollTo !== 'work') return
+    document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })
+    window.history.replaceState({ ...window.history.state, usr: null }, '')
+  }, [state])
 
   return (
     <div className="home" data-node-id="380:3913" >
@@ -171,7 +172,9 @@ export default function Home({ loadingFinished = false }) {
             고정값이라 화면이 좁아져도 그대로 유지돼서 다른 요소들과 같은 자리에서
             줄어들지 않고 점점 어긋나 보였습니다 — 오프셋에도 똑같은 비율을 곱해서
             같은 기준으로 함께 줄어들게 맞춥니다. */}
-        <div className="home__product_design_box" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(calc(-50% - 320px * min(100vw, 1920px) / 1920px), calc(-50% + 80px * min(100vw, 1920px) / 1920px))' }}>
+        <div className="home__product_design_box" style={{ position: 'absolute', 
+          top: '66%', left: '46%', 
+          transform: 'translate(calc(-50% - 320px * min(100vw, 1920px) / 1920px), calc(-50% + 80px * min(100vw, 1920px) / 1920px)) scale(calc(min(100vw, 1920px) / 1920px))' }}>
           <div className="home__glass-enter">
             <LiquidGlass
               borderRadius={10}
@@ -191,7 +194,7 @@ export default function Home({ loadingFinished = false }) {
               enableInnerGlow
               style={{ backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
             >
-              <GlassBox curvature={10} width='235px' blur={0} opacity={0}
+              <GlassBox curvature={10} width='228px' height='116px' blur={0} opacity={0}
                 iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-product-designer2.png`}
                 lines={['Product', 'Designer']}
               />
@@ -204,8 +207,8 @@ export default function Home({ loadingFinished = false }) {
           className="home__department_of_visual_design_box"
           style={{
             position: 'absolute'
-            , top: '50%', left: '50%'
-            , transform: 'translate(calc(-50% - 320px * min(100vw, 1920px) / 1920px), calc(-50% + 230px * min(100vw, 1920px) / 1920px))'
+            , top: '70%', left: '48.7%'
+            , transform: 'translate(calc(-50% - 320px * min(100vw, 1920px) / 1920px), calc(-50% + 230px * min(100vw, 1920px) / 1920px)) scale(calc(min(100vw, 1920px) / 1920px))'
           }}>
           {/* liquidGlassActive로 가리지 않고 처음부터 렌더링합니다 — 이 박스
               자체는 이미 gsap의 boxes 배열에 들어있어서 opacity/blur로
@@ -234,7 +237,7 @@ export default function Home({ loadingFinished = false }) {
               enableInnerGlow
               style={{ backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
             >
-              <GlassBox curvature={10} width='189px' blur={0} opacity={0}
+              <GlassBox curvature={10} width='189px' height='186px' blur={0} opacity={0}
                 iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-design.png`}
                 lines={['DEPARTMENT', 'OF VISUAL', 'DESIGN']}
                 flexDirection='column'
@@ -246,8 +249,8 @@ export default function Home({ loadingFinished = false }) {
           className="home__skills_box"
           style={{
             position: 'absolute'
-            , top: '50%', left: '50%'
-            , transform: 'translate(calc(-50% + 380px * min(100vw, 1920px) / 1920px), calc(-50% + 0px))'
+            , top: '77%', left: '62%'
+            , transform: 'translate(calc(-50% + 380px * min(100vw, 1920px) / 1920px), calc(-50% + 0px)) scale(calc(min(100vw, 1920px) / 1920px))'
           }}>
           <div className="home__glass-enter">
             <LiquidGlass
@@ -268,7 +271,7 @@ export default function Home({ loadingFinished = false }) {
               enableInnerGlow
               style={{ backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
             >
-              <GlassBox curvature={10} width='264px' blur={0} opacity={0}
+              <GlassBox curvature={10} width='264px' height='auto' blur={0} opacity={0}
                 flexDirection='column'
                 items={[
                   { iconSrc: `${import.meta.env.BASE_URL}assets/home/icon-fast.png`, text: 'Fast Worker' },

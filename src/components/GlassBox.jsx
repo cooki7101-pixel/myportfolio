@@ -24,6 +24,7 @@ export default function GlassBox({
   lines = ['product', 'DESIGNER'],
   items = null,
   width = '100%',
+  height,
   curvature = 0,
   opacity = 0,
   blur = 0,
@@ -42,6 +43,8 @@ export default function GlassBox({
       className={`glass-box ${className}`.trim()}
       style={{
         width,
+        // 세로 크기 — 지정하지 않으면 내용에 맞춰 자동(auto)
+        ...(height ? { height } : null),
         flexDirection,
         // property 값은 기본 유리 효과에 더해지는 보정값으로 적용합니다.
         '--glass-box-curvature': addToDefault(curvature, GLASS_DEFAULTS.curvature, 'px'),

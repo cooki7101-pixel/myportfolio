@@ -64,19 +64,22 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
       // 이미 홈(예: WORK 섹션까지 스크롤한 상태)이면 새로고침 대신 히어로가
       // 있는 맨 위로 부드럽게 스크롤합니다.
       event.preventDefault()
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      if (window.scrollY < 10) {
+        // 이미 hero 맨 위라면 스크롤할 곳이 없어 아무 반응이 없어 보이므로,
+        // 현재 주소 그대로 새로고침해서 인트로를 다시 보여줍니다.
+        window.location.reload()
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
     }
   }
 
-  // 이미 "/"+"#work"에 있는 상태(예: WORK를 눌러 스크롤한 뒤 다시 히어로로
-  // 스크롤해서 올라온 경우)에서 WORK를 다시 누르면, 경로/해시가 그대로라
-  // react-router가 아무 변화도 감지하지 못해 Home의 해시 감지 effect가
-  // 다시 실행되지 않고, 그래서 스크롤도 다시 일어나지 않았습니다 — 이미
-  // 같은 위치일 때는 직접 스크롤을 실행해서 항상 동작하게 합니다.
+  // 이미 홈("/")에 있으면 같은 경로라 라우터가 변화를 감지하지 못하므로 직접
+  // 스크롤하고, 다른 페이지에서는 NavLink가 state(scrollTo)와 함께 홈으로
+  // 이동해 Home이 WORK 섹션으로 스크롤합니다 — 주소에 "#work"는 붙지 않습니다.
   const goToWork = (event) => {
     closeMenu()
-    const isAlreadyOnWork = location.pathname === '/' && location.hash === '#work'
-    if (isAlreadyOnWork) {
+    if (location.pathname === '/') {
       event.preventDefault()
       document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })
     }
@@ -131,7 +134,7 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
             aria-hidden={!menuOpen}
           >
             <ol className="header__overlay-list">
-              <li><NavLink to="/#work" onClick={goToWork}>WORK</NavLink></li>
+              <li><NavLink to="/" state={{ scrollTo: 'work' }} onClick={goToWork}>WORK</NavLink></li>
               <li><NavLink to="/about" onClick={closeMenu}>ABOUT</NavLink></li>
               <li><a href={`${import.meta.env.BASE_URL}assets/resume.pdf`} target="_blank" rel="noopener noreferrer" onClick={closeMenu}>RESUME</a></li>
             </ol>
@@ -140,7 +143,7 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
         </>
       ) : (
         <nav className="header__menu" aria-label="Main navigation">
-          <NavLink to="/#work" onClick={goToWork}>WORK</NavLink><NavLink to="/about">ABOUT</NavLink><a href={`${import.meta.env.BASE_URL}assets/resume.pdf`} target="_blank" rel="noopener noreferrer">RESUME</a>
+          <NavLink to="/" state={{ scrollTo: 'work' }} onClick={goToWork}>WORK</NavLink><NavLink to="/about">ABOUT</NavLink><a href={`${import.meta.env.BASE_URL}assets/resume.pdf`} target="_blank" rel="noopener noreferrer">RESUME</a>
         </nav>
       )}
     </header>

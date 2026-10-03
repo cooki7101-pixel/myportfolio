@@ -130,10 +130,16 @@
 }
 
 .home__hero-img-me {
-  width: calc(100% - 30px);
+  /* 글자·글래스박스와 같은 기준(min(100vw,1920px)/1920px)으로 줄어들도록 비율로 계산 */
+  width: calc(min(100vw, 1920px) * 0.984375);
   position: absolute;
   top: 84%;
   left: 50%;
+  /* SVG가 로드되기 전에도 높이가 정해지도록 원본 비율(1920x1191)을 지정 —
+     로드 전 높이가 0이면 GSAP이 그 상태로 기준점/위치를 계산해 위치가
+     틀어질 수 있습니다. */
+  aspect-ratio: 1920 / 1191;
+  height: auto;
   /* transform이 아니라 개별 translate 속성으로 중앙 정렬 — GSAP이 transform을
      쓰는 시점에 이미지가 아직 로드 전이라 높이가 0이면 %가 잘못된 px로
      굳어져 새로고침 때 가끔 위치가 틀어졌습니다. */
@@ -181,16 +187,9 @@
     max-width: calc(337px * min(100vw, 1100px) / 1100px);
     font-size: calc(13px * min(100vw, 1100px) / 1100px);
   }
-  .home__hero-img-me {
-    width: calc(120% - 10px);
-    position: absolute;
-    top: 61%;
-    translate: -50% -50%;
-  }
-
-  .home__hero-text-wrap {
-    top: 74%;
-  }
+  /* .home__hero-img-me / .home__hero-text-wrap은 여기서 따로 위치를 바꾸지 않습니다 —
+     화면이 줄어도 YEONSU·me 이미지·글래스박스가 같은 기준점에서 같은 비율로
+     줄어들게, 기본 규칙(비율 기반)을 그대로 씁니다. */
 
   /* 글래스박스 위치 조정 — .home__hero-stage로 범위를 한정합니다. 이 클래스
    이름들(.home__product_design_box 등)은 데스크탑/태블릿용 스테이지와
@@ -223,6 +222,25 @@
    됩니다. */
 .home__hero-mobile-stage {
   display: none;
+}
+
+/* 데스크탑/태블릿(682px~): YEONSU 텍스트 영역이 헤더와 겹치지 않게 합니다.
+   예전에는 높이(640px)가 고정인데 top은 hero 높이의 %라서, 화면이 줄면
+   텍스트가 위로 올라가 고정 헤더 뒤로 들어갔습니다. 높이와 위치를 글자
+   크기와 같은 비율(min(100vw,1920px)/1920px)로 줄이고, 위쪽은 헤더
+   높이(약 70px)와 겹치지 않도록 hero 전체를 같이 아래로 내립니다. (1920px에서는
+   기존과 동일한 위치입니다.) */
+@media (min-width: 682px) {
+  /* 화면이 줄수록 hero 전체(텍스트·이미지·박스)를 같이 조금 아래로 내려
+     고정 헤더(약 70px)와 겹치지 않게 합니다 — 1920px에서는 0. */
+  .home__hero {
+    margin-top: calc(60px * (1 - min(100vw, 1920px) / 1920px));
+  }
+  .home__hero-text-wrap {
+    top: calc(184px * min(100vw, 1920px) / 1920px);
+    height: calc(640px * min(100vw, 1920px) / 1920px);
+    transform: translate(-50.5%, 0);
+  }
 }
 
 @media (max-width: 681px) {
