@@ -221,6 +221,8 @@
      콘텐츠가 하단에 고정된 pt-142/pb-80 구조입니다. */
   .home-project-list {
     --work-pad-top: 120px; /* 모바일 위 간격 */
+      --work-pad-bottom: 80px; /* ▼ 아래 간격(px): 카드 아래 최소 간격 */
+
   }
 
   .home-project-list__heading {
