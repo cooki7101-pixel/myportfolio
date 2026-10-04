@@ -19,7 +19,7 @@ const defaultProjects = [
   },
   {
     tags: ['#반응형', '#WEB', '#REVAMP'],
-    title: '현대자동차 홈페이지 개선',
+    title: '현대 자동차 홈페이지 개선',
     description: ['일관성 없는 레이아웃과 끊기는 구매흐름을', '반응형에 맞춰 재설계'],
     to: '/works/hyundai',
     video: `${import.meta.env.BASE_URL}assets/home-hyundai.mp4`,

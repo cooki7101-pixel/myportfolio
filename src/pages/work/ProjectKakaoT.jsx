@@ -15,7 +15,7 @@ import '../../componentsStyle/project-kakao-t.css'
 // "MORE PROJECTS" 푸터는 (이 페이지 자신을 뺀) 나머지 두 케이스 스터디를 보여줌.
 const moreProjects = [
   { type: 'video', src: `${import.meta.env.BASE_URL}assets/moreproject/passing_MORE%20PROJECT-video..mp4`, label: "AI 티켓 사기 예방 '패싱'", to: '/works/project-passing' },
-  { type: 'video', src: `${import.meta.env.BASE_URL}assets/moreproject/hyundai-MORE%20PROJECT-video.mp4`, label: '현대자동차 홈페이지 개선', to: '/works/hyundai' },
+  { type: 'video', src: `${import.meta.env.BASE_URL}assets/moreproject/hyundai-MORE%20PROJECT-video.mp4`, label: '현대 자동차 홈페이지 개선', to: '/works/hyundai' },
 ]
 
 export default function ProjectKakaoT() {
