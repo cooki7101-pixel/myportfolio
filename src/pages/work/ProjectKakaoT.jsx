@@ -346,7 +346,7 @@ export default function ProjectKakaoT() {
       {/* Frame 229 오버뷰 인디케이터는 검토 후 이어서 추가할 예정입니다. */}
 
       <FooterMore projects={moreProjects} />
-      <ScrollFadeImages selector=".project-kakao-t__body" excludeSelector=".feature-kakao-t__to-be-media" />
+      <ScrollFadeImages selector=".project-kakao-t__body" />
     </article>
   )
 }
