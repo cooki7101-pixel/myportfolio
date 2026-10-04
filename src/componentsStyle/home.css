@@ -301,16 +301,21 @@
      바꿔서, 아래 .home__hero-text의 top이 "스테이지 맨 위에서의 거리"가 되게 합니다. */
   .home__hero-mobile-stage .home__hero-text-wrap {
     top: 0;
+    /* 1100px 이하 규칙의 left: 48.2%가 여기까지 새어 들어와 왼쪽으로 치우쳤습니다 — 모바일은 정확히 가운데 */
+    left: 50%;
     height: 100%;
-    transform: translate(-50.5%, 0);
+    transform: translate(-50%, 0);
   }
 
   .home__hero-text {
     position: absolute;
     top: 106px; /* 지금 화면에서 보이는 위치 그대로(wrap 229px + 67px). 줄이면 위로 올라갑니다 */
-    padding-left: 17px;
-    left: 2%;
-    margin: 0;
+    /* 가로 정중앙: 좌우 0 + margin auto + width max-content (GSAP이 transform을 쓰므로 transform으로 센터링하지 않음).
+       right: 5px는 letter-spacing(-5px)이 마지막 글자 뒤에도 적용돼 글자가 오른쪽으로 2.5px 치우치는 걸 보정 */
+    left: 0;
+    right: 5px;
+    width: max-content;
+    margin: 0 auto;
     font-family: "PP Neue Machina";
     font-weight: 400;
     font-size: 115px;
@@ -336,21 +341,21 @@
 
   .home__hero-mobile-stage .home__department_of_visual_design_box {
     position: absolute;
-    top: 29%;
+    top: 24.8%;
     left: 45.2%;
     transform: translate(calc(-50% - 105.5px), 0);
   }
 
   .home__hero-mobile-stage .home__product_design_box {
     position: absolute;
-    top: 33.8%;
-    left: 56%;
+    top: 29.2%;
+    left: 56.8%;
     transform: translate(calc(-50% + 101.5px), 0);
   }
 
   .home__hero-mobile-stage .home__skills_box {
     position: absolute;
-    top: 52%;
+    top: 46%;
     left: 45%;
     transform: translate(calc(-50% - 77px), calc(-50% + 153.31px));
   }
