@@ -12,12 +12,14 @@ import '../componentsStyle/home.css'
 
 gsap.registerPlugin(SplitText)
 
-const MOBILE_GLASS_PROPS = {
+// 모바일 글래스박스 유리 효과 값 — 데스크탑 각 박스의 <LiquidGlass> 값과 동일하게
+// 박스별로 따로 맞춘 값입니다(데스크탑 값을 바꾸면 여기도 같이 바꿔주세요).
+const MOBILE_GLASS_PRODUCT = {
   borderRadius: 10,
-  blur: 6,
-  contrast: 1.2,
-  brightness: 1.05,
-  saturation: 1.2,
+  blur: 5.5,
+  contrast: 1.0,
+  brightness: 1.07,
+  saturation: 1.0,
   shadowIntensity: 0.28,
   elasticity: 0.27,
   elasticityActivationZone: 100,
@@ -25,6 +27,42 @@ const MOBILE_GLASS_PROPS = {
   swirlScale: 0.8,
   swirlRadius: 1.1,
   edgeThicknessPx: 24,
+  swirlEdges: 'all',
+  zIndex: 3,
+  enableInnerGlow: true,
+  style: { backgroundColor: 'rgba(255, 255, 255, 0.08)' },
+}
+const MOBILE_GLASS_DEPARTMENT = {
+  borderRadius: 10,
+  blur: 5.5,
+  contrast: 1.0,
+  brightness: 1.06,
+  saturation: 1.0,
+  shadowIntensity: 0.28,
+  elasticity: 0.27,
+  elasticityActivationZone: 100,
+  swirlIntensity: 10.3,
+  swirlScale: 1.5,
+  swirlRadius: 1.5,
+  edgeThicknessPx: 20,
+  swirlEdges: 'all',
+  zIndex: 3,
+  enableInnerGlow: true,
+  style: { backgroundColor: 'rgba(255, 255, 255, 0.08)' },
+}
+const MOBILE_GLASS_SKILLS = {
+  borderRadius: 10,
+  blur: 3.5,
+  contrast: 1.0,
+  brightness: 1.09,
+  saturation: 1.0,
+  shadowIntensity: 0.28,
+  elasticity: 0.27,
+  elasticityActivationZone: 100,
+  swirlIntensity: 10.3,
+  swirlScale: 1.5,
+  swirlRadius: 1.1,
+  edgeThicknessPx: 20,
   swirlEdges: 'all',
   zIndex: 3,
   enableInnerGlow: true,
@@ -79,7 +117,14 @@ export default function Home({ loadingFinished = false }) {
       )
       gsap.set(allGlassContent, { opacity: 0, filter: 'blur(5px)' })
       gsap.set(heroImage, { opacity: 0, filter: 'blur(5px)', scale: 0.8, transformOrigin: '50% 50%' })
-      gsap.set(heroText, { x: '100%', y: '100%' })
+      // 왼쪽 desc 문구: 한 줄씩 투명도 0→1 + 아래에서 위로 올라오며 등장
+      // 각 줄은 overflow:hidden 마스크 안에 있고, 안쪽 글자가 마스크 아래(가려진
+      // 곳)에서 위로 천천히 올라옵니다.
+      const descLines = gsap.utils.toArray('.home__hero-desc-line-inner')
+      gsap.set(descLines, { yPercent: 110 })
+      // 태블릿/모바일(≤1100px)은 시작 위치(y)를 덜 낮게 — 숫자를 줄이면 더 위에서 시작
+      const heroTextStartY = window.innerWidth <= 1100 ? '40%' : '100%'
+      gsap.set(heroText, { x: '100%', y: heroTextStartY })
       gsap.set(splitText.chars, { yPercent: 100 })
       setLiquidGlassActive(false)
       if (!loadingFinished) return
@@ -103,8 +148,21 @@ export default function Home({ loadingFinished = false }) {
         scale: 1,
         duration: 1.2,
         ease: 'power2.out',
-      })
+        // 등장 순서: me 이미지 → 글래스박스 → desc. 이미지는 YEONSU 텍스트가
+        // 끝나길 기다리지 않고 0.35초 뒤에 바로 시작(예전엔 0.8초 뒤)합니다.
+      }, '<+=0.7')
+      // 글래스박스는 예전처럼 "me 이미지가 끝나는 시점"에 들어오므로, 이미지가
+      // 빨라진 만큼 같이 앞당겨집니다.
       timeline.addLabel('boxesIn')
+      // desc는 글래스박스가 모두 들어오기 시작한 뒤(마지막 박스가 시작하는
+      // 0.7초 이후)에 한 줄씩 차분하게
+      timeline.to(descLines, {
+        yPercent: 0,
+        duration: 1.4,
+        stagger: 0.18,
+        ease: 'power3.out',
+        onComplete: () => gsap.set(descLines, { clearProps: 'transform' }),
+      }, 'boxesIn+=1')
       // 박스마다 0.35초 간격으로 차례로(기존 stagger와 동일) 등장
       glassParts.forEach((part, i) => {
         // 데스크탑 3개 + 모바일 3개가 같이 잡히므로 i % 3으로 각 세트 안에서 차례로 등장
@@ -172,16 +230,14 @@ export default function Home({ loadingFinished = false }) {
             고정값이라 화면이 좁아져도 그대로 유지돼서 다른 요소들과 같은 자리에서
             줄어들지 않고 점점 어긋나 보였습니다 — 오프셋에도 똑같은 비율을 곱해서
             같은 기준으로 함께 줄어들게 맞춥니다. */}
-        <div className="home__product_design_box" style={{ position: 'absolute', 
-          top: '66%', left: '46%', 
-          transform: 'translate(calc(-50% - 320px * min(100vw, 1920px) / 1920px), calc(-50% + 80px * min(100vw, 1920px) / 1920px)) scale(calc(min(100vw, 1920px) / 1920px))' }}>
+        <div className="home__product_design_box">
           <div className="home__glass-enter">
             <LiquidGlass
               borderRadius={10}
-              blur={6}
-              contrast={1.2}
-              brightness={1.05}
-              saturation={1.2}
+              blur={5.5}
+              contrast={1.0}
+              brightness={1.07}
+              saturation={1.0}
               shadowIntensity={0.28}
               elasticity={0.27}
               elasticityActivationZone={100}
@@ -194,7 +250,7 @@ export default function Home({ loadingFinished = false }) {
               enableInnerGlow
               style={{ backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
             >
-              <GlassBox curvature={10} width='228px' height='116px' blur={0} opacity={0}
+              <GlassBox curvature={10} width='229px' smallIcon height='116px' blur={0} opacity={0}
                 iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-product-designer2.png`}
                 lines={['Product', 'Designer']}
               />
@@ -204,12 +260,7 @@ export default function Home({ loadingFinished = false }) {
 
 
         <div
-          className="home__department_of_visual_design_box"
-          style={{
-            position: 'absolute'
-            , top: '70%', left: '48.7%'
-            , transform: 'translate(calc(-50% - 320px * min(100vw, 1920px) / 1920px), calc(-50% + 230px * min(100vw, 1920px) / 1920px)) scale(calc(min(100vw, 1920px) / 1920px))'
-          }}>
+          className="home__department_of_visual_design_box">
           {/* liquidGlassActive로 가리지 않고 처음부터 렌더링합니다 — 이 박스
               자체는 이미 gsap의 boxes 배열에 들어있어서 opacity/blur로
               기존 등장 모션이 그대로 적용되고, 유리 효과(LiquidGlass)만
@@ -221,17 +272,17 @@ export default function Home({ loadingFinished = false }) {
           <div className="home__glass-enter">
             <LiquidGlass
               borderRadius={10}
-              blur={6}
-              contrast={1.2}
-              brightness={1.05}
-              saturation={1.2}
+              blur={5.5}
+              contrast={1.0}
+              brightness={1.06}
+              saturation={1.0}
               shadowIntensity={0.28}
               elasticity={0.27}
               elasticityActivationZone={100}
-              swirlIntensity={12.3}
-              swirlScale={0.8}
-              swirlRadius={1.1}
-              edgeThicknessPx={24}
+              swirlIntensity={10.3}
+              swirlScale={1.5}
+              swirlRadius={1.5}
+              edgeThicknessPx={20}
               swirlEdges="all"
               zIndex={3}
               enableInnerGlow
@@ -246,32 +297,27 @@ export default function Home({ loadingFinished = false }) {
           </div>
         </div>
         <div
-          className="home__skills_box"
-          style={{
-            position: 'absolute'
-            , top: '77%', left: '62%'
-            , transform: 'translate(calc(-50% + 380px * min(100vw, 1920px) / 1920px), calc(-50% + 0px)) scale(calc(min(100vw, 1920px) / 1920px))'
-          }}>
+          className="home__skills_box">
           <div className="home__glass-enter">
             <LiquidGlass
               borderRadius={10}
-              blur={6}
-              contrast={1.2}
-              brightness={1.05}
-              saturation={1.2}
+              blur={3.5}
+              contrast={1.0}
+              brightness={1.09}
+              saturation={1.0}
               shadowIntensity={0.28}
               elasticity={0.27}
               elasticityActivationZone={100}
-              swirlIntensity={12.3}
-              swirlScale={0.8}
+              swirlIntensity={10.3}
+              swirlScale={1.5}
               swirlRadius={1.1}
-              edgeThicknessPx={24}
+              edgeThicknessPx={20}
               swirlEdges="all"
               zIndex={3}
               enableInnerGlow
               style={{ backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
             >
-              <GlassBox curvature={10} width='264px' height='auto' blur={0} opacity={0}
+              <GlassBox curvature={10} width='264px' height='199px' blur={0} opacity={0}
                 flexDirection='column'
                 items={[
                   { iconSrc: `${import.meta.env.BASE_URL}assets/home/icon-fast.png`, text: 'Fast Worker' },
@@ -292,9 +338,9 @@ export default function Home({ loadingFinished = false }) {
             밖으로 꺼내야 CSS의 position:fixed(뷰포트 하단 60px 고정)가
             의도대로 동작합니다. */}
         <p className="home__hero-desc">
-          빠른 작업 능력과 끝까지 놓치지 않는<br />
-          세밀함으로 완성도 있는 프로젝트를<br />
-          이끌어가는 프로덕트 디자이너 김연수입니다.
+          <span className="home__hero-desc-line" style={{ display: 'block', overflow: 'hidden' }}><span className="home__hero-desc-line-inner" style={{ display: 'block' }}>빠른 작업 능력과 끝까지 놓치지 않는</span></span>
+          <span className="home__hero-desc-line" style={{ display: 'block', overflow: 'hidden' }}><span className="home__hero-desc-line-inner" style={{ display: 'block' }}>세밀함으로 완성도 있는 프로젝트를</span></span>
+          <span className="home__hero-desc-line" style={{ display: 'block', overflow: 'hidden' }}><span className="home__hero-desc-line-inner" style={{ display: 'block' }}>이끌어가는 프로덕트 디자이너 김연수입니다.</span></span>
         </p>
 
 
@@ -313,65 +359,50 @@ export default function Home({ loadingFinished = false }) {
 
           <div className="home__department_of_visual_design_box">
             <div className="home__glass-enter">
-              <LiquidGlass {...MOBILE_GLASS_PROPS}>
-                <div className="glass-box glass-box--column" style={{ width: '122px', ...MOBILE_BOX_VARS }}>
-                  <div className="glass-box__icon" aria-hidden="true">
-                    <img src={`${import.meta.env.BASE_URL}assets/home/icon-design.png`} alt="" />
-                  </div>
-                  <div className="glass-box__label">
-                    <span>DEPARTMENT</span>
-                    <span>OF VISUAL</span>
-                    <span>DESIGN</span>
-                  </div>
-                </div>
+              <LiquidGlass {...MOBILE_GLASS_DEPARTMENT}>
+                <GlassBox
+                curvature={10} width='122px' blur={0} opacity={0}
+                iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-design.png`}
+                lines={['DEPARTMENT', 'OF VISUAL', 'DESIGN']}
+                flexDirection='column'
+              />
               </LiquidGlass>
             </div>
           </div>
 
           <div className="home__product_design_box">
             <div className="home__glass-enter">
-              <LiquidGlass {...MOBILE_GLASS_PROPS}>
-                <div className="glass-box" style={{ width: '235px', height: '118px', ...MOBILE_BOX_VARS }}>
-                  <div className="glass-box__icon glass-box__icon--small" aria-hidden="true">
-                    <img src={`${import.meta.env.BASE_URL}assets/home/icon-product-designer2.png`} alt="" />
-                  </div>
-                  <div className="glass-box__label">
-                    <span>Product</span>
-                    <span>Designer</span>
-                  </div>
-                </div>
+              <LiquidGlass {...MOBILE_GLASS_PRODUCT}>
+                <GlassBox
+                curvature={10} width='235px' smallIcon blur={0} opacity={0}
+                iconSrc={`${import.meta.env.BASE_URL}assets/home/icon-product-designer2.png`}
+                lines={['Product', 'Designer']}
+              />
               </LiquidGlass>
             </div>
           </div>
 
           <div className="home__skills_box">
             <div className="home__glass-enter">
-              <LiquidGlass {...MOBILE_GLASS_PROPS}>
-                <div className="glass-box glass-box--column" style={{ width: '191px', ...MOBILE_BOX_VARS }}>
-                  <div className="glass-box__items">
-                    {[
-                      { iconSrc: `${import.meta.env.BASE_URL}assets/home/icon-fast.png`, text: 'Fast Worker' },
-                      { iconSrc: `${import.meta.env.BASE_URL}assets/home/Icon-communication.png`, text: 'Communication' },
-                      { iconSrc: `${import.meta.env.BASE_URL}assets/home/Icon-Perseverance.png`, text: 'Perseverance' },
-                      { iconSrc: `${import.meta.env.BASE_URL}assets/home/Icon-ai.png`, text: 'AI Proficiency' },
-                    ].map((item) => (
-                      <div className="glass-box__item" key={item.text}>
-                        <div className="glass-box__item-icon" aria-hidden="true">
-                          <img src={item.iconSrc} alt="" />
-                        </div>
-                        <span className="glass-box__item-text">{item.text}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              <LiquidGlass {...MOBILE_GLASS_SKILLS}>
+                <GlassBox
+                curvature={10} width='191px' blur={0} opacity={0}
+                flexDirection='column'
+                items={[
+                  { iconSrc: `${import.meta.env.BASE_URL}assets/home/icon-fast.png`, text: 'Fast Worker' },
+                  { iconSrc: `${import.meta.env.BASE_URL}assets/home/Icon-communication.png`, text: 'Communication' },
+                  { iconSrc: `${import.meta.env.BASE_URL}assets/home/Icon-Perseverance.png`, text: 'Perseverance' },
+                  { iconSrc: `${import.meta.env.BASE_URL}assets/home/Icon-ai.png`, text: 'AI Proficiency' },
+                ]}
+              />
               </LiquidGlass>
             </div>
           </div>
 
           <p className="home__hero-mobile-desc">
-            빠른 작업 능력과 끝까지 놓치지 않는<br />
-            세밀함으로 완성도 있는 프로젝트를<br />
-            이끌어가는 프로덕트 디자이너 김연수입니다.
+            <span className="home__hero-desc-line" style={{ display: 'block', overflow: 'hidden' }}><span className="home__hero-desc-line-inner" style={{ display: 'block' }}>빠른 작업 능력과 끝까지 놓치지 않는</span></span>
+            <span className="home__hero-desc-line" style={{ display: 'block', overflow: 'hidden' }}><span className="home__hero-desc-line-inner" style={{ display: 'block' }}>세밀함으로 완성도 있는 프로젝트를</span></span>
+            <span className="home__hero-desc-line" style={{ display: 'block', overflow: 'hidden' }}><span className="home__hero-desc-line-inner" style={{ display: 'block' }}>이끌어가는 프로덕트 디자이너 김연수입니다.</span></span>
           </p>
         </div>
       </section>

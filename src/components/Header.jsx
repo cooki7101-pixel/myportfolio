@@ -94,20 +94,21 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
       {!menuOpen && (
         <div className="header__glass" aria-hidden="true">
           <LiquidGlass
-            borderRadius={0}
-            blur={6}
-            contrast={1.1}
-            brightness={1.05}
-            saturation={1.2}
-            shadowIntensity={0}
-            elasticity={0}
-            swirlIntensity={6}
-            swirlScale={0.8}
-            swirlRadius={1.1}
-            edgeThicknessPx={14}
-            swirlEdges="all"
-            zIndex={0}
-            style={{ width: '100%', height: '100%', backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
+              borderRadius={0}
+              blur={5}
+              contrast={1.0}
+              brightness={1.02}
+              saturation={1.0}
+              shadowIntensity={0.28}
+              elasticity={0.27}
+              elasticityActivationZone={100}
+              swirlIntensity={11.3}
+              swirlScale={2.0}
+              swirlRadius={0.3}
+              edgeThicknessPx={20}
+              swirlEdges="all"
+              zIndex={3}
+              style={{ width: '100%', height: '100%', backgroundColor: 'rgba(255, 255, 255, 0.2)' }}
           >
             <div style={{ width: '100%', height: '100%' }} />
           </LiquidGlass>

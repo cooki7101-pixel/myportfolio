@@ -67,26 +67,29 @@
   pointer-events: none;
 }
 
-/* 글래스박스 위치 조정-desektop. */
-.home__hero-stage .home__product_design_box {
-  position: absolute;
-  top: 49.3%;
-  left: 45.2%;
-  transform: translate(calc(-50% - 320px), calc(-50% + 80px));
+/* 글래스박스 위치 조정 (데스크탑~태블릿 공통, JSX 인라인 style 대신 여기서만 관리).
+   --r: 화면 비율. offset(px)에도 곱해서 YEONSU·me 이미지와 같이 줄어듭니다.
+   top/left는 % (hero 기준), translate의 px 숫자가 세부 오프셋입니다. */
+.home__hero {
+  --r: calc(min(100vw, 1920px) / 1920px);
 }
-
-.home__hero-stage .home__department_of_visual_design_box {
+.home__hero > .home__product_design_box {
   position: absolute;
-  top: 82%;
-  left: 11.5%;
-  transform: translate(calc(-50% + 380px), calc(-50% + 0px));
+  top: 65.5%;
+  left: 45.4%;
+  transform: translate(calc(-50% - 320px * var(--r)), calc(-50% + 80px * var(--r))) scale(var(--r));
 }
-
-.home__hero-stage .home__skills_box {
+.home__hero > .home__department_of_visual_design_box {
   position: absolute;
-  top: 59%;
-  left: 61.5%;
-  transform: translate(calc(-50% + 380px), calc(-50% + 0px));
+  top: 69.5%;
+  left: 47.8%;
+  transform: translate(calc(-50% - 320px * var(--r)), calc(-50% + 230px * var(--r))) scale(var(--r));
+}
+.home__hero > .home__skills_box {
+  position: absolute;
+  top: 77.3%;
+  left: 63%;
+  transform: translate(calc(-50% + 380px * var(--r)), -50%) scale(var(--r));
 }
 
 @media (max-width: 1920px) {
@@ -133,7 +136,7 @@
   /* 글자·글래스박스와 같은 기준(min(100vw,1920px)/1920px)으로 줄어들도록 비율로 계산 */
   width: calc(min(100vw, 1920px) * 0.984375);
   position: absolute;
-  top: 84%;
+  top: 82%;
   left: 50%;
   /* SVG가 로드되기 전에도 높이가 정해지도록 원본 비율(1920x1191)을 지정 —
      로드 전 높이가 0이면 GSAP이 그 상태로 기준점/위치를 계산해 위치가
@@ -174,46 +177,88 @@
   left: calc(40px * min(100vw, 1920px) / 1920px);
 }
 
+/* 데스크탑(1101px~): 1920px에서는 기존 그대로, 화면이 줄면 헤더 아래 --hdr 지점은 고정하고
+   YEONSU·me 이미지·글래스박스가 같은 비율(--r)로 같이 줄어 헤더와 안 겹치게 합니다.
+   (헤더와 더 띄우려면 --hdr을 키우세요) */
+@media (min-width: 1101px) {
+  .home__hero {
+    --hdr: 80px;
+    --off: calc(var(--hdr) * (1 - var(--r)));
+    height: calc(var(--off) + var(--r) * 800px);
+  }
+  .home__hero-text-wrap {
+    top: calc(var(--off) + var(--r) * 760.0px); /* 원래 95% */
+    height: calc(640px * var(--r));
+  }
+  .home__hero-img-me {
+    top: calc(var(--off) + var(--r) * 656.0px); /* 원래 82% — 숫자(px)는 1920px 화면 기준 */
+  }
+  .home__hero > .home__product_design_box {
+    top: calc(var(--off) + var(--r) * 524.0px); /* 원래 65.5% — 숫자(px)는 1920px 화면 기준 */
+  }
+  .home__hero > .home__department_of_visual_design_box {
+    top: calc(var(--off) + var(--r) * 556.0px); /* 원래 69.5% — 숫자(px)는 1920px 화면 기준 */
+  }
+  .home__hero > .home__skills_box {
+    top: calc(var(--off) + var(--r) * 618.4px); /* 원래 77.3% — 숫자(px)는 1920px 화면 기준 */
+  }
+}
+
 /* 태블릿(682~1199px, hero-stage가 위쪽으로 앵커 전환되는 구간과 동일)에서는
    데스크탑처럼 100vh(실제 화면 높이) 기준으로 계산하면 모니터마다
    위치가 들쭉날쭉해서, 대신 hero 자신의 높이(%) 기준 고정 위치로 둡니다
    — hero-stage와 마찬가지로 hero 안에서 항상 같은 상대 위치를 유지합니다. */
 @media (max-width: 1100px) {
   .home__hero {
-    margin-bottom: 19vh;
+    margin-bottom: 18vh;
+    /* 데스크탑처럼 "고정 기준점에서 같이 줄어들기": 화면이 줄어도 헤더 아래 --hdr(px) 지점은
+       안 움직이고, 그 아래 내용(YEONSU·me 이미지·글래스박스)만 같은 비율(--s)로 줄어듭니다.
+       1100px에서는 기존 위치 그대로입니다. 헤더와 더 띄우려면 --hdr을 키우세요. */
+    --hdr: 80px;
+    --s: calc(min(100vw, 1100px) / 1100px);
+    --off: calc(var(--hdr) * (1 - var(--s)));
   }
   .home__hero-desc {
-    top: 50vh;
+    /* 화면 높이와 무관하게 다른 hero 요소처럼 같은 기준점에서 같이 줄어듭니다(1100px 기준 398.7px = 예전 hero 87%) */
+    top: calc(var(--off) + var(--s) * 670.7px);
     max-width: calc(337px * min(100vw, 1100px) / 1100px);
     font-size: calc(13px * min(100vw, 1100px) / 1100px);
   }
-  /* .home__hero-img-me / .home__hero-text-wrap은 여기서 따로 위치를 바꾸지 않습니다 —
-     화면이 줄어도 YEONSU·me 이미지·글래스박스가 같은 기준점에서 같은 비율로
-     줄어들게, 기본 규칙(비율 기반)을 그대로 씁니다. */
-
-  /* 글래스박스 위치 조정 — .home__hero-stage로 범위를 한정합니다. 이 클래스
-   이름들(.home__product_design_box 등)은 데스크탑/태블릿용 스테이지와
-   모바일 전용 스테이지(.home__hero-mobile-stage) 양쪽에 똑같이 쓰이는데,
-   범위를 안 주면 이 !important 규칙이 681px 이하(모바일)에서도 계속
-   적용돼서, 모바일 전용 위치 규칙(!important 없음)을 specificity와
-   상관없이 덮어써버립니다 — 그래서 모바일에서 위치가 안 먹는 것처럼
-   보였습니다. */
-  .home__hero-stage .home__product_design_box {
-    top: 57% !important;
-    left: 26% !important;
-    transform: translate(-50%, -50%) !important;
+  /* 1100px 이하 hero 위치 (모바일 ≤681px은 아래 전용 규칙이 덮어씀) */
+  .home__hero-img-me {
+    width: calc(120% - 10px);
+    top: calc(var(--off) + var(--s) * 430.8px); /* 원래 94% — 숫자(px)는 1100px 화면 기준 */
+  }
+  .home__hero-text-wrap {
+    top: calc(var(--off) + var(--s) * 495px); /* 원래 100% — 숫자(px)는 1100px 화면 기준 */
+    left: 48.2%;
+    /* 기본 규칙의 height:640px·translate(-90%)가 고정 px라서 화면이 줄어도 안 줄어 헤더와 겹쳤습니다 —
+       높이도 화면 비율(--r)로 줄여서 YEONSU·me 이미지·글래스박스가 같은 기준으로 줄어듭니다 */
+    height: calc(640px * var(--r));
   }
 
-  .home__hero-stage .home__department_of_visual_design_box {
-    top: 90% !important;
-    left: 29% !important;
-    transform: translate(-50%, -50%) !important;
+  /* 글래스박스 위치 조정 — 태블릿(1100px 이하). 지금은 데스크탑과 같은 값(기본값)이라
+     여기 숫자만 고치면 태블릿에서만 바뀝니다. 화면 비율은 --r이 처리하니
+     translate의 px는 1920px 기준으로 적으세요. */
+  .home__hero > .home__product_design_box {
+    top: calc(var(--off) + var(--s) * 360.4px); /* 원래 79.5% — 숫자(px)는 1100px 화면 기준 */
+    left: 44.5%;
+    transform: translate(calc(-50% - 320px * var(--r)), calc(-50% + 80px * var(--r))) scale(var(--r));
   }
-
-  .home__hero-stage .home__skills_box {
-    top: 60% !important;
-    left: 75% !important;
-    transform: translate(-50%, -50%) !important;
+  .home__hero > .home__department_of_visual_design_box {
+    top: calc(var(--off) + var(--s) * 385.2px); /* 원래 86% — 숫자(px)는 1100px 화면 기준 */
+    left: 46.8%;
+    transform: translate(calc(-50% - 320px * var(--r)), calc(-50% + 230px * var(--r))) scale(var(--r));
+  }
+  .home__hero > .home__skills_box {
+    top: calc(var(--off) + var(--s) * 425.3px); /* 원래 92.8% — 숫자(px)는 1100px 화면 기준 */
+    left: 63.7%;
+    transform: translate(calc(-50% + 380px * var(--r)), -50%) scale(var(--r));
+  }
+}
+@media (min-width: 682px) and (max-width: 1100px) {
+  .home__hero {
+    height: calc(var(--off) + var(--s) * 458.33px);
   }
 }
 /* 기본적으로는 숨겨두고, 아래 @media (max-width: 681px)에서만 보이게
@@ -224,24 +269,6 @@
   display: none;
 }
 
-/* 데스크탑/태블릿(682px~): YEONSU 텍스트 영역이 헤더와 겹치지 않게 합니다.
-   예전에는 높이(640px)가 고정인데 top은 hero 높이의 %라서, 화면이 줄면
-   텍스트가 위로 올라가 고정 헤더 뒤로 들어갔습니다. 높이와 위치를 글자
-   크기와 같은 비율(min(100vw,1920px)/1920px)로 줄이고, 위쪽은 헤더
-   높이(약 70px)와 겹치지 않도록 hero 전체를 같이 아래로 내립니다. (1920px에서는
-   기존과 동일한 위치입니다.) */
-@media (min-width: 682px) {
-  /* 화면이 줄수록 hero 전체(텍스트·이미지·박스)를 같이 조금 아래로 내려
-     고정 헤더(약 70px)와 겹치지 않게 합니다 — 1920px에서는 0. */
-  .home__hero {
-    margin-top: calc(60px * (1 - min(100vw, 1920px) / 1920px));
-  }
-  .home__hero-text-wrap {
-    top: calc(184px * min(100vw, 1920px) / 1920px);
-    height: calc(640px * min(100vw, 1920px) / 1920px);
-    transform: translate(-50.5%, 0);
-  }
-}
 
 @media (max-width: 681px) {
   .home__hero {
@@ -280,9 +307,19 @@
     pointer-events: none;
   }
 
+  /* 모바일 YEONSU: 기본 규칙의 wrap(top:95% + translateY(-90%), 높이 640px)은 위쪽이
+     실제로 약 229px 지점에 걸려 있고 overflow:hidden이라, 안쪽 텍스트의 top을
+     0으로 줘도 그 위로는 못 올라갔습니다. wrap을 모바일 스테이지 전체(맨 위부터)로
+     바꿔서, 아래 .home__hero-text의 top이 "스테이지 맨 위에서의 거리"가 되게 합니다. */
+  .home__hero-mobile-stage .home__hero-text-wrap {
+    top: 0;
+    height: 100%;
+    transform: translate(-50.5%, 0);
+  }
+
   .home__hero-text {
     position: absolute;
-    top: 67px;
+    top: 106px; /* 지금 화면에서 보이는 위치 그대로(wrap 229px + 67px). 줄이면 위로 올라갑니다 */
     left: 17px;
     right: 10px;
     margin: 0;
@@ -299,10 +336,14 @@
   .home__hero-mobile-img-me {
     position: absolute;
     top: 46px;
-    left: 78px;
-    width: calc(100% + 123.5px);
-    aspect-ratio: 900 / 1208;
-    object-fit: cover;
+    /* SVG 원본 비율은 517:604인데 예전엔 900:1208 + object-fit: cover라 좌우가
+       잘려서(왼쪽 약 46px) 안 보였습니다. 원본 비율로 바꾸고, 높이(약 820px)는
+       그대로 유지되도록 폭을 701.6px로 늘린 뒤 잘리던 만큼 왼쪽으로 옮겼습니다
+       (left = 78 - 45.6). 이전에 보이던 부분의 위치는 그대로입니다. */
+    left: 73.4px;
+    width: 701.6px;
+    aspect-ratio: 517 / 604;
+    object-fit: fill;
   }
 
   .home__hero-mobile-stage .home__department_of_visual_design_box {

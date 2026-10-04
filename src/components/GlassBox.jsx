@@ -25,6 +25,7 @@ export default function GlassBox({
   items = null,
   width = '100%',
   height,
+  smallIcon = false,
   curvature = 0,
   opacity = 0,
   blur = 0,
@@ -59,7 +60,7 @@ export default function GlassBox({
       data-node-id="396:4253"
     >
       <svg className="glass-box__filter-defs" aria-hidden="true" focusable="false">
-        <filter id={filterId} x="-20%" y="-20%" width="140%" height="140%">
+        <filter id={filterId} x="-20%" y="-20%" width="1%%" height="140%">
           <feTurbulence
             type="fractalNoise"
             baseFrequency="0.008 0.012"
@@ -90,7 +91,7 @@ export default function GlassBox({
         </div>
       ) : (
         <>
-          <div className="glass-box__icon" aria-hidden="true">
+          <div className={`glass-box__icon${smallIcon ? ' glass-box__icon--small' : ''}`} aria-hidden="true">
             <img src={iconSrc} alt="" />
           </div>
           <div className="glass-box__label">

@@ -148,7 +148,9 @@
    display:none이 됨). */
 @media (max-width: 1100px) {
   :root {
-    --unscale: calc(1920px / min(100vw, 1920px));
+    /* 1100px 화면에서의 크기를 기준으로, 화면이 줄면 박스 크기·글자·아이콘도 같은 비율로
+       같이 줄어듭니다(예전엔 화면 크기와 상관없이 고정 크기라 위치만 모여서 겹쳤습니다) */
+    --unscale: calc(1920px / 1100px);
   }
 
   /* 프로덕트 디자이너 칩만 태블릿/모바일에서 130x64로 더 작게 — 나머지
@@ -165,7 +167,7 @@
   }
 
   .home__product_design_box .glass-box {
-    width: calc(134px * var(--unscale)) !important;
+    width: calc(138px * var(--unscale)) !important;
     max-width: calc(144px * var(--unscale)) !important;
     height: calc(66px * var(--unscale)) !important;
     max-height: calc(76px * var(--unscale)) !important;
@@ -182,8 +184,8 @@
   }
 
   .home__department_of_visual_design_box .glass-box {
-    width: calc(122px * var(--unscale)) !important;
-    height: calc(115px * var(--unscale)) !important;
+    width: calc(124px * var(--unscale)) !important;
+    height: calc(120px * var(--unscale)) !important;
     padding: calc(15px * var(--unscale)) calc(9px * var(--unscale)) !important;
     gap: calc(8px * var(--unscale));
   }
@@ -198,7 +200,7 @@
 
   .home__skills_box .glass-box {
     width: calc(191px * var(--unscale)) !important;
-    height: calc(115px * var(--unscale)) !important;
+    height: calc(128px * var(--unscale)) !important;
     padding: calc(16px * var(--unscale)) !important;
   }
   .home__skills_box .glass-box__item-icon {
@@ -223,8 +225,9 @@
 
     .home__hero-mobile-stage .home__product_design_box .glass-box {
       width: calc(136px * var(--unscale)) !important;
-      height: calc(64px * var(--unscale)) !important;
+      height: calc(65px * var(--unscale)) !important;
       max-height: calc(76px * var(--unscale)) !important;
+      gap: calc(4px * var(--unscale)) !important; /* 아이콘-텍스트 간격 (숫자만 수정) */
       padding: calc(8px * var(--unscale)) calc(7px * var(--unscale))
         calc(8px * var(--unscale)) calc(5px * var(--unscale)) !important;
     }
@@ -238,10 +241,10 @@
     }
 
     .home__hero-mobile-stage .home__department_of_visual_design_box .glass-box {
-      width: calc(125px * var(--unscale)) !important;
-      height: calc(116px * var(--unscale)) !important;
+      width: calc(124px * var(--unscale)) !important;
+      height: calc(118px * var(--unscale)) !important;
       padding: calc(15px * var(--unscale)) calc(9px * var(--unscale)) !important;
-      gap: calc(8px * var(--unscale));
+      gap: calc(10px * var(--unscale));
     }
     .home__hero-mobile-stage
       .home__department_of_visual_design_box
