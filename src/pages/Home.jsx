@@ -153,6 +153,8 @@ export default function Home({ loadingFinished = false }) {
       }, '<+=0.7')
       // 글래스박스는 예전처럼 "me 이미지가 끝나는 시점"에 들어오므로, 이미지가
       // 빨라진 만큼 같이 앞당겨집니다.
+      // ▼ [글래스박스 모션 ①] 박스 등장 시작 기준 시점(boxesIn). 이미지 시작 +0.7초 지점
+      //   (시작 시점을 바꾸려면 위 heroImage 트윈 끝의 '<+=0.7'을 고치세요)
       timeline.addLabel('boxesIn')
       // desc는 글래스박스가 모두 들어오기 시작한 뒤(마지막 박스가 시작하는
       // 0.7초 이후)에 한 줄씩 차분하게
@@ -166,17 +168,18 @@ export default function Home({ loadingFinished = false }) {
       // 박스마다 0.35초 간격으로 차례로(기존 stagger와 동일) 등장
       glassParts.forEach((part, i) => {
         // 데스크탑 3개 + 모바일 3개가 같이 잡히므로 i % 3으로 각 세트 안에서 차례로 등장
-        const at = `boxesIn+=${(i % 3) * 0.35}`
+        // ▼ [글래스박스 모션 ②] 박스 사이 등장 간격(초) — 0.35 = 1번째 0초, 2번째 0.35초, 3번째 0.7초
+        const at = `boxesIn+=${(i % 3) * 0.4}`
         if (part.root) {
           timeline.to(part.root, {
             backgroundColor: 'rgba(255, 255, 255, 0.08)',
-            duration: 0.8,
+            duration: 0.8, // ▼ [글래스박스 모션 ③] 배경이 차오르는 시간(초)
             ease: 'power2.out',
           }, at)
         }
         timeline.to(part.layers, {
           opacity: 1,
-          duration: 0.8,
+          duration: 0.8, // ▼ [글래스박스 모션 ③] 유리 레이어가 나타나는 시간(초)
           ease: 'power2.out',
           // 레이어가 원래 갖고 있던 값(투명도 등)으로 복원
           onComplete: () => gsap.set(part.layers, { clearProps: 'opacity' }),
@@ -184,8 +187,8 @@ export default function Home({ loadingFinished = false }) {
         timeline.to(part.content, {
           opacity: 1,
           filter: 'blur(0px)',
-          duration: 0.8,
-          stagger: 0.12,
+          duration: 0.8, // ▼ [글래스박스 모션 ③] 안쪽 아이콘·글자가 나타나는 시간(초)
+          stagger: 0.12, // 안쪽 요소끼리 간격(초)
           ease: 'power2.out',
           onComplete: () => {
             gsap.set(part.content, { clearProps: 'opacity,filter' })
