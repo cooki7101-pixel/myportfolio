@@ -34,6 +34,7 @@
   box-sizing: border-box;
   height: auto;
   width: 100%;
+  padding-top: 50px;
 }
 
 /* WORK 제목 + 카드 블록. 위·아래 간격은 여기 padding으로만 결정됩니다(--work-pad-top / --work-pad-bottom).
