@@ -43,54 +43,37 @@
      생깁니다. */
   margin-bottom: 400px;
 }
-/* YEONSU 텍스트 + 사진 + 글래스박스를 담는 고정 크기 "무대". 1440px 기준
-   디자인을 그대로 담고 있다가, 뷰포트 너비에 맞춰 전체를 통째로
-   확대/축소합니다 — 그래서 내부의 폰트 크기, 아이콘 크기, 위치 간격이
-   모두 항상 같은 비율을 유지한 채 함께 커지고 작아집니다. */
 .home__hero-stage {
   position: absolute;
   top: 65%;
   left: 50%;
   width: 1920px;
   height: 800px;
-  /* 코드에 적힌 px 값(예: hero-desc 16px)은 1920px 화면에서 딱 그 크기로
-     보이는 게 "최대치"입니다 — 그래서 기준을 1440이 아니라 1920으로
-     삼습니다. 1920px 이상에서는 scale이 1을 넘지 않도록 min()으로 막아서
-     코드 그대로의 px 크기가 상한이 되고, 1920px보다 좁아지면 그 지점부터
-     화면 너비에 비례해서 점점 작아집니다. */
   transform: translate(-50%, -50%) scale(calc(min(100vw, 1920px) / 1920px));
   transform-origin: top center;
-  /* 이 안에는 클릭 가능한 요소(버튼/링크)가 없는 순수 장식용 텍스트·이미지·
-     글래스박스뿐입니다 — transform이 걸려 있어서 자체 스택 컨텍스트가
-     생기는데, 혹시라도 이 박스의 투명한 영역이 헤더(WORK 링크 등) 위의
-     클릭을 가로채는 일이 없도록 포인터 이벤트를 아예 꺼둡니다. */
   pointer-events: none;
 }
 
-/* 글래스박스 위치 조정 (데스크탑~태블릿 공통, JSX 인라인 style 대신 여기서만 관리).
-   --r: 화면 비율. offset(px)에도 곱해서 YEONSU·me 이미지와 같이 줄어듭니다.
-   top/left는 % (hero 기준), translate의 px 숫자가 세부 오프셋입니다. */
 .home__hero {
   --r: calc(min(100vw, 1920px) / 1920px);
-  /* 헤더 아래 이 지점(--hdr)은 고정하고 그 아래가 같이 줄어듭니다(1920px에선 0) */
   --hdr: 80px;
   --off: calc(var(--hdr) * (1 - var(--r)));
 }
 .home__hero > .home__product_design_box {
   position: absolute;
-  top: calc(var(--off) + var(--r) * 8px * 65.7); /* ← 숫자만 수정: hero 높이 기준 % (1920px 화면 기준, 줄어도 같이 줄어듦) */
+  top: calc(var(--off) + var(--r) * 8px * 65.7);
   left: 45.3%;
   transform: translate(calc(-50% - 320px * var(--r)), calc(-50% + 80px * var(--r))) scale(var(--r));
 }
 .home__hero > .home__department_of_visual_design_box {
   position: absolute;
-  top: calc(var(--off) + var(--r) * 8px * 69.5); /* ← 숫자만 수정: hero 높이 기준 % (1920px 화면 기준, 줄어도 같이 줄어듦) */
+  top: calc(var(--off) + var(--r) * 8px * 69.5);
   left: 47.8%;
   transform: translate(calc(-50% - 320px * var(--r)), calc(-50% + 230px * var(--r))) scale(var(--r));
 }
 .home__hero > .home__skills_box {
   position: absolute;
-  top: calc(var(--off) + var(--r) * 8px * 77.2); /* ← 숫자만 수정: hero 높이 기준 % (1920px 화면 기준, 줄어도 같이 줄어듦) */
+  top: calc(var(--off) + var(--r) * 8px * 77.2);
   left: 63%;
   transform: translate(calc(-50% + 380px * var(--r)), -50%) scale(var(--r));
 }
@@ -105,7 +88,7 @@
 
 .home__hero-text-wrap {
   position: absolute;
-  top: calc(var(--off) + var(--r) * 8px * 95); /* ← 숫자만 수정: hero 높이 기준 % (1920px 화면 기준, 줄어도 같이 줄어듦) */
+  top: calc(var(--off) + var(--r) * 8px * 95);
   left: 50%;
   transform: translate(-50.5%, -90%);
   overflow: hidden;
@@ -117,16 +100,7 @@
   margin: 0 auto;
   font-family: "PP Neue Machina";
   font-weight: 400;
-  /* home__hero-img-me, home__hero-desc와 동일하게 min(100vw, 1920px) 기준
-     비율로 계산합니다 — .home__hero-stage(transform: scale())는 실제로는
-     어떤 DOM 요소에도 적용되고 있지 않아서(JSX에 해당 클래스를 가진
-     엘리먼트가 없습니다), 고정 px(465px)로만 두면 화면 폭이 줄어도 글자
-     크기가 전혀 줄지 않아 좁은 화면에서 잘려 보였습니다. */
   font-size: calc(465px * min(100vw, 1920px) / 1920px);
-  /* 이 폰트(PP Neue Machina)는 라인 높이(line-height:normal 기준)가 실제
-     글자 잉크보다 좁아서, 큰 사이즈에서는 아래쪽(예: U, Y 등)이 살짝
-     잘려 보였습니다 — 줄 높이를 조금 넉넉하게 줘서 glyph가 들어갈 공간을
-     확보합니다. */
   line-height: 1.15;
   text-align: center;
   letter-spacing: calc(-18px * min(100vw, 1920px) / 1920px);
@@ -136,27 +110,15 @@
 }
 
 .home__hero-img-me {
-  /* 글자·글래스박스와 같은 기준(min(100vw,1920px)/1920px)으로 줄어들도록 비율로 계산 */
   width: calc(min(100vw, 1920px) * 0.984375);
   position: absolute;
-  top: calc(var(--off) + var(--r) * 8px * 82); /* ← 숫자만 수정: hero 높이 기준 % (1920px 화면 기준, 줄어도 같이 줄어듦) */
+  top: calc(var(--off) + var(--r) * 8px * 82);
   left: 50%;
-  /* SVG가 로드되기 전에도 높이가 정해지도록 원본 비율(1920x1191)을 지정 —
-     로드 전 높이가 0이면 GSAP이 그 상태로 기준점/위치를 계산해 위치가
-     틀어질 수 있습니다. */
   aspect-ratio: 1920 / 1191;
   height: auto;
-  /* transform이 아니라 개별 translate 속성으로 중앙 정렬 — GSAP이 transform을
-     쓰는 시점에 이미지가 아직 로드 전이라 높이가 0이면 %가 잘못된 px로
-     굳어져 새로고침 때 가끔 위치가 틀어졌습니다. */
   translate: -50% -50%;
 }
 
-/* home__hero-stage 밖으로 옮겨서(위치를 뷰포트 높이 기준으로 계산하기
-   위해) 더 이상 스테이지의 transform: scale()에 자동으로 얹혀가지
-   않습니다 — 그래서 왼쪽 여백·폰트 크기·최대 너비를 스테이지와 똑같은
-   축소 비율(min(100vw, 1920px) / 1920px)로 직접 계산해서, 화면을
-   줄이면 스테이지의 다른 요소들처럼 같이 작아지게 합니다. */
 .home__hero-desc {
   margin: 0;
   max-width: calc(337px * min(100vw, 1920px) / 1920px);
@@ -164,25 +126,12 @@
   font-family: "Wanted Sans", var(--font-sans);
   font-size: calc(16px * min(100vw, 1920px) / 1920px);
   line-height: 1.32;
-  /* position:fixed로 두면 처음엔 화면 하단에 잘 고정되지만, 스크롤해도
-     계속 화면에 떠 있어서(hero를 벗어나도 안 사라짐) 부자연스러웠습니다.
-     원하는 동작은 "처음 화면(첫 페이지)에서는 me 이미지 하단 쪽, 화면
-     기준 아래에서 100px 위치에 있다가, 스크롤하면 hero의 다른
-     요소들(이미지 등)과 함께 자연스럽게 같이 스크롤되어 사라지는" 것이라,
-     fixed 대신 hero를 기준으로 한 absolute를 쓰고, 처음 위치만 100vh(현재
-     보이는 화면 높이) 기준으로 계산합니다 — hero가 문서 맨 위(y=0)에서
-     시작하기 때문에, "화면 높이 - 100px" 지점이 곧 hero 안에서의 위치와
-     같습니다. 모니터 세로 크기가 다르거나 F11로 뷰포트 높이가 바뀌어도
-     vh 단위라 항상 그 순간 화면 기준으로 다시 계산됩니다. */
   position: absolute;
   top: calc(100vh - 50px);
   transform: translateY(-100%);
   left: calc(40px * min(100vw, 1920px) / 1920px);
 }
 
-/* 데스크탑(1101px~): 1920px에서는 기존 그대로, 화면이 줄면 헤더 아래 --hdr 지점은 고정하고
-   YEONSU·me 이미지·글래스박스가 같은 비율(--r)로 같이 줄어 헤더와 안 겹치게 합니다.
-   (헤더와 더 띄우려면 --hdr을 키우세요) */
 @media (min-width: 1100px) {
   .home__hero {
     height: calc(var(--off) + var(--r) * 800px);
@@ -192,54 +141,39 @@
   }
 }
 
-/* 태블릿(682~1199px, hero-stage가 위쪽으로 앵커 전환되는 구간과 동일)에서는
-   데스크탑처럼 100vh(실제 화면 높이) 기준으로 계산하면 모니터마다
-   위치가 들쭉날쭉해서, 대신 hero 자신의 높이(%) 기준 고정 위치로 둡니다
-   — hero-stage와 마찬가지로 hero 안에서 항상 같은 상대 위치를 유지합니다. */
 @media (max-width: 1100px) {
   .home__hero {
-    margin-bottom: 220px;
-    /* 데스크탑처럼 "고정 기준점에서 같이 줄어들기": 화면이 줄어도 헤더 아래 --hdr(px) 지점은
-       안 움직이고, 그 아래 내용(YEONSU·me 이미지·글래스박스)만 같은 비율(--s)로 줄어듭니다.
-       1100px에서는 기존 위치 그대로입니다. 헤더와 더 띄우려면 --hdr을 키우세요. */
+    margin-bottom: calc(var(--s) * 220px);
     --hdr: 80px;
     --s: calc(min(100vw, 1100px) / 1100px);
     --off: calc(var(--hdr) * (1 - var(--s)));
   }
   .home__hero-desc {
-    /* 화면 높이와 무관하게 다른 hero 요소처럼 같은 기준점에서 같이 줄어듭니다(1100px 기준 398.7px = 예전 hero 87%) */
     top: calc(var(--off) + var(--s) * 670.7px);
     max-width: calc(337px * min(100vw, 1100px) / 1100px);
     font-size: calc(13px * min(100vw, 1100px) / 1100px);
   }
-  /* 1100px 이하 hero 위치 (모바일 ≤681px은 아래 전용 규칙이 덮어씀) */
   .home__hero-img-me {
     width: calc(120% - 10px);
-    top: calc(var(--off) + var(--s) * 430.8px); /* 원래 94% — 숫자(px)는 1100px 화면 기준 */
+    top: calc(var(--off) + var(--s) * 430.8px);
   }
   .home__hero-text-wrap {
-    top: calc(var(--off) + var(--s) * 495px); /* 원래 100% — 숫자(px)는 1100px 화면 기준 */
+    top: calc(var(--off) + var(--s) * 495px);
     left: 48.2%;
-    /* 기본 규칙의 height:640px·translate(-90%)가 고정 px라서 화면이 줄어도 안 줄어 헤더와 겹쳤습니다 —
-       높이도 화면 비율(--r)로 줄여서 YEONSU·me 이미지·글래스박스가 같은 기준으로 줄어듭니다 */
     height: calc(640px * var(--r));
   }
-
-  /* 글래스박스 위치 조정 — 태블릿(1100px 이하). 지금은 데스크탑과 같은 값(기본값)이라
-     여기 숫자만 고치면 태블릿에서만 바뀝니다. 화면 비율은 --r이 처리하니
-     translate의 px는 1920px 기준으로 적으세요. */
   .home__hero > .home__product_design_box {
-    top: calc(var(--off) + var(--s) * 360.4px); /* 원래 79.5% — 숫자(px)는 1100px 화면 기준 */
+    top: calc(var(--off) + var(--s) * 360.4px);
     left: 44.5%;
     transform: translate(calc(-50% - 320px * var(--r)), calc(-50% + 80px * var(--r))) scale(var(--r));
   }
   .home__hero > .home__department_of_visual_design_box {
-    top: calc(var(--off) + var(--s) * 385.2px); /* 원래 86% — 숫자(px)는 1100px 화면 기준 */
+    top: calc(var(--off) + var(--s) * 385.2px);
     left: 46.8%;
     transform: translate(calc(-50% - 320px * var(--r)), calc(-50% + 230px * var(--r))) scale(var(--r));
   }
   .home__hero > .home__skills_box {
-    top: calc(var(--off) + var(--s) * 425.3px); /* 원래 92.8% — 숫자(px)는 1100px 화면 기준 */
+    top: calc(var(--off) + var(--s) * 425.3px);
     left: 63.7%;
     transform: translate(calc(-50% + 380px * var(--r)), -50%) scale(var(--r));
   }
@@ -266,8 +200,6 @@
     display: none;
   }
 
-  /* 모바일에서는 데스크탑용 히어로 요소(YEONSU 텍스트, me 이미지, 글래스박스 3개)를
-     숨기고 .home__hero-mobile-stage만 보이게 합니다. */
   .home__hero > .home__hero-text-wrap,
   .home__hero > .home__hero-img-me,
   .home__hero > .home__product_design_box,
@@ -275,6 +207,7 @@
   .home__hero > .home__skills_box {
     display: none !important;
   }
+
 
   /* top이 0이면 고정(position:fixed) 헤더 바로 밑에 콘텐츠가 깔려서,
      transform-origin: top center 덕분에 이 top 값 자체는 scale()의 영향을

@@ -4,9 +4,18 @@
    퍼센트 카운터로, 이후 페이드아웃되며 제거됩니다. */
 .loading-screen {
   position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100dvh;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* 모바일 주소창이 접히거나 펼쳐져도 배경이 화면 전체를 항상 꽉 채우도록
+     가장 큰 뷰포트(lvh)까지 덮고, 아래도 넉넉히 확장합니다 */
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+  min-height: 100dvh;
+  /* 완전 불투명 배경(아래 hero 모션이 비치지 않게) */
+  background-clip: border-box;
   z-index: 2000;
   box-sizing: border-box;
   display: flex;
@@ -46,4 +55,11 @@
   .loading-screen__percent {
     font-size: 40px;
   }
+}
+
+/* 로딩 중에는 hero(YEONSU 등 오른쪽 밖에서 대기 중인 모션 요소)를 아예 안 그립니다 —
+   모바일에서 로딩 화면이 덮지 못한 가장자리로 비쳐 보이는 것을 막습니다.
+   로딩 화면이 사라지는 순간(is-loading 해제) 바로 모션이 시작됩니다. */
+.site-shell.is-loading .home__hero {
+  visibility: hidden;
 }

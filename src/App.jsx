@@ -187,7 +187,7 @@ export default function App() {
   }, [showLoadingScreen]);
 
   return (
-    <div className="site-shell">
+    <div className={`site-shell${showLoadingScreen ? " is-loading" : ""}`}>
       <CursorFollower />
       {showLoadingScreen && (
         <LoadingScreen onFinish={handleLoadingFinish} />
