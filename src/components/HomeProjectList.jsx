@@ -69,6 +69,8 @@ function HomeProjectCard({ tags, title, description, to, image, video }) {
 
 // 카드 행이 들어오기 시작하는 가로 위치(화면 너비 기준): 0.8 = 화면 왼쪽에서 80% 지점 / 1 = 화면 오른쪽 끝 바깥
 const ENTER_FROM = 0.65
+// 모바일(681px 이하)에서 카드 행이 들어오기 시작하는 가로 위치(화면 너비 기준) — 0.7 = 왼쪽에서 70% 지점
+const ENTER_FROM_MOBILE = 0.7
 
 export default function HomeProjectList({ projects = defaultProjects, id }) {
   const sectionRef = useRef(null)
@@ -86,7 +88,7 @@ export default function HomeProjectList({ projects = defaultProjects, id }) {
     let endTranslate = 0
     let progressFloor = 0
     let scrollSpan = 1
-    let pinOffset = 0
+    let pinTop = 0
     let rafId = null
 
     const measure = () => {
@@ -100,28 +102,27 @@ export default function HomeProjectList({ projects = defaultProjects, id }) {
       endTranslate = -overflow
       // 시작 위치: 카드 행의 왼쪽 끝이 화면 오른쪽 바깥(화면 너비 지점)에 있는 상태 —
       // 스크롤하면 오른쪽에서 가로로 들어옵니다.
-      startTranslate = Math.max(viewportWidth * ENTER_FROM - naturalStartX, endTranslate)
+      const isMobile = viewportWidth <= 681
+      startTranslate = Math.max(viewportWidth * (isMobile ? ENTER_FROM_MOBILE : ENTER_FROM) - naturalStartX, endTranslate)
       // 모바일(681px 이하)은 이동 구간의 앞부분(floor)을 건너뛰고 시작합니다(값↑ = 처음부터 더 들어와 있음).
-      progressFloor = viewportWidth <= 681 ? 0.9 : 0
-      // 고정(sticky) 상태로 스크롤해야 하는 거리 = 실제 이동 거리. 섹션 높이를 "내용 높이 + 이동 거리"로
-      // 딱 맞춰서 카드가 다 들어온 뒤 불필요한 빈 스크롤/여백이 생기지 않게 합니다.
+      progressFloor = 0
+      // 고정(sticky) 상태로 스크롤해야 하는 거리 = 실제 이동 거리.
       scrollSpan = Math.max((startTranslate - endTranslate) * (1 - progressFloor), 1)
       const stickyHeight = sticky.offsetHeight
-      // 고정이 시작되는 스크롤 위치(pinOffset) 뒤부터 카드가 움직이도록 그만큼 섹션을 더 길게 잡습니다.
-      pinOffset = Math.max(0, stickyHeight - window.innerHeight)
-      section.style.height = `${stickyHeight + pinOffset + scrollSpan}px`
-      // 화면(뷰포트) 높이가 고정 영역보다 낮을 때(개발자도구를 열었거나 가로로 눕힌 화면 등):
-      // top:0에 붙으면 카드 아래쪽이 화면 밖에 잘린 채 고정돼서, 영역의 '아래쪽'이 화면 아래에 맞도록
-      // 음수 top으로 고정합니다. 화면이 충분히 크면 0 그대로(맨 위에 고정).
-      sticky.style.top = `${Math.min(0, window.innerHeight - stickyHeight)}px`
+      // 섹션 높이 = 고정 영역 높이 + 이동 거리 — 카드가 다 들어온 뒤 불필요한 빈 스크롤/여백이 없습니다.
+      section.style.height = `${stickyHeight + scrollSpan}px`
+      // WORK 섹션이 화면 맨 위에 닿는 순간(위 hero가 다 올라간 뒤)에 고정되고, 그때부터 카드가 가로로 움직입니다.
+      // 화면이 고정 영역보다 낮을 때(개발자도구를 열었을 때 등)만 카드 아래가 잘리지 않게 음수 top으로 고정합니다.
+      pinTop = Math.min(0, window.innerHeight - stickyHeight)
+      sticky.style.top = `${pinTop}px`
     }
 
     const update = () => {
       rafId = null
       const runway = startTranslate - endTranslate
       const rect = section.getBoundingClientRect()
-      // 섹션이 화면 맨 위에 닿아 고정되는 순간부터 scrollSpan만큼 스크롤하는 동안 0→1
-      const t = Math.min(Math.max((-rect.top - pinOffset) / scrollSpan, 0), 1)
+      // 고정이 시작되는 순간(rect.top === pinTop)부터 scrollSpan만큼 스크롤하는 동안 0→1
+      const t = Math.min(Math.max((pinTop - rect.top) / scrollSpan, 0), 1)
       const progress = progressFloor + (1 - progressFloor) * t
       track.style.transform = `translateX(${startTranslate - progress * runway}px)`
     }
