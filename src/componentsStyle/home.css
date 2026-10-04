@@ -72,22 +72,25 @@
    top/left는 % (hero 기준), translate의 px 숫자가 세부 오프셋입니다. */
 .home__hero {
   --r: calc(min(100vw, 1920px) / 1920px);
+  /* 헤더 아래 이 지점(--hdr)은 고정하고 그 아래가 같이 줄어듭니다(1920px에선 0) */
+  --hdr: 80px;
+  --off: calc(var(--hdr) * (1 - var(--r)));
 }
 .home__hero > .home__product_design_box {
   position: absolute;
-  top: 65.5%;
-  left: 45.4%;
+  top: calc(var(--off) + var(--r) * 8px * 65.7); /* ← 숫자만 수정: hero 높이 기준 % (1920px 화면 기준, 줄어도 같이 줄어듦) */
+  left: 45.3%;
   transform: translate(calc(-50% - 320px * var(--r)), calc(-50% + 80px * var(--r))) scale(var(--r));
 }
 .home__hero > .home__department_of_visual_design_box {
   position: absolute;
-  top: 69.5%;
+  top: calc(var(--off) + var(--r) * 8px * 69.5); /* ← 숫자만 수정: hero 높이 기준 % (1920px 화면 기준, 줄어도 같이 줄어듦) */
   left: 47.8%;
   transform: translate(calc(-50% - 320px * var(--r)), calc(-50% + 230px * var(--r))) scale(var(--r));
 }
 .home__hero > .home__skills_box {
   position: absolute;
-  top: 77.3%;
+  top: calc(var(--off) + var(--r) * 8px * 77.2); /* ← 숫자만 수정: hero 높이 기준 % (1920px 화면 기준, 줄어도 같이 줄어듦) */
   left: 63%;
   transform: translate(calc(-50% + 380px * var(--r)), -50%) scale(var(--r));
 }
@@ -102,7 +105,7 @@
 
 .home__hero-text-wrap {
   position: absolute;
-  top: 95%;
+  top: calc(var(--off) + var(--r) * 8px * 95); /* ← 숫자만 수정: hero 높이 기준 % (1920px 화면 기준, 줄어도 같이 줄어듦) */
   left: 50%;
   transform: translate(-50.5%, -90%);
   overflow: hidden;
@@ -136,7 +139,7 @@
   /* 글자·글래스박스와 같은 기준(min(100vw,1920px)/1920px)으로 줄어들도록 비율로 계산 */
   width: calc(min(100vw, 1920px) * 0.984375);
   position: absolute;
-  top: 82%;
+  top: calc(var(--off) + var(--r) * 8px * 82); /* ← 숫자만 수정: hero 높이 기준 % (1920px 화면 기준, 줄어도 같이 줄어듦) */
   left: 50%;
   /* SVG가 로드되기 전에도 높이가 정해지도록 원본 비율(1920x1191)을 지정 —
      로드 전 높이가 0이면 GSAP이 그 상태로 기준점/위치를 계산해 위치가
@@ -180,27 +183,12 @@
 /* 데스크탑(1101px~): 1920px에서는 기존 그대로, 화면이 줄면 헤더 아래 --hdr 지점은 고정하고
    YEONSU·me 이미지·글래스박스가 같은 비율(--r)로 같이 줄어 헤더와 안 겹치게 합니다.
    (헤더와 더 띄우려면 --hdr을 키우세요) */
-@media (min-width: 1101px) {
+@media (min-width: 1100px) {
   .home__hero {
-    --hdr: 80px;
-    --off: calc(var(--hdr) * (1 - var(--r)));
     height: calc(var(--off) + var(--r) * 800px);
   }
   .home__hero-text-wrap {
-    top: calc(var(--off) + var(--r) * 760.0px); /* 원래 95% */
     height: calc(640px * var(--r));
-  }
-  .home__hero-img-me {
-    top: calc(var(--off) + var(--r) * 656.0px); /* 원래 82% — 숫자(px)는 1920px 화면 기준 */
-  }
-  .home__hero > .home__product_design_box {
-    top: calc(var(--off) + var(--r) * 524.0px); /* 원래 65.5% — 숫자(px)는 1920px 화면 기준 */
-  }
-  .home__hero > .home__department_of_visual_design_box {
-    top: calc(var(--off) + var(--r) * 556.0px); /* 원래 69.5% — 숫자(px)는 1920px 화면 기준 */
-  }
-  .home__hero > .home__skills_box {
-    top: calc(var(--off) + var(--r) * 618.4px); /* 원래 77.3% — 숫자(px)는 1920px 화면 기준 */
   }
 }
 
