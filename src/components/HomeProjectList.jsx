@@ -67,6 +67,9 @@ function HomeProjectCard({ tags, title, description, to, image, video }) {
 // 종료 위치는 트랙이 래퍼 밖으로 넘치는 거리만큼 이동한 위치입니다.
 // 카드 이동은 transform으로 처리하며, 모든 화면 크기에서 같은 방식으로 동작합니다.
 
+// 카드 행이 들어오기 시작하는 가로 위치(화면 너비 기준): 0.8 = 화면 왼쪽에서 80% 지점 / 1 = 화면 오른쪽 끝 바깥
+const ENTER_FROM = 0.65
+
 export default function HomeProjectList({ projects = defaultProjects, id }) {
   const sectionRef = useRef(null)
   const trackWrapRef = useRef(null)
@@ -78,73 +81,48 @@ export default function HomeProjectList({ projects = defaultProjects, id }) {
     const track = trackRef.current
     if (!section || !trackWrap || !track) return
 
+    const sticky = section.querySelector('.home-project-list__sticky')
     let startTranslate = 0
     let endTranslate = 0
-    let progressFloor = 0.4
+    let progressFloor = 0
+    let scrollSpan = 1
+    let pinOffset = 0
     let rafId = null
 
     const measure = () => {
-      // transform이 적용되지 않은 상태에서 트랙의 실제 너비를 측정합니다.
+      // transform이 없는 상태에서 트랙의 원래 위치/너비를 측정합니다.
       track.style.transform = 'none'
-      // 트랙이 래퍼를 넘어가는 전체 오버플로 거리를 계산합니다.
-      //
-      // trackWrap 자체는 WORK 헤딩과 왼쪽을 맞추려고 max-width:1200으로
-      // 좁혀뒀지만(home-project-list.css), 오버플로 판단은 그 1200 박스가
-      // 아니라 실제 화면 전체 너비(window.innerWidth) 기준으로 합니다 —
-      // 그래야 카드 3개처럼 실제 화면 안에 다 들어오는 경우에는(overflow
-      // <= 0) 왼쪽에 고정된 채 오른쪽으로 자연스럽게 넘쳐 보이기만 하고,
-      // 나중에 프로젝트가 늘어나 실제 화면 너비보다 카드 행이 넓어지는
-      // 순간부터는 자동으로 다시 왼쪽으로 슬라이드하며 나머지를 보여주게
-      // 됩니다.
-      // trackWrap이 1200 박스 안에서 가운데 정렬되며 생기는 왼쪽 여백만큼
-      // 트랙의 "원래(transform 없는) 시작 x좌표"가 0이 아니라 화면
-      // 오른쪽으로 밀려 있습니다 — 이 오프셋(naturalStartX)을 빼지 않으면
-      // 스크롤을 끝까지 해도 카드 행 끝부분(과 방금 추가한 오른쪽 40px
-      // 패딩)이 그만큼 화면 밖으로 밀려나가, 마지막 카드가 잘리거나
-      // 오른쪽 여백이 의도한 40px보다 더 커 보였습니다.
       const viewportWidth = window.innerWidth
       const naturalStartX = track.getBoundingClientRect().left
+      // 끝 위치: 카드 행이 화면을 넘치면 마지막 카드(+오른쪽 패딩)까지 보이도록 그만큼 왼쪽으로,
+      // 안 넘치면 원래 자리에서 멈춥니다.
       const overflow = Math.max(naturalStartX + track.scrollWidth - viewportWidth, 0)
       endTranslate = -overflow
-      // 화면 너비만큼 오른쪽에서 시작해 스크롤 중 왼쪽으로 진입하게 합니다.
-      const entranceDistance = viewportWidth;
-      startTranslate = endTranslate + entranceDistance
-
-      // 아래 update()의 0.4는 "카드 행 너비가 화면 너비와 비슷한" 데스크탑
-      // 기준으로 잡힌 값이라, 반응형처럼 카드 행이 화면보다 훨씬 넓어지는
-      // 좁은 화면에서는 스크롤을 시작하자마자 이 0.4만큼 이미 왼쪽으로
-      // 당겨진 채로 시작해버려서 카드 행이 화면 왼쪽 바깥으로 잘린 채
-      // 등장하는 문제가 있었습니다 — 0.4를 그대로 적용했을 때 트랙이
-      // 원래 시작 위치(naturalStartX, 화면 밖 오른쪽)보다 더 왼쪽으로
-      // 넘어가 버리는 경우, 그만큼 자동으로 낮춰서 항상 화면 오른쪽에서만
-      // 시작하도록 안전하게 계산합니다. 데스크탑처럼 원래도 괜찮았던
-      // 경우엔 그대로 0.4가 유지됩니다.
-      const naturalFloor = entranceDistance > 0 ? 1 - overflow / entranceDistance : 0.4
-      // 모바일(681px 이하)은 자동 계산되는 naturalFloor 대신 고정값을
-      // 직접 써서, 화면 크기와 무관하게 원하는 지점부터 카드가 움직이게
-      // 합니다 — 값을 낮출수록 스크롤 시작 직후 더 빨리 슬라이드합니다.
-      const isMobile = viewportWidth <= 681
-      progressFloor = isMobile ? 0.9 : Math.max(0, Math.min(0.9, naturalFloor))
-      // 여유 버퍼(120px) — 정확히 필요한 만큼만 높이를 주면 레이아웃/폰트
-      // 로딩 타이밍에 따라 섹션이 필요한 스크롤 거리보다 살짝 짧게
-      // 측정되어 카드 행이 완전히 자리잡기 전에 sticky가 풀려버릴 수
-      // 있음 — 그래서 카드 하단이 잘려 보이는 것처럼 느껴짐.
-      section.style.height = `${window.innerHeight + entranceDistance + 140}px`
+      // 시작 위치: 카드 행의 왼쪽 끝이 화면 오른쪽 바깥(화면 너비 지점)에 있는 상태 —
+      // 스크롤하면 오른쪽에서 가로로 들어옵니다.
+      startTranslate = Math.max(viewportWidth * ENTER_FROM - naturalStartX, endTranslate)
+      // 모바일(681px 이하)은 이동 구간의 앞부분(floor)을 건너뛰고 시작합니다(값↑ = 처음부터 더 들어와 있음).
+      progressFloor = viewportWidth <= 681 ? 0.9 : 0
+      // 고정(sticky) 상태로 스크롤해야 하는 거리 = 실제 이동 거리. 섹션 높이를 "내용 높이 + 이동 거리"로
+      // 딱 맞춰서 카드가 다 들어온 뒤 불필요한 빈 스크롤/여백이 생기지 않게 합니다.
+      scrollSpan = Math.max((startTranslate - endTranslate) * (1 - progressFloor), 1)
+      const stickyHeight = sticky.offsetHeight
+      // 고정이 시작되는 스크롤 위치(pinOffset) 뒤부터 카드가 움직이도록 그만큼 섹션을 더 길게 잡습니다.
+      pinOffset = Math.max(0, stickyHeight - window.innerHeight)
+      section.style.height = `${stickyHeight + pinOffset + scrollSpan}px`
+      // 화면(뷰포트) 높이가 고정 영역보다 낮을 때(개발자도구를 열었거나 가로로 눕힌 화면 등):
+      // top:0에 붙으면 카드 아래쪽이 화면 밖에 잘린 채 고정돼서, 영역의 '아래쪽'이 화면 아래에 맞도록
+      // 음수 top으로 고정합니다. 화면이 충분히 크면 0 그대로(맨 위에 고정).
+      sticky.style.top = `${Math.min(0, window.innerHeight - stickyHeight)}px`
     }
 
     const update = () => {
       rafId = null
-      if (startTranslate === endTranslate) return
-      // 섹션의 현재 스크롤 진행률을 계산해 트랙 위치를 갱신합니다.
-      const rect = section.getBoundingClientRect()
       const runway = startTranslate - endTranslate
-
-      // 여기 위치의 0.4~1 구간에서만 트랙이 이동하도록 제한합니다 — 시작
-      // 지점을 더 왼쪽으로(0.2 → 0.4) 당겨서 처음부터 더 안쪽에서
-      // 보이게 하고, 끝 지점은 1까지 채워서 스크롤이 끝나면 트랙이 화면
-      // 왼쪽 끝까지 다 밀려 잘리듯 끝나게 합니다.
-      const progress = Math.min(Math.max(-rect.top / runway, progressFloor), 1)
-
+      const rect = section.getBoundingClientRect()
+      // 섹션이 화면 맨 위에 닿아 고정되는 순간부터 scrollSpan만큼 스크롤하는 동안 0→1
+      const t = Math.min(Math.max((-rect.top - pinOffset) / scrollSpan, 0), 1)
+      const progress = progressFloor + (1 - progressFloor) * t
       track.style.transform = `translateX(${startTranslate - progress * runway}px)`
     }
 
@@ -164,9 +142,13 @@ export default function HomeProjectList({ projects = defaultProjects, id }) {
     update()
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onResize)
+    // 폰트/영상 로딩 등으로 고정 영역 높이가 바뀌면 섹션 높이도 다시 맞춥니다.
+    const resizeObserver = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(onResize) : null
+    resizeObserver?.observe(sticky)
     return () => {
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onResize)
+      resizeObserver?.disconnect()
       if (rafId) cancelAnimationFrame(rafId)
     }
   }, [])

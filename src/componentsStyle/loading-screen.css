@@ -5,6 +5,8 @@
 .loading-screen {
   position: fixed;
   inset: 0;
+  width: 100vw;
+  height: 100dvh;
   z-index: 2000;
   box-sizing: border-box;
   display: flex;
@@ -21,6 +23,14 @@
 }
 
 .loading-screen__percent {
+  /* 항상 화면(뷰포트) 정중앙 — flex 정렬에 의존하지 않고 절대 위치로 고정합니다.
+     숫자 자릿수(0%→100%)가 바뀌어도 가운데 기준으로만 늘어나고, 폰트가 늦게
+     로드돼 크기가 바뀌어도 중심은 그대로입니다. */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
   margin: 0;
   color: #333;
   font-family: "Neue Machina", var(--font-sans);

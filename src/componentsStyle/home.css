@@ -308,8 +308,8 @@
   .home__hero-text {
     position: absolute;
     top: 106px; /* 지금 화면에서 보이는 위치 그대로(wrap 229px + 67px). 줄이면 위로 올라갑니다 */
-    left: 17px;
-    right: 10px;
+    padding-left: 17px;
+    left: 2%;
     margin: 0;
     font-family: "PP Neue Machina";
     font-weight: 400;

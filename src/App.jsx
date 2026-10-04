@@ -173,11 +173,16 @@ export default function App() {
   };
 
   useEffect(() => {
-    const previousOverflowY = document.body.style.overflowY;
-    document.body.style.overflowY = showLoadingScreen ? "hidden" : "auto";
+    // body에 overflow-y:auto를 주면 body가 스크롤 컨테이너가 되어 WORK 리스트의
+    // position:sticky가 화면에 고정되지 않고 그냥 흘러갑니다 — 그래서 로딩 중
+    // 스크롤 잠금은 html(문서 루트)에 걸고, 끝나면 값을 비워 둡니다.
+    const root = document.documentElement;
+    const previousOverflowY = root.style.overflowY;
+    root.style.overflowY = showLoadingScreen ? "hidden" : "";
+    document.body.style.overflowY = "";
 
     return () => {
-      document.body.style.overflowY = previousOverflowY;
+      root.style.overflowY = previousOverflowY;
     };
   }, [showLoadingScreen]);
 
