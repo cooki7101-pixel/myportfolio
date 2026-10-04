@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import '../componentsStyle/scroll-fade-images.css'
 
 // 개발 중에 IntersectionObserver 트리거 라인을 보여주려면 true로 설정.
-const SHOW_SCROLL_FADE_MARKER = true
+const SHOW_SCROLL_FADE_MARKER = false
 
 /**
  * 컨테이너의 최상위 자식(섹션) 하나하나를 스크롤로 보이는 순간 제자리로
