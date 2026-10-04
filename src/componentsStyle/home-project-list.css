@@ -230,7 +230,7 @@
   }
 
   .home-project-list__grid {
-    gap: 12px;
+    padding: 0 17px;
   }
 
   .home-project-list__card {
@@ -247,6 +247,7 @@
      폭에서는 트랙 밖으로 넘치는 부분을 잘라서, 스크롤로 실제 카드가
      들어올 때까지는 안 보이게 합니다. */
   .home-project-list__track-wrap {
+    padding: 0 17px;
     overflow: hidden;
   }
 
