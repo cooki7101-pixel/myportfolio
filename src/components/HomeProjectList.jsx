@@ -72,7 +72,8 @@ const ENTER_FROM = 0.65
 // 모바일(681px 이하)에서 카드 행이 들어오기 시작하는 가로 위치(화면 너비 기준) — 0.7 = 왼쪽에서 70% 지점
 const ENTER_FROM_MOBILE = 0.7
 
-export default function HomeProjectList({ projects = defaultProjects, id }) {
+// footer: 고정 영역 바로 아래에 같이 붙여 보여줄 요소(푸터). 가로 스크롤하는 동안 카드 아래에 푸터가 바로 이어 보입니다.
+export default function HomeProjectList({ projects = defaultProjects, id, footer = null }) {
   const sectionRef = useRef(null)
   const trackWrapRef = useRef(null)
   const trackRef = useRef(null)
@@ -84,6 +85,7 @@ export default function HomeProjectList({ projects = defaultProjects, id }) {
     if (!section || !trackWrap || !track) return
 
     const sticky = section.querySelector('.home-project-list__sticky')
+    const work = section.querySelector('.home-project-list__work')
     let startTranslate = 0
     let endTranslate = 0
     let progressFloor = 0
@@ -108,12 +110,12 @@ export default function HomeProjectList({ projects = defaultProjects, id }) {
       progressFloor = 0
       // 고정(sticky) 상태로 스크롤해야 하는 거리 = 실제 이동 거리.
       scrollSpan = Math.max((startTranslate - endTranslate) * (1 - progressFloor), 1)
+      // 고정 영역 전체(WORK 블록 + 아래 붙은 푸터) 높이 — 섹션 높이는 이 높이 + 이동 거리입니다.
       const stickyHeight = sticky.offsetHeight
-      // 섹션 높이 = 고정 영역 높이 + 이동 거리 — 카드가 다 들어온 뒤 불필요한 빈 스크롤/여백이 없습니다.
       section.style.height = `${stickyHeight + scrollSpan}px`
-      // WORK 섹션이 화면 맨 위에 닿는 순간(위 hero가 다 올라간 뒤)에 고정되고, 그때부터 카드가 가로로 움직입니다.
-      // 화면이 고정 영역보다 낮을 때(개발자도구를 열었을 때 등)만 카드 아래가 잘리지 않게 음수 top으로 고정합니다.
-      pinTop = Math.min(0, window.innerHeight - stickyHeight)
+      // WORK 블록(제목 + 카드 + 위·아래 패딩)만 기준으로 고정 위치를 잡습니다: 화면이 충분히 크면 맨 위(0)에 고정되고
+      // 그 아래로 푸터가 바로 이어 보이며, 화면이 WORK 블록보다 낮을 때만 카드가 잘리지 않게 위로 당겨 고정합니다.
+      pinTop = Math.min(0, window.innerHeight - work.offsetHeight)
       sticky.style.top = `${pinTop}px`
     }
 
@@ -146,6 +148,7 @@ export default function HomeProjectList({ projects = defaultProjects, id }) {
     // 폰트/영상 로딩 등으로 고정 영역 높이가 바뀌면 섹션 높이도 다시 맞춥니다.
     const resizeObserver = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(onResize) : null
     resizeObserver?.observe(sticky)
+    resizeObserver?.observe(work)
     return () => {
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onResize)
@@ -157,14 +160,17 @@ export default function HomeProjectList({ projects = defaultProjects, id }) {
   return (
     <section className="home-project-list" id={id} ref={sectionRef} data-node-id="380:2887">
       <div className="home-project-list__sticky">
-        <h2 className="home-project-list__heading">WORK</h2>
-        <div className="home-project-list__track-wrap" ref={trackWrapRef}>
-          <div className="home-project-list__grid" ref={trackRef}>
-            {projects.map((project, index) => (
-              <HomeProjectCard key={`${index}-${Array.isArray(project.title) ? project.title.join(' ') : project.title}`} {...project} />
-            ))}
+        <div className="home-project-list__work">
+          <h2 className="home-project-list__heading">WORK</h2>
+          <div className="home-project-list__track-wrap" ref={trackWrapRef}>
+            <div className="home-project-list__grid" ref={trackRef}>
+              {projects.map((project, index) => (
+                <HomeProjectCard key={`${index}-${Array.isArray(project.title) ? project.title.join(' ') : project.title}`} {...project} />
+              ))}
+            </div>
           </div>
         </div>
+        {footer}
       </div>
     </section>
   )

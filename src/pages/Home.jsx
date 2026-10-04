@@ -411,10 +411,8 @@ export default function Home({ loadingFinished = false }) {
       </section>
 
       <div className="home__project-wrap" data-node-id="380:3948">
-        <HomeProjectList id="work" />
+        <HomeProjectList id="work" footer={<HomeFooter />} />
       </div>
-
-      <HomeFooter />
     </div >
   )
 

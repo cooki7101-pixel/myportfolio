@@ -9,6 +9,13 @@
   position: relative;
   box-sizing: border-box;
   width: 100%;
+  /* ▼ 프로젝트 리스트 아래 여백(px) — 여기 숫자만 고치세요 */
+  --work-pad-top: 160px; /* ▼ 위 간격(px): 헤더 아래 ~ WORK 제목 사이 최소 간격 */
+  --work-pad-bottom: 100px; /* ▼ 아래 간격(px): 카드 아래 최소 간격 */
+  /* 아직 안 들어온(화면 오른쪽 바깥에 있는) 카드들이 페이지 너비를 넓히지 않도록 가로로만 잘라 숨깁니다 —
+     검사 모드(기기 에뮬레이션)에서 카드 행 너비만큼 레이아웃이 넓어져 헤더 오른쪽이 잘리던 문제.
+     clip은 스크롤 영역을 만들지 않아서 sticky는 그대로 동작하고, 세로로는 영향이 없습니다. */
+  overflow-x: clip;
 }
 
 .home-project-list__sticky {
@@ -27,7 +34,14 @@
   box-sizing: border-box;
   height: auto;
   width: 100%;
-  padding: 160px 0 0;
+}
+
+/* WORK 제목 + 카드 블록. 위·아래 간격은 여기 padding으로만 결정됩니다(--work-pad-top / --work-pad-bottom).
+   이 블록 바로 아래로 푸터가 이어 붙어 있어서, 가로 스크롤 중에도 카드 아래에는 이 간격만 있고 그 아래에 푸터가 보입니다. */
+.home-project-list__work {
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--work-pad-top) 0 var(--work-pad-bottom);
 }
 
 .home-project-list__heading {
@@ -177,6 +191,10 @@
    설정은 그대로 유지되어, 스크롤 시 행이 계속 슬라이드 인 되고 페이지
    좌우 여백을 넘어서도 잘리지 않습니다. */
 @media (max-width: 1100px) {
+  .home-project-list {
+    --work-pad-top: 120px; /* 태블릿 위 간격 */
+  }
+
   .home-project-list__heading {
     font-size: 40px;
   }
@@ -201,8 +219,8 @@
 @media (max-width: 721px) {
   /* Figma의 모바일 프레임은 위에서 쓴 top/bottom-60 중앙 정렬 박스가 아니라,
      콘텐츠가 하단에 고정된 pt-142/pb-80 구조입니다. */
-  .home-project-list__sticky {
-    padding: 120px 0 0;
+  .home-project-list {
+    --work-pad-top: 120px; /* 모바일 위 간격 */
   }
 
   .home-project-list__heading {

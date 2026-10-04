@@ -198,7 +198,7 @@
    — hero-stage와 마찬가지로 hero 안에서 항상 같은 상대 위치를 유지합니다. */
 @media (max-width: 1100px) {
   .home__hero {
-    margin-bottom: 18vh;
+    margin-bottom: 220px;
     /* 데스크탑처럼 "고정 기준점에서 같이 줄어들기": 화면이 줄어도 헤더 아래 --hdr(px) 지점은
        안 움직이고, 그 아래 내용(YEONSU·me 이미지·글래스박스)만 같은 비율(--s)로 줄어듭니다.
        1100px에서는 기존 위치 그대로입니다. 헤더와 더 띄우려면 --hdr을 키우세요. */
@@ -395,6 +395,6 @@
      작아져서 카드 섹션이 끝나자마자 푸터가 바로 붙거나 카드 하단이
      잘려 보일 수 있습니다 — 화면 크기와 무관하게 항상 충분한 여백이
      남도록 고정 margin을 더해줍니다. */
-  margin-bottom: 100px;
+  margin-bottom: 0; /* 여백은 home-project-list.css의 --work-pad-bottom 하나로만 */
   overflow: visible;
 }
