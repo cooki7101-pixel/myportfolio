@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import '../componentsStyle/loading-screen.css'
 
 // Full-screen loading overlay shown once on first load — counts 0% to 100%
@@ -12,7 +12,36 @@ export default function LoadingScreen({ onFinish }) {
   const [fadingOut, setFadingOut] = useState(false)
   const startRef = useRef(null)
 
+  // 폰트(Neue Machina)가 준비되기 전에는 숫자를 아예 그리지 않고(파란 배경만),
+  // 준비되면 숫자가 뜨면서 0%부터 카운트를 시작합니다. 폰트가 끝내 안 와도 1.5초 뒤엔 시작합니다.
+  const [fontReady, setFontReady] = useState(false)
+
+  // index.html의 임시 파란 화면은 React 로딩 화면(같은 배경색)이 그려지는 즉시 제거
+  useLayoutEffect(() => {
+    document.getElementById('boot-loading')?.remove()
+  }, [])
+
   useEffect(() => {
+    let done = false
+    const ready = () => {
+      if (!done) {
+        done = true
+        setFontReady(true)
+      }
+    }
+    const timer = setTimeout(ready, 1500)
+    if (document.fonts?.load) {
+      document.fonts
+        .load('80px "Neue Machina"', '0123456789%')
+        .then(ready, ready)
+    } else {
+      ready()
+    }
+    return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    if (!fontReady) return
     let rafId = null
 
     const tick = (timestamp) => {
@@ -45,7 +74,7 @@ export default function LoadingScreen({ onFinish }) {
       if (rafId) cancelAnimationFrame(rafId)
       clearTimeout(fallbackId)
     }
-  }, [])
+  }, [fontReady])
 
   useEffect(() => {
     if (!fadingOut) return
@@ -55,7 +84,7 @@ export default function LoadingScreen({ onFinish }) {
 
   return (
     <div className={`loading-screen${fadingOut ? ' loading-screen--fade-out' : ''}`} aria-hidden={fadingOut}>
-      <p className="loading-screen__percent">{percent}%</p>
+      <p className="loading-screen__percent" style={{ visibility: fontReady ? 'visible' : 'hidden' }}>{percent}%</p>
     </div>
   )
 }

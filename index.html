@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="UX/UI Portfolio Starter Kit" />
+    <meta name="description" content="Yeonsu Kim | Product Designer Portfolio" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Portfolio Starter Kit</title>
+    <title>Yeonsu Kim | Product Designer Portfolio</title>
 
     <!-- 로딩스크린(.loading-screen, 배경 #c9d2e7)이 React로 마운트되기 전,
          외부 CSS(global.css)가 body 배경을 --color-background(#f5f5f2,
@@ -16,6 +16,34 @@
       html,
       body {
         background: #c9d2e7;
+      }
+      /* JS가 로드되기 전에도 로딩 화면과 같은 "0%"를 먼저 보여줍니다 */
+      #boot-loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2001;
+        background: #c9d2e7;
+      }
+      #boot-loading p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: max-content;
+        margin: 0;
+        color: #333;
+        font-family: "Neue Machina", sans-serif;
+        font-size: 80px;
+        line-height: 1.05;
+        text-align: center;
+      }
+      @media (max-width: 721px) {
+        #boot-loading p {
+          font-size: 40px;
+        }
       }
     </style>
 
@@ -37,6 +65,7 @@
     </script>
   </head>
   <body>
+    <div id="boot-loading"></div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

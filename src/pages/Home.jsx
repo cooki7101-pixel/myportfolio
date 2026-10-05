@@ -7,7 +7,7 @@ import HomeFooter from '../components/HomeFooter'
 import HomeProjectList from '../components/HomeProjectList'
 import '../componentsStyle/glassBox.css'
 import GlassBox from '../components/GlassBox'
-import { LiquidGlass } from 'quidlass';
+import { LiquidGlass } from '../lib/quidlass.esm.js';
 import '../componentsStyle/home.css'
 
 gsap.registerPlugin(SplitText)

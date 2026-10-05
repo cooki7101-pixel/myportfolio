@@ -21,10 +21,43 @@ updateViewportScale()
 window.addEventListener('resize', updateViewportScale)
 window.addEventListener('orientationchange', updateViewportScale)
 
+// 렌더 중 에러가 나면 React가 화면 전체를 비워서 "파란 빈 화면"만 남고 새로고침 전까지 안 풀립니다.
+// 그 상황을 막기 위해: 에러 내용을 화면/콘솔에 보여주고, 처음 한 번은 자동으로 새로고침해서 복구합니다.
+class RootErrorBoundary extends React.Component {
+  state = { error: null }
+  static getDerivedStateFromError(error) {
+    return { error }
+  }
+  componentDidCatch(error, info) {
+    console.error('[RootErrorBoundary]', error, info?.componentStack)
+    document.getElementById('boot-loading')?.remove()
+    try {
+      if (!sessionStorage.getItem('rootErrorReloaded')) {
+        sessionStorage.setItem('rootErrorReloaded', '1')
+        window.location.reload()
+      }
+    } catch (e) {
+      /* sessionStorage 사용 불가 — 무시 */
+    }
+  }
+  render() {
+    if (this.state.error) {
+      return (
+        <pre style={{ padding: 24, whiteSpace: 'pre-wrap', color: '#333', font: '14px monospace' }}>
+          {String(this.state.error?.stack || this.state.error)}
+        </pre>
+      )
+    }
+    return this.props.children
+  }
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <HashRouter>
-      <App />
-    </HashRouter>
+    <RootErrorBoundary>
+      <HashRouter>
+        <App />
+      </HashRouter>
+    </RootErrorBoundary>
   </React.StrictMode>,
 )

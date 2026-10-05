@@ -1,6 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { LiquidGlass } from 'quidlass'
+import { LiquidGlass } from '../lib/quidlass.esm.js'
 import Logo from './Logo'
 import '../componentsStyle/header.css'
 
