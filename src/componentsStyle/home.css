@@ -2,6 +2,17 @@
 @import url("/webfonts/static/wantedSans/WantedSans.css");
 @import url("/webfonts/static/ppNeueMachina/ppNeueMachina.css");
 
+/* 화면 폭 비율(단위 없는 숫자) — main.jsx의 JS가 실제 값으로 갱신합니다.
+   calc(길이 / 길이)는 구형 Safari(아이패드 등)에서 지원되지 않아 줄이 통째로 무시되므로,
+   JS에서 숫자로 계산해 변수로 넣고 CSS에서는 곱셈만 합니다.
+   --k19: min(폭,1920)/1920 · --k11: min(폭,1100)/1100 · --m487: 폭/487 · --u487: 487/폭 */
+:root {
+  --k19: 1;
+  --k11: 1;
+  --m487: 1;
+  --u487: 1.3;
+}
+
 .home {
   box-sizing: border-box;
   display: flex;
@@ -24,7 +35,7 @@
      스테이지 위/아래로 빈 여백이 계속 늘어났습니다. 여기서도 스테이지와
      똑같이 min(100vw,1920px) 기준으로 높이를 계산해서, 1920px 이상에서는
      더 이상 커지지 않게(스테이지와 정확히 같은 크기로) 맞춥니다. */
-  height: calc(800px * min(100vw, 1920px) / 1920px);
+  height: calc(800px * var(--k19));
   min-height: 0;
   flex-direction: column;
   justify-content: center;
@@ -49,13 +60,13 @@
   left: 50%;
   width: 1920px;
   height: 800px;
-  transform: translate(-50%, -50%) scale(calc(min(100vw, 1920px) / 1920px));
+  transform: translate(-50%, -50%) scale(var(--k19));
   transform-origin: top center;
   pointer-events: none;
 }
 
 .home__hero {
-  --r: calc(min(100vw, 1920px) / 1920px);
+  --r: var(--k19);
   --hdr: 80px;
   --off: calc(var(--hdr) * (1 - var(--r)));
 }
@@ -81,7 +92,7 @@
 @media (max-width: 1920px) {
   .home__hero-stage {
     top: 120px;
-    transform: translate(-50%, 0%) scale(calc(min(100vw, 1920px) / 1920px));
+    transform: translate(-50%, 0%) scale(var(--k19));
     transform-origin: top center;
   }
 }
@@ -100,10 +111,10 @@
   margin: 0 auto;
   font-family: "PP Neue Machina";
   font-weight: 400;
-  font-size: calc(465px * min(100vw, 1920px) / 1920px);
+  font-size: calc(465px * var(--k19));
   line-height: 1.15;
   text-align: center;
-  letter-spacing: calc(-18px * min(100vw, 1920px) / 1920px);
+  letter-spacing: calc(-18px * var(--k19));
   text-transform: uppercase;
   white-space: nowrap;
   color: #121212;
@@ -121,15 +132,15 @@
 
 .home__hero-desc {
   margin: 0;
-  max-width: calc(337px * min(100vw, 1920px) / 1920px);
+  max-width: calc(337px * var(--k19));
   color: #333;
   font-family: "Wanted Sans", var(--font-sans);
-  font-size: calc(16px * min(100vw, 1920px) / 1920px);
+  font-size: calc(16px * var(--k19));
   line-height: 1.32;
   position: absolute;
   top: calc(100vh - 50px);
   transform: translateY(-100%);
-  left: calc(40px * min(100vw, 1920px) / 1920px);
+  left: calc(40px * var(--k19));
 }
 
 @media (min-width: 1100px) {
@@ -145,13 +156,13 @@
   .home__hero {
     margin-bottom: calc(var(--s) * 220px);
     --hdr: 80px;
-    --s: calc(min(100vw, 1100px) / 1100px);
+    --s: var(--k11);
     --off: calc(var(--hdr) * (1 - var(--s)));
   }
   .home__hero-desc {
     top: calc(var(--off) + var(--s) * 670.7px);
-    max-width: calc(337px * min(100vw, 1100px) / 1100px);
-    font-size: calc(13px * min(100vw, 1100px) / 1100px);
+    max-width: calc(337px * var(--k11));
+    font-size: calc(13px * var(--k11));
   }
   .home__hero-img-me {
     width: calc(120% - 10px);
@@ -222,7 +233,7 @@
     left: 50%;
     width: 487px;
     height: 847px;
-    transform: translate(-50%, 0%) scale(calc(100vw / 487px));
+    transform: translate(-50%, 0%) scale(var(--m487));
     transform-origin: top center;
     overflow: hidden;
     pointer-events: none;
@@ -236,7 +247,10 @@
     top: 0;
     /* 1100px 이하 규칙의 left: 48.2%가 여기까지 새어 들어와 왼쪽으로 치우쳤습니다 — 모바일은 정확히 가운데 */
     left: 50%;
-    height: 100%;
+    /* 마스크 선: wrap의 아래쪽 끝(overflow:hidden)에서 글자가 잘리며 위로 올라옵니다.
+       글자 아래 끝(top 106px + 줄높이 약 132px = 238px)보다 살짝 아래로 두었습니다.
+       선을 더 위로 올리려면 숫자를 줄이세요 */
+    height: 245px;
     transform: translate(-50%, 0);
   }
 

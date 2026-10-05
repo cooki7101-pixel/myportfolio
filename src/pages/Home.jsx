@@ -123,9 +123,21 @@ export default function Home({ loadingFinished = false }) {
       const descLines = gsap.utils.toArray('.home__hero-desc-line-inner')
       gsap.set(descLines, { yPercent: 110 })
       // 태블릿/모바일(≤1100px)은 시작 위치(y)를 덜 낮게 — 숫자를 줄이면 더 위에서 시작
-      const heroTextStartY = window.innerWidth <= 1100 ? '40%' : '100%'
-      gsap.set(heroText, { x: '100%', y: heroTextStartY })
-      gsap.set(splitText.chars, { yPercent: 100 })
+      // 모바일(≤681px): 오른쪽에서 들어오는 느낌은 유지하면서 아래쪽은 마스크 선에서 잘림. 숫자(%)를 키우면 더 아래에서(더 가려진 채) 올라옴
+      // ▼ [모바일 YEONSU 모션] 레퍼런스(heynesh) 영상처럼: 글자 전체가 오른쪽 아래(마스크 선 밖)에서
+      //   대각선으로 올라오고, 글자마다 시간차(뒤 글자일수록 살짝 늦게/아래에서)로 따라옵니다.
+      //   마스크 선은 home.css 모바일의 .home__hero-text-wrap height(245px)
+      const isMobileHero = window.innerWidth <= 681
+      const MOBILE_START_X = '170%'   // 시작 가로 위치(클수록 더 오른쪽 바깥에서)
+      const MOBILE_START_Y = '180%'  // 시작 세로 위치(클수록 더 아래). 시작 시 글자 전체가 마스크 선 아래로 완전히 가려지게 충분히 크게
+      const heroTextStartY = isMobileHero ? MOBILE_START_Y : window.innerWidth <= 1100 ? '40%' : '100%'
+      // 모바일: 투명(0)에서 시작해 빠르게 나타납니다(숫자를 키우면 더 천천히)
+      const MOBILE_FADE_DURATION = 0.25
+      const MOBILE_FADE_DELAY = 0.02
+      gsap.set(heroText, { x: isMobileHero ? MOBILE_START_X : '100%', y: heroTextStartY, opacity: isMobileHero ? 0 : 1 })
+      // 모바일: 글자 개별 시작 y를 낮춰야(100→40) 글자가 처음부터 보여서 '오른쪽에서 쓸려 들어오는' 움직임이 보입니다.
+      // 100이면 글자가 가려진 채 제자리에서 왼쪽부터 순서대로 솟아올라 '왼쪽에서 나오는' 느낌이 됩니다.
+      gsap.set(splitText.chars, { yPercent: isMobileHero ? 40 : 100 })
       setLiquidGlassActive(false)
       if (!loadingFinished) return
 
@@ -133,15 +145,22 @@ export default function Home({ loadingFinished = false }) {
       timeline.to(heroText, {
         x: '0%',
         y: '0%',
-        duration: 0.8,
-        ease: 'power2.out',
+        // 모바일은 더 빠르고 탄력 있게(숫자를 줄이면 더 빨라짐)
+        duration: isMobileHero ? 0.75 : 0.8,
+        ease: isMobileHero ? 'power4.out' : 'power2.out',
       })
       timeline.to(splitText.chars, {
         yPercent: 0,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: 'power2.out',
+        // 모바일: 글자 전체가 들어오는 동안(0.3초) 글자가 하나씩 위로 올라가도록,
+        // 글자 모션 전체 길이(duration + 글자수×stagger)가 이동 시간(0.3초) 안에 끝나게 짧게 잡았습니다.
+        duration: isMobileHero ? 0.22 : 0.6,
+        stagger: isMobileHero ? 0.015 : 0.08,
+        ease: isMobileHero ? 'power4.out' : 'power2.out',
       }, '<')
+      // 모바일 투명도: 글자가 마스크 선 위로 처음 보이기 시작하는 순간(이동 시작 직후)에 같이 시작.
+      // 이동이 power4.out이라 아주 빨리 보이기 시작하므로 지연은 아주 짧게(MOBILE_FADE_DELAY).
+      // 투명도가 너무 일찍 올라 보이면 DELAY를 키우고, 늦게 들어오면 줄이세요.
+      if (isMobileHero) timeline.to(heroText, { opacity: 1, duration: MOBILE_FADE_DURATION, ease: 'none' }, `<+=${MOBILE_FADE_DELAY}`)
       timeline.to(heroImage, {
         opacity: 1,
         filter: 'blur(0px)',

@@ -150,7 +150,7 @@
   :root {
     /* 1100px 화면에서의 크기를 기준으로, 화면이 줄면 박스 크기·글자·아이콘도 같은 비율로
        같이 줄어듭니다(예전엔 화면 크기와 상관없이 고정 크기라 위치만 모여서 겹쳤습니다) */
-    --unscale: calc(1920px / 1100px);
+    --unscale: 1.7454545; /* 1920 / 1100 (구형 Safari 호환: 길이÷길이 대신 숫자) */
   }
 
   /* 프로덕트 디자이너 칩만 태블릿/모바일에서 130x64로 더 작게 — 나머지
@@ -214,7 +214,7 @@
 
   @media (max-width: 681px) {
     .home__hero-mobile-stage {
-      --unscale: calc(487px / 100vw);
+      --unscale: var(--u487); /* 487 / 화면폭 — main.jsx에서 계산 */
     }
     .glass-box__items {
       gap: 8px;
