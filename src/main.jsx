@@ -18,6 +18,15 @@ function updateViewportScale() {
   root.setProperty('--u487', String(487 / w))
 }
 updateViewportScale()
+// Safari(iPhone/iPad/Mac)는 유리 굴절용 SVG 필터가 배경에 적용되지 않아 블러만 남기 때문에,
+// html에 클래스를 달아 glassBox.css에서 Safari 전용 유리 보강 스타일을 적용합니다.
+{
+  const ua = navigator.userAgent
+  const isSafari =
+    /Safari\//.test(ua) && !/Chrome|Chromium|CriOS|FxiOS|Edg|OPR|Android/.test(ua)
+  const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+  if (isSafari || isIOS) document.documentElement.classList.add('is-safari')
+}
 window.addEventListener('resize', updateViewportScale)
 window.addEventListener('orientationchange', updateViewportScale)
 
