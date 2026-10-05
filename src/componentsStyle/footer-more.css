@@ -123,8 +123,8 @@
   height: 33px;
 }
 .footer-more--mobile .footer-more__bottom > a > img {
-  width: 40px;
-  height: 26px; /* Figma 모바일 푸터 logo_path 40×26 */
+  width: 42px;
+  height: 28px; /* Figma 모바일 푸터 logo_path 42×28 */
 }
 .footer-more--mobile {
   padding-left: 17px;
