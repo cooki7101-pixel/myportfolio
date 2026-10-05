@@ -142,7 +142,7 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
           </LiquidGlass>
         </div>
       )}
-      <div className="header__ghost" aria-hidden="true" inert="">
+      <div className="header__ghost" aria-hidden="true" inert>
         {bar}
       </div>
       {isMobile && (
@@ -165,7 +165,7 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
       {bar}
     </div>
     {/* 로고 검정을 더 진하게 하는 보조 레이어 (color-burn) — 로고 모양만 보이고 클릭/포커스는 안 받음 */}
-    <div className={`header-burn header--${resolvedBreakpoint}${menuOpen ? ' header--menu-open' : ''}`} aria-hidden="true" inert="">
+    <div className={`header-burn header--${resolvedBreakpoint}${menuOpen ? ' header--menu-open' : ''}`} aria-hidden="true" inert>
       {bar}
     </div>
     </>

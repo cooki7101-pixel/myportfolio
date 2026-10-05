@@ -60,7 +60,7 @@ export default function GlassBox({
       data-node-id="396:4253"
     >
       <svg className="glass-box__filter-defs" aria-hidden="true" focusable="false">
-        <filter id={filterId} x="-20%" y="-20%" width="1%%" height="140%">
+        <filter id={filterId} x="-20%" y="-20%" width="140%" height="140%">
           <feTurbulence
             type="fractalNoise"
             baseFrequency="0.008 0.012"
