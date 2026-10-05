@@ -7,15 +7,11 @@
   top: 0;
   left: 0;
   right: 0;
-  /* 모바일 주소창이 접히거나 펼쳐져도 배경이 화면 전체를 항상 꽉 채우도록
-     가장 큰 뷰포트(lvh)까지 덮고, 아래도 넉넉히 확장합니다 */
+  /* 높이를 vh/lvh/dvh 같은 단위로 정하지 않고 top·bottom:0 으로만 둡니다 —
+     그러면 사파리(툴바가 뜨거나 접히는 모바일)에서도 "지금 실제로 보이는 영역"과 정확히 같아져서
+     숫자가 그 영역의 정중앙에 옵니다. (lvh로 키웠더니 사파리에서 숫자가 아래로 내려가 보였습니다) */
   bottom: 0;
   width: 100%;
-  height: 100vh;
-  height: 100lvh;
-  min-height: 100dvh;
-  /* 완전 불투명 배경(아래 hero 모션이 비치지 않게) */
-  background-clip: border-box;
   z-index: 2000;
   box-sizing: border-box;
   display: flex;
@@ -37,9 +33,6 @@
      로드돼 크기가 바뀌어도 중심은 그대로입니다. */
   position: absolute;
   top: 50%;
-  /* 배경은 가장 큰 화면 높이(100lvh)까지 덮지만, 숫자는 "지금 실제로 보이는" 화면(dvh)의 정중앙에 둡니다 —
-     50%(=lvh 기준)면 모바일에서 주소창이 보일 때 숫자가 살짝 아래로 내려가 보였습니다. */
-  top: 50dvh;
   left: 50%;
   transform: translate(-50%, -50%);
   width: max-content;
