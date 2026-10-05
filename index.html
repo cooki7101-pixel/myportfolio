@@ -59,6 +59,27 @@
       }
     </style>
 
+    <!-- 주소에서 "#"를 없애는 BrowserRouter용 설정(GitHub Pages) -->
+    <script>
+      (function (l) {
+        // 1) public/404.html이 넘겨준 "?/경로" 형태를 실제 주소("/myportfolio/경로")로 복원
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+        // 2) 예전 "#/about" 형태 링크도 새 주소("/about")로 자동 변환
+        else if (l.hash.indexOf("#/") === 0) {
+          window.history.replaceState(null, null, l.pathname.replace(/\/$/, "") + l.hash.slice(1));
+        }
+      })(window.location);
+    </script>
+
     <!-- Google Analytics 4 — analytics.google.com에서 속성을 만들고 받은
          측정 ID(G-BD7201ME4Y)로 아래 두 군데(src, gtag 호출)를 바꿔주세요.
          체류시간, 방문자 수, 유입경로 등은 GA4 리포트(참여도 > 참여 시간)에서

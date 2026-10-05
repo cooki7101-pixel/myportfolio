@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Yeonsu Kim | Product Designer Portfolio</title>
+    <!-- GitHub Pages는 없는 경로(예: /myportfolio/about)를 새로고침하면 404.html을 보여줍니다.
+         이 파일이 주소를 "/myportfolio/?/about"로 바꿔 index.html로 보내고, index.html이 다시 원래 주소로 복원합니다.
+         저장소 이름이 바뀌어도 되는 구조(첫 번째 경로 조각만 유지). 사용자 사이트(이름.github.io, 경로 없음)로 옮기면 pathSegmentsToKeep을 0으로 바꾸세요. -->
+    <script>
+      var pathSegmentsToKeep = 1;
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname.split("/").slice(0, 1 + pathSegmentsToKeep).join("/") +
+          "/?/" +
+          l.pathname.slice(1).split("/").slice(pathSegmentsToKeep).join("/").replace(/&/g, "~and~") +
+          (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+          l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
