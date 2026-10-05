@@ -122,7 +122,7 @@ export default function Home({ loadingFinished = false }) {
       // 곳)에서 위로 천천히 올라옵니다.
       const descLines = gsap.utils.toArray('.home__hero-desc-line-inner')
       gsap.set(descLines, { yPercent: 110 })
-      // 태블릿/모바일(≤1100px)은 시작 위치(y)를 덜 낮게 — 숫자를 줄이면 더 위에서 시작
+      // 태블릿/모바일(≤1440px)은 시작 위치(y)를 덜 낮게 — 숫자를 줄이면 더 위에서 시작
       // 모바일(≤681px): 오른쪽에서 들어오는 느낌은 유지하면서 아래쪽은 마스크 선에서 잘림. 숫자(%)를 키우면 더 아래에서(더 가려진 채) 올라옴
       // ▼ [모바일 YEONSU 모션] 레퍼런스(heynesh) 영상처럼: 글자 전체가 오른쪽 아래(마스크 선 밖)에서
       //   대각선으로 올라오고, 글자마다 시간차(뒤 글자일수록 살짝 늦게/아래에서)로 따라옵니다.
@@ -130,7 +130,7 @@ export default function Home({ loadingFinished = false }) {
       const isMobileHero = window.innerWidth <= 681
       const MOBILE_START_X = '170%'   // 시작 가로 위치(클수록 더 오른쪽 바깥에서)
       const MOBILE_START_Y = '180%'  // 시작 세로 위치(클수록 더 아래). 시작 시 글자 전체가 마스크 선 아래로 완전히 가려지게 충분히 크게
-      const heroTextStartY = isMobileHero ? MOBILE_START_Y : window.innerWidth <= 1100 ? '40%' : '100%'
+      const heroTextStartY = isMobileHero ? MOBILE_START_Y : window.innerWidth <= 1440 ? '40%' : '100%'
       // 모바일: 투명(0)에서 시작해 빠르게 나타납니다(숫자를 키우면 더 천천히)
       const MOBILE_FADE_DURATION = 0.25
       const MOBILE_FADE_DELAY = 0.02

@@ -191,7 +191,7 @@
    태블릿 프레임에 따라 카드 크기만 줄어들고, 위쪽의 sticky/overflow-visible
    설정은 그대로 유지되어, 스크롤 시 행이 계속 슬라이드 인 되고 페이지
    좌우 여백을 넘어서도 잘리지 않습니다. */
-@media (max-width: 1100px) {
+@media (max-width: 1440px) {
   .home-project-list {
     --work-pad-top: 120px; /* 태블릿 위 간격 */
   }

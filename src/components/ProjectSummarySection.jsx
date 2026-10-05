@@ -16,7 +16,7 @@ export default function ProjectSummarySection({
   const [isViewportTablet, setIsViewportTablet] = useState(false)
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 1100px)')
+    const mediaQuery = window.matchMedia('(max-width: 1440px)')
     const updateBreakpoint = () => setIsViewportTablet(mediaQuery.matches)
     updateBreakpoint()
     mediaQuery.addEventListener('change', updateBreakpoint)

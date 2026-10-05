@@ -5,7 +5,7 @@
 /* 화면 폭 비율(단위 없는 숫자) — main.jsx의 JS가 실제 값으로 갱신합니다.
    calc(길이 / 길이)는 구형 Safari(아이패드 등)에서 지원되지 않아 줄이 통째로 무시되므로,
    JS에서 숫자로 계산해 변수로 넣고 CSS에서는 곱셈만 합니다.
-   --k19: min(폭,1920)/1920 · --k11: min(폭,1100)/1100 · --m487: 폭/487 · --u487: 487/폭 */
+   --k19: min(폭,1920)/1920 · --k11: min(폭,1440)/1100 · --m487: 폭/487 · --u487: 487/폭 */
 :root {
   --k19: 1;
   --k11: 1;
@@ -158,15 +158,14 @@
   font-size: calc(16px * var(--k19));
   line-height: 1.32;
   position: absolute;
-  /* 100vh(화면 높이) 기준이면 기기·창 높이마다 desc 위치가 달라져서(아이패드 가로 등) YEONSU·이미지와 간격이 어긋났습니다.
-     다른 hero 요소와 같은 기준(헤더 아래 고정점 + 화면 폭 비율)으로 위치를 잡습니다.
-     1030px = 1920×1080 화면에서 예전 위치(100vh - 50px)와 같은 값. 숫자를 키우면 아래로 */
-  top: calc(var(--off) + var(--r) * 1030px);
+  /* 데스크탑(1440px 초과): 화면(모니터) 하단에 고정 — 화면 높이(100vh)에서 50px 위.
+     (태블릿 이하는 아래 @media에서 YEONSU·이미지와 같은 기준으로 따로 잡습니다) */
+  top: calc(100vh - 50px);
   transform: translateY(-100%);
   left: calc(40px * var(--k19));
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1441px) {
   .home__hero {
     height: calc(var(--off) + var(--r) * 800px);
   }
@@ -175,7 +174,7 @@
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1440px) {
   .home__hero {
     margin-bottom: calc(var(--s) * 220px);
     --hdr: 80px;
@@ -215,7 +214,7 @@
     transform: translate(calc(-50% + 380px * var(--r)), -50%) scale(var(--r));
   }
 }
-@media (min-width: 682px) and (max-width: 1100px) {
+@media (min-width: 682px) and (max-width: 1440px) {
   .home__hero {
     height: calc(var(--off) + var(--s) * 458.33px);
   }

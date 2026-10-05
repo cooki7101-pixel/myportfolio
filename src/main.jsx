@@ -13,7 +13,7 @@ function updateViewportScale() {
   const w = window.innerWidth
   const root = document.documentElement.style
   root.setProperty('--k19', String(Math.min(w, 1920) / 1920))
-  root.setProperty('--k11', String(Math.min(w, 1100) / 1100))
+  root.setProperty('--k11', String(Math.min(w, 1440) / 1100))
   root.setProperty('--m487', String(w / 487))
   root.setProperty('--u487', String(487 / w))
 }

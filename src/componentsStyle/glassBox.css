@@ -132,7 +132,7 @@
   white-space: nowrap;
 }
 
-/* 태블릿(≤1100px, home__hero-desc의 태블릿 기준과 동일) 글래스박스
+/* 태블릿(≤1440px, home__hero-desc의 태블릿 기준과 동일) 글래스박스
    사이즈 — Figma 태블릿 가이드(node 708:3760) 기준입니다. 각 박스의
    데스크탑 사이즈는 Home.jsx에서 인라인 style로 지정되어 있어서, 이
    미디어쿼리에서 그보다 우선 적용되도록 !important를 씁니다.
@@ -146,7 +146,7 @@
    --unscale 계산이 따로 있어서 이 규칙과 겹치지 않습니다(그쪽 stage가
    display:none이 아니게 되면서 여기 규칙 대상인 home__hero-stage 쪽은
    display:none이 됨). */
-@media (max-width: 1100px) {
+@media (max-width: 1440px) {
   :root {
     /* 1100px 화면에서의 크기를 기준으로, 화면이 줄면 박스 크기·글자·아이콘도 같은 비율로
        같이 줄어듭니다(예전엔 화면 크기와 상관없이 고정 크기라 위치만 모여서 겹쳤습니다) */
