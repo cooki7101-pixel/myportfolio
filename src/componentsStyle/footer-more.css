@@ -118,10 +118,13 @@
 .footer-more--mobile h3 {
   font-size: 20px;
 }
-.footer-more--tablet .footer-more__bottom > a > img,
-.footer-more--mobile .footer-more__bottom > a > img {
+.footer-more--tablet .footer-more__bottom > a > img {
   width: 50px;
   height: 33px;
+}
+.footer-more--mobile .footer-more__bottom > a > img {
+  width: 40px;
+  height: 26px; /* Figma 모바일 푸터 logo_path 40×26 */
 }
 .footer-more--mobile {
   padding-left: 17px;
