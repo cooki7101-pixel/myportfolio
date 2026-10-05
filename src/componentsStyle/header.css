@@ -58,7 +58,8 @@
   color: #333;
   font-family: "Neue Machina", var(--font-sans);
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 200;
+  letter-spacing: 0.015em; /* 자간: 넓게 0.06em, 좁게 -0.02em */
   line-height: 1.2;
   text-align: center;
   text-decoration: none;
@@ -91,7 +92,9 @@
   color: #333;
   font-family: "Neue Machina", var(--font-sans);
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 100;
+  -webkit-text-stroke: 0.35px currentColor;
+  letter-spacing: 0.042em; /* 자간: 넓게 0.06em, 좁게 -0.02em */
   line-height: 1.2;
   cursor: pointer;
   z-index: 1101;
@@ -149,7 +152,85 @@
   margin: 0;
   padding: 0;
   font-size: 16px !important;
-  color: #333333 !important;
+  color: #333 !important;
   text-decoration: underline !important;
   text-transform: none !important;
 }
+
+/* ── 색 반전 ─────────────────────────────────────────────
+   헤더 로고·메뉴 글자가 바로 아래 요소(배경·이미지·검은 푸터 등)의 색과 겹쳐도 보이도록,
+   흰색으로 칠한 뒤 mix-blend-mode: difference로 아래 색과 반전시킵니다.
+   (밝은 배경 위에서는 어둡게, 어두운 배경 위에서는 밝게 보임)
+   헤더 안쪽에서는 뒤 페이지와 섞이지 않아서, 로고·메뉴만 헤더 바깥의 이 고정 레이어(.header-invert)에
+   따로 올려 두었습니다(헤더 안에는 자리만 차지하는 투명 복사본 .header__ghost가 있음).
+   로고는 검은색 이미지라 filter: invert(1)로 흰색으로 바꾼 뒤 같은 방식으로 섞습니다.
+   모바일 메뉴가 열려 있을 땐(불투명 오버레이 위) 원래 색(#333)을 유지합니다.
+   끄고 싶으면 이 블록 전체를 지우고 Header.jsx의 .header-invert 줄을 제거하세요. */
+.header__ghost {
+  display: contents;
+  visibility: hidden;
+}
+.header-invert {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2001;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 68px;
+  border-bottom: 0.7px solid transparent;
+  pointer-events: none; /* 빈 곳은 클릭이 아래로 통과 */
+}
+.header-invert > * {
+  pointer-events: auto;
+}
+.header-invert {
+  mix-blend-mode: difference;
+  /* 글자는 순백(#fff)으로 흰색을 최대로 + 레이어 투명도로 검정이 너무 진해지는 걸 보정.
+     opacity ↓ : 검정 연해짐(흰색도 조금 약해짐) / opacity ↑ : 검정 진해짐(흰색 강해짐) */
+  opacity: 0.9;
+}
+.header-invert .header__logo img {
+  /* 로고 원본이 순검정이 아니어도 완전한 흰색으로 만들어 반전 결과가 가장 진하게 */
+  filter: brightness(0) invert(1);
+  opacity: 1;
+}
+.header-invert .header__menu a,
+.header-invert .header__menu-toggle {
+  color: #dbdbdb;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.header-invert.header--tablet {
+  padding: 18px 40px;
+}
+.header-invert.header--mobile {
+  padding: 18px 17px;
+}
+
+/* 로고 검정 보강: difference 결과 위에 color-burn으로 한 번 더 깔아서
+   어두운 부분(검정)은 더 진하게, 흰 부분은 그대로 유지합니다.
+   아래 invert 값(0.8 ≈ #ccc)을 낮추면 검정이 더 진해지고, 높이면 덜 진해집니다. */
+.header-burn {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2002;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 68px;
+  border-bottom: 0.7px solid transparent;
+  pointer-events: none;
+}
+.header-burn.header--tablet { padding: 18px 40px; }
+.header-burn.header--mobile { padding: 18px 17px; }
+.header-burn { mix-blend-mode: color-burn; }
+.header-burn .header__menu,
+.header-burn .header__menu-toggle { visibility: hidden; }
+.header-burn .header__logo img { filter: brightness(0) invert(0.8); }

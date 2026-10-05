@@ -342,7 +342,7 @@ export default function Home({ loadingFinished = false }) {
               enableInnerGlow
               style={{ backgroundColor: 'rgba(255, 255, 255, 0.08)' }}
             >
-              <GlassBox curvature={10} width='264px' height='199px' blur={0} opacity={0}
+              <GlassBox curvature={10} width='264px' height='202px' blur={0} opacity={0}
                 flexDirection='column'
                 items={[
                   { iconSrc: `${import.meta.env.BASE_URL}assets/home/icon-fast.png`, text: 'Fast Worker' },

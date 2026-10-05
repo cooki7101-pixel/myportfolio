@@ -85,7 +85,35 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
     }
   }
 
+  // 로고·메뉴(글자) 부분. 두 번 그립니다:
+  //  1) 헤더 안에 투명(visibility:hidden)한 자리 확보용 복사본 — 헤더 높이/배치를 그대로 유지
+  //  2) 헤더 바깥의 .header-invert 레이어에 실제 동작하는 버전 — 이 레이어에 mix-blend-mode를 걸어서
+  //     페이지 뒤 요소와 색이 반전되게 합니다(헤더 안쪽에서는 뒤 페이지와 섞이지 않아서 따로 뺐습니다).
+  const bar = (
+    <>
+      <NavLink className="header__logo" to={homeUrl} aria-label="Portfolio home" onClick={goHome}>
+        <Logo variant={isMobile ? 'mobile-black' : 'desktop-black'} alt="김연수 포트폴리오" />
+      </NavLink>
+      {isMobile ? (
+        <button
+          type="button"
+          className="header__menu-toggle"
+          aria-expanded={menuOpen}
+          aria-controls="header-mobile-menu"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? 'CLOSE' : 'MENU'}
+        </button>
+      ) : (
+        <nav className="header__menu" aria-label="Main navigation">
+          <NavLink to="/" state={{ scrollTo: 'work' }} onClick={goToWork}>WORK</NavLink><NavLink to="/about">ABOUT</NavLink><a href={`${import.meta.env.BASE_URL}assets/resume.pdf`} target="_blank" rel="noopener noreferrer">RESUME</a>
+        </nav>
+      )}
+    </>
+  )
+
   return (
+    <>
     <header className={`header header--${resolvedBreakpoint}${menuOpen ? ' header--menu-open' : ''}`} data-node-id="291:1660">
       {/* 헤더 뒤에 깔리는 유리 효과 전용 레이어(모션 없음) — 헤더 자체에
           backdrop-filter가 걸려 있으면 그 안쪽 유리가 뒤를 못 봐서, 기존
@@ -114,39 +142,32 @@ export default function Header({ breakpoint, homeUrl = '/' }) {
           </LiquidGlass>
         </div>
       )}
-      <NavLink className="header__logo" to={homeUrl} aria-label="Portfolio home" onClick={goHome}>
-        <Logo variant={isMobile ? 'mobile-black' : 'desktop-black'} alt="김연수 포트폴리오" />
-      </NavLink>
-      {isMobile ? (
-        <>
-          <button
-            type="button"
-            className="header__menu-toggle"
-            aria-expanded={menuOpen}
-            aria-controls="header-mobile-menu"
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            {menuOpen ? 'CLOSE' : 'MENU'}
-          </button>
-          <nav
-            id="header-mobile-menu"
-            className="header__overlay"
-            aria-label="Main navigation"
-            aria-hidden={!menuOpen}
-          >
-            <ol className="header__overlay-list">
-              <li><NavLink to="/" state={{ scrollTo: 'work' }} onClick={goToWork}>WORK</NavLink></li>
-              <li><NavLink to="/about" onClick={closeMenu}>ABOUT</NavLink></li>
-              <li><a href={`${import.meta.env.BASE_URL}assets/resume.pdf`} target="_blank" rel="noopener noreferrer" onClick={closeMenu}>RESUME</a></li>
-            </ol>
-            <a className="header__overlay-cta" href="mailto:cooki7101@naver.com" onClick={closeMenu}>Let's work together?</a>
-          </nav>
-        </>
-      ) : (
-        <nav className="header__menu" aria-label="Main navigation">
-          <NavLink to="/" state={{ scrollTo: 'work' }} onClick={goToWork}>WORK</NavLink><NavLink to="/about">ABOUT</NavLink><a href={`${import.meta.env.BASE_URL}assets/resume.pdf`} target="_blank" rel="noopener noreferrer">RESUME</a>
+      <div className="header__ghost" aria-hidden="true" inert="">
+        {bar}
+      </div>
+      {isMobile && (
+        <nav
+          id="header-mobile-menu"
+          className="header__overlay"
+          aria-label="Main navigation"
+          aria-hidden={!menuOpen}
+        >
+          <ol className="header__overlay-list">
+            <li><NavLink to="/" state={{ scrollTo: 'work' }} onClick={goToWork}>WORK</NavLink></li>
+            <li><NavLink to="/about" onClick={closeMenu}>ABOUT</NavLink></li>
+            <li><a href={`${import.meta.env.BASE_URL}assets/resume.pdf`} target="_blank" rel="noopener noreferrer" onClick={closeMenu}>RESUME</a></li>
+          </ol>
+          <a className="header__overlay-cta" href="mailto:cooki7101@naver.com" onClick={closeMenu}>Let's work together?</a>
         </nav>
       )}
     </header>
+    <div className={`header-invert header--${resolvedBreakpoint}${menuOpen ? ' header--menu-open' : ''}`}>
+      {bar}
+    </div>
+    {/* 로고 검정을 더 진하게 하는 보조 레이어 (color-burn) — 로고 모양만 보이고 클릭/포커스는 안 받음 */}
+    <div className={`header-burn header--${resolvedBreakpoint}${menuOpen ? ' header--menu-open' : ''}`} aria-hidden="true" inert="">
+      {bar}
+    </div>
+    </>
   )
 }

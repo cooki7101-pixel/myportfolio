@@ -1,8 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import gsap from "gsap";
 import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
 import ProjectPassing from "./pages/work/ProjectPassing";
 import ProjectKakaoT from "./pages/work/ProjectKakaoT";
 import ProjectHyundai from "./pages/work/ProjectHyundai";
@@ -82,6 +81,24 @@ function ScrollManager() {
   return null;
 }
 
+// 홈으로 이동하면 라우터가 주소를 "/myportfolio"(끝 슬래시 없음)로 만들어서, 이 상태로
+// 새로고침하거나 로고를 다시 누르면 개발 서버/호스팅이 "/myportfolio/"가 맞다고 안내하며 오류가 납니다.
+// 경로가 바뀔 때마다 끝 슬래시가 빠진 베이스 주소를 "/myportfolio/"로 바로잡습니다(화면 이동 없음).
+function BaseSlashFix() {
+  const location = useLocation();
+  useEffect(() => {
+    const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+    if (base && window.location.pathname === base) {
+      window.history.replaceState(
+        window.history.state,
+        "",
+        `${base}/${window.location.search}${window.location.hash}`
+      );
+    }
+  }, [location]);
+  return null;
+}
+
 function PageTransitionRoutes({ loadingFinished }) {
   const location = useLocation();
   const [displayLocation, setDisplayLocation] = useState(location);
@@ -142,7 +159,8 @@ function PageTransitionRoutes({ loadingFinished }) {
       <Route path="/works/kakao-t" element={<ProjectKakaoT />} />
       <Route path="/works/hyundai" element={<ProjectHyundai />} />
       <Route path="/about" element={<About />} />
-      <Route path="*" element={<NotFound />} />
+      {/* 없는 주소는 스타터 키트의 크림색 404 페이지 대신 홈으로 보냅니다 */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 
@@ -192,6 +210,7 @@ export default function App() {
       {showLoadingScreen && (
         <LoadingScreen onFinish={handleLoadingFinish} />
       )}
+      <BaseSlashFix />
       <ScrollManager />
       <PageTransitionRoutes loadingFinished={loadingFinished} />
     </div>

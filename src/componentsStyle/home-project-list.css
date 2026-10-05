@@ -149,13 +149,16 @@
   padding: 10px;
   border: 0.5px solid #fff;
   border-radius: 100px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(27, 27, 27, 0.1);
   color: #fff;
   font-family: "Wanted Sans", var(--font-sans);
   font-size: 14px;
   font-weight: 400;
   line-height: 1.1;
   text-shadow: 0px 0px 25px rgba(0, 0, 0, 0.45);
+  /* 영상 위에서도 구분되도록 뒤를 살짝 흐리게 + 어둡게 */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   white-space: nowrap;
 }
 

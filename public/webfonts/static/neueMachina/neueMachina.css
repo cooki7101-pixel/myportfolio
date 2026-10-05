@@ -50,3 +50,19 @@
     font-weight: 100;
     src: local("Neue Machina Ultralight"), url("./woff2/NeueMachina-Ultralight.woff2") format("woff2");
 }
+
+/* 헤더 전용 — PP Neue Machina Plain Regular (잉크트랩 없는 버전) */
+@font-face {
+    font-family: "Neue Machina Plain";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url("./woff2/NeueMachinaPlain-Regular.woff2") format("woff2");
+}
+@font-face {
+    font-family: "Neue Machina Plain";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 200;
+    src: url("./woff2/NeueMachinaPlain-Light.woff2") format("woff2");
+}
