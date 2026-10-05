@@ -18,7 +18,11 @@ export default function MainFeatures({
   headline = '티켓은 판매 전에 AI가 먼저 검증해요',
   desc = '위조 티켓과 동일 티켓의 중복 등록으로 사기 위험이 발생하는 문제를 해결하기 위해 판매자가 예매 내역을 등록하면 AI가 위조·중복 여부를 자동 검증하도록 했습니다. 검증을 통과한 티켓만 판매할 수 있도록 해 거래 전 사기를 사전에 차단했습니다.',
 }) {
-  const [isViewportMobile, setIsViewportMobile] = useState(false)
+  // 처음부터 현재 화면 크기로 시작 — useState(false)로 시작하면 모바일에서 마운트 직후 한 번 더
+  // 리렌더되면서 className이 덮어써져, ScrollFadeImages가 붙인 페이드 클래스가 사라집니다.
+  const [isViewportMobile, setIsViewportMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 1040px)').matches
+  )
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 1040px)')

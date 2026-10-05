@@ -13,7 +13,10 @@ export default function ProjectSummarySection({
   role = '리서치,\nUIUX디자인,\n프로토타입,\n사용성 테스트',
   tools = 'Figma,\nFigjam,\nFigmaMake,\nClaude,\nLovable',
 }) {
-  const [isViewportTablet, setIsViewportTablet] = useState(false)
+  // 처음부터 현재 화면 크기로 시작(마운트 직후 리렌더로 페이드 클래스가 지워지는 것 방지)
+  const [isViewportTablet, setIsViewportTablet] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 1440px)').matches
+  )
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 1440px)')
