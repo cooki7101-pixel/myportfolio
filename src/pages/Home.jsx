@@ -244,7 +244,7 @@ export default function Home({ loadingFinished = false }) {
             <span className="home__hero-text-split">YEONSU</span>
           </p>
         </div>
-        <img src={`${import.meta.env.BASE_URL}assets/home/image-me.svg`} alt="YEONSU" className="home__hero-img-me" />
+        <img src={`${import.meta.env.BASE_URL}assets/home/image-me-fixed.svg`} alt="YEONSU" className="home__hero-img-me" />
 
 
         {/* YEONSU 텍스트(font-size)와 me 이미지(width)는 min(100vw,1920px)/1920px
