@@ -105,10 +105,15 @@
   overflow: hidden;
   width: 100%;
   height: 640px;
+  /* flex 가운데 정렬: 글자가 박스보다 넓어져도(약 1333px 이하 화면) 좌우로 똑같이 넘쳐서 항상 가운데에 옵니다.
+     예전엔 width:calc(100% - 80px) + margin:auto라서 넘칠 때 왼쪽 끝에 붙은 채 오른쪽으로 밀려 U가 잘렸습니다. */
+  display: flex;
+  justify-content: center;
 }
 .home__hero-text {
-  width: calc(100% - 80px);
-  margin: 0 auto;
+  flex: none;
+  width: auto;
+  margin: 0;
   font-family: "PP Neue Machina";
   font-weight: 400;
   font-size: calc(465px * var(--k19));
@@ -120,14 +125,29 @@
   color: #121212;
 }
 
-.home__hero-img-me {
-  width: calc(min(100vw, 1920px) * 0.984375);
+.home__hero-img-me-wrap {
+  /* me 이미지를 감싸는 "자리" 박스 — 높이 0짜리 가로 띠를 이미지 중심 높이(top)에 두고,
+     flex 가운데 정렬로 이미지를 가로·세로 정확히 가운데 놓습니다.
+     transform/translate/margin을 전혀 쓰지 않아서(GSAP이 건드릴 값이 없어서)
+     창 크기 변경·회전·늦은 로드 후에도 위치가 절대 틀어지지 않습니다.
+     GSAP 모션(크기·투명도·블러)은 안쪽 img에만 걸립니다. */
   position: absolute;
-  top: calc(var(--off) + var(--r) * 8px * 82);
-  left: 50%;
+  top: calc(var(--off) + var(--r) * 8px * 82); /* ← 이미지 "중심" 높이 */
+  left: 0;
+  width: 100%;
+  height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+.home__hero-img-me {
+  /* 이미지 너비(--img-w). 태블릿은 아래 @media에서 값만 바꿉니다 */
+  --img-w: calc(min(100vw, 1920px) * 0.984375);
+  flex: none;
+  width: var(--img-w);
   aspect-ratio: 1920 / 1191;
   height: auto;
-  translate: -50% -50%;
 }
 
 .home__hero-desc {
@@ -138,7 +158,10 @@
   font-size: calc(16px * var(--k19));
   line-height: 1.32;
   position: absolute;
-  top: calc(100vh - 50px);
+  /* 100vh(화면 높이) 기준이면 기기·창 높이마다 desc 위치가 달라져서(아이패드 가로 등) YEONSU·이미지와 간격이 어긋났습니다.
+     다른 hero 요소와 같은 기준(헤더 아래 고정점 + 화면 폭 비율)으로 위치를 잡습니다.
+     1030px = 1920×1080 화면에서 예전 위치(100vh - 50px)와 같은 값. 숫자를 키우면 아래로 */
+  top: calc(var(--off) + var(--r) * 1030px);
   transform: translateY(-100%);
   left: calc(40px * var(--k19));
 }
@@ -165,13 +188,15 @@
     font-size: calc(13px * var(--k11));
   }
   .home__hero-img-me {
-    width: calc(120% - 10px);
-    top: calc(var(--off) + var(--s) * 430.8px);
+    --img-w: calc(120% - 10px);
+  }
+  .home__hero-img-me-wrap {
+    top: calc(var(--off) + var(--s) * 430.8px); /* 이미지 중심 높이 */
   }
   .home__hero-text-wrap {
     top: calc(var(--off) + var(--s) * 495px);
-    /* YEONSU 가로 위치(태블릿): 48.2%에서 오른쪽으로 치우쳐 보여 47.7%로 — 숫자를 줄이면 왼쪽, 키우면 오른쪽 */
-    left: 47.7%;
+    /* YEONSU 가로 위치(태블릿): 50%가 화면 정중앙(글자 뒤 자간 보정 포함) — 줄이면 왼쪽, 키우면 오른쪽 */
+    left: 50%;
     height: calc(640px * var(--r));
   }
   .home__hero > .home__product_design_box {
@@ -213,7 +238,7 @@
   }
 
   .home__hero > .home__hero-text-wrap,
-  .home__hero > .home__hero-img-me,
+  .home__hero > .home__hero-img-me-wrap,
   .home__hero > .home__product_design_box,
   .home__hero > .home__department_of_visual_design_box,
   .home__hero > .home__skills_box {
