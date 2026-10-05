@@ -170,7 +170,8 @@
   }
   .home__hero-text-wrap {
     top: calc(var(--off) + var(--s) * 495px);
-    left: 48.2%;
+    /* YEONSU 가로 위치(태블릿): 48.2%에서 오른쪽으로 치우쳐 보여 47.7%로 — 숫자를 줄이면 왼쪽, 키우면 오른쪽 */
+    left: 47.7%;
     height: calc(640px * var(--r));
   }
   .home__hero > .home__product_design_box {
