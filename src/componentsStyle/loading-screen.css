@@ -37,6 +37,9 @@
      로드돼 크기가 바뀌어도 중심은 그대로입니다. */
   position: absolute;
   top: 50%;
+  /* 배경은 가장 큰 화면 높이(100lvh)까지 덮지만, 숫자는 "지금 실제로 보이는" 화면(dvh)의 정중앙에 둡니다 —
+     50%(=lvh 기준)면 모바일에서 주소창이 보일 때 숫자가 살짝 아래로 내려가 보였습니다. */
+  top: 50dvh;
   left: 50%;
   transform: translate(-50%, -50%);
   width: max-content;
