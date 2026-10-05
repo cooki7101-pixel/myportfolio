@@ -336,7 +336,9 @@
   .home__hero-mobile-desc {
     position: absolute;
     top: 690px;
-    left: 17px;
+    /* 이 박스(.home__hero-mobile-stage)는 화면 폭에 맞춰 scale()로 줄어들어서 그냥 17px이면 실제로는 17px보다 작게 보입니다 —
+       줄어든 비율(--m487)의 역수(--u487)를 곱해서 화면에서 항상 정확히 17px 떨어지게 합니다. */
+    left: calc(17px * var(--u487));
     margin: 0;
     width: 324px;
     color: #333;

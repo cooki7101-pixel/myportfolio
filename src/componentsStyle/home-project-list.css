@@ -221,7 +221,7 @@
   /* Figma의 모바일 프레임은 위에서 쓴 top/bottom-60 중앙 정렬 박스가 아니라,
      콘텐츠가 하단에 고정된 pt-142/pb-80 구조입니다. */
   .home-project-list {
-    --work-pad-top: 120px; /* 모바일 위 간격 */
+    --work-pad-top: 100px; /* 모바일 위 간격 */
       --work-pad-bottom: 80px; /* ▼ 아래 간격(px): 카드 아래 최소 간격 */
 
   }
@@ -234,6 +234,7 @@
 
   .home-project-list__grid {
     padding: 0 17px;
+    gap: 20px;
   }
 
   .home-project-list__card {

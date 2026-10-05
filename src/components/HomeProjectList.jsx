@@ -73,6 +73,11 @@ const ENTER_FROM = 0.65
 const ENTER_FROM_TABLET = 0.33
 // 모바일(681px 이하)에서 카드 행이 들어오기 시작하는 가로 위치(화면 너비 기준) — 0.7 = 왼쪽에서 70% 지점
 const ENTER_FROM_MOBILE = 0.0
+// 모바일: 카드가 끝까지 이동한 뒤 오른쪽 여백을 CSS 기본값(17px)보다 얼마나 더 줄지/늘릴지(px). 양수 = 여백이 더 커짐, 0 = 17px 그대로
+const MOBILE_END_EXTRA = 0
+// 모바일: 전체 고정 스크롤 구간 중 앞쪽 이 비율 안에서 카드 이동을 끝내고, 남은 구간은 마지막 위치에서 멈춰 있습니다.
+// 1 = 스크롤이 끝나는 순간에야 마지막 위치에 도착 / 0.9 = 90% 지점에 도착(숫자↓ = 더 일찍 도착)
+const MOBILE_MOVE_RATIO = 0.9
 
 // footer: 고정 영역 바로 아래에 같이 붙여 보여줄 요소(푸터). 가로 스크롤하는 동안 카드 아래에 푸터가 바로 이어 보입니다.
 export default function HomeProjectList({ projects = defaultProjects, id, footer = null }) {
@@ -93,6 +98,7 @@ export default function HomeProjectList({ projects = defaultProjects, id, footer
     let progressFloor = 0
     let scrollSpan = 1
     let pinTop = 0
+    let moveSpan = 1
     let rafId = null
 
     const measure = () => {
@@ -102,7 +108,8 @@ export default function HomeProjectList({ projects = defaultProjects, id, footer
       const naturalStartX = track.getBoundingClientRect().left
       // 끝 위치: 카드 행이 화면을 넘치면 마지막 카드(+오른쪽 패딩)까지 보이도록 그만큼 왼쪽으로,
       // 안 넘치면 원래 자리에서 멈춥니다.
-      const overflow = Math.max(naturalStartX + track.scrollWidth - viewportWidth, 0)
+      const endExtra = viewportWidth <= 681 ? MOBILE_END_EXTRA : 0
+      const overflow = Math.max(naturalStartX + track.scrollWidth - viewportWidth + endExtra, 0)
       endTranslate = -overflow
       // 시작 위치: 카드 행의 왼쪽 끝이 화면 오른쪽 바깥(화면 너비 지점)에 있는 상태 —
       // 스크롤하면 오른쪽에서 가로로 들어옵니다.
@@ -114,6 +121,7 @@ export default function HomeProjectList({ projects = defaultProjects, id, footer
       progressFloor = 0
       // 고정(sticky) 상태로 스크롤해야 하는 거리 = 실제 이동 거리.
       scrollSpan = Math.max((startTranslate - endTranslate) * (1 - progressFloor), 1)
+      moveSpan = Math.max(scrollSpan * (isMobile ? MOBILE_MOVE_RATIO : 1), 1)
       // 고정 영역 전체(WORK 블록 + 아래 붙은 푸터) 높이 — 섹션 높이는 이 높이 + 이동 거리입니다.
       const stickyHeight = sticky.offsetHeight
       section.style.height = `${stickyHeight + scrollSpan}px`
@@ -128,7 +136,7 @@ export default function HomeProjectList({ projects = defaultProjects, id, footer
       const runway = startTranslate - endTranslate
       const rect = section.getBoundingClientRect()
       // 고정이 시작되는 순간(rect.top === pinTop)부터 scrollSpan만큼 스크롤하는 동안 0→1
-      const t = Math.min(Math.max((pinTop - rect.top) / scrollSpan, 0), 1)
+      const t = Math.min(Math.max((pinTop - rect.top) / moveSpan, 0), 1)
       const progress = progressFloor + (1 - progressFloor) * t
       track.style.transform = `translateX(${startTranslate - progress * runway}px)`
     }

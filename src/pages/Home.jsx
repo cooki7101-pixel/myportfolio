@@ -183,7 +183,8 @@ export default function Home({ loadingFinished = false }) {
         stagger: 0.18,
         ease: 'power3.out',
         onComplete: () => gsap.set(descLines, { clearProps: 'transform' }),
-      }, 'boxesIn+=1')
+      // ▼ [모바일 desc 등장 시점] boxesIn 기준 몇 초 뒤에 시작할지. 숫자를 줄이면 더 빨리(0이면 글래스박스와 동시, 음수면 그보다 먼저)
+      }, isMobileHero ? 'boxesIn+=0.3' : 'boxesIn+=1')
       // 박스마다 0.35초 간격으로 차례로(기존 stagger와 동일) 등장
       glassParts.forEach((part, i) => {
         // 데스크탑 3개 + 모바일 3개가 같이 잡히므로 i % 3으로 각 세트 안에서 차례로 등장
