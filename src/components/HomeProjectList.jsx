@@ -69,8 +69,10 @@ function HomeProjectCard({ tags, title, description, to, image, video }) {
 
 // 카드 행이 들어오기 시작하는 가로 위치(화면 너비 기준): 0.8 = 화면 왼쪽에서 80% 지점 / 1 = 화면 오른쪽 끝 바깥
 const ENTER_FROM = 0.65
+// 태블릿(682~1100px)에서 카드 행이 들어오기 시작하는 가로 위치 — 숫자↓ = 더 왼쪽(화면 안쪽)에서 시작, 숫자↑ = 더 오른쪽(바깥)에서 시작
+const ENTER_FROM_TABLET = 0.33
 // 모바일(681px 이하)에서 카드 행이 들어오기 시작하는 가로 위치(화면 너비 기준) — 0.7 = 왼쪽에서 70% 지점
-const ENTER_FROM_MOBILE = 0.7
+const ENTER_FROM_MOBILE = 0.0
 
 // footer: 고정 영역 바로 아래에 같이 붙여 보여줄 요소(푸터). 가로 스크롤하는 동안 카드 아래에 푸터가 바로 이어 보입니다.
 export default function HomeProjectList({ projects = defaultProjects, id, footer = null }) {
@@ -105,7 +107,9 @@ export default function HomeProjectList({ projects = defaultProjects, id, footer
       // 시작 위치: 카드 행의 왼쪽 끝이 화면 오른쪽 바깥(화면 너비 지점)에 있는 상태 —
       // 스크롤하면 오른쪽에서 가로로 들어옵니다.
       const isMobile = viewportWidth <= 681
-      startTranslate = Math.max(viewportWidth * (isMobile ? ENTER_FROM_MOBILE : ENTER_FROM) - naturalStartX, endTranslate)
+      const isTablet = !isMobile && viewportWidth <= 1100
+      const enterFrom = isMobile ? ENTER_FROM_MOBILE : isTablet ? ENTER_FROM_TABLET : ENTER_FROM
+      startTranslate = Math.max(viewportWidth * enterFrom - naturalStartX, endTranslate)
       // 모바일(681px 이하)은 이동 구간의 앞부분(floor)을 건너뛰고 시작합니다(값↑ = 처음부터 더 들어와 있음).
       progressFloor = 0
       // 고정(sticky) 상태로 스크롤해야 하는 거리 = 실제 이동 거리.

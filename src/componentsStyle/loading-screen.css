@@ -56,6 +56,8 @@
 /* 로딩 중에는 hero(YEONSU 등 오른쪽 밖에서 대기 중인 모션 요소)를 아예 안 그립니다 —
    모바일에서 로딩 화면이 덮지 못한 가장자리로 비쳐 보이는 것을 막습니다.
    로딩 화면이 사라지는 순간(is-loading 해제) 바로 모션이 시작됩니다. */
-.site-shell.is-loading .home__hero {
+.site-shell.is-loading .home__hero,
+.site-shell.is-loading .home-project-list,
+.site-shell.is-loading .home-footer {
   visibility: hidden;
 }
