@@ -10,6 +10,7 @@ import UtGroupKakaoT from '../../components/UtGroupKakaoT'
 import SectionIntro from '../../components/SectionIntro'
 import FooterMore from '../../components/FooterMore'
 import ScrollFadeImages from '../../components/ScrollFadeImages'
+import SectionIndicator from '../../components/SectionIndicator'
 import '../../componentsStyle/project-kakao-t.css'
 
 // "MORE PROJECTS" 푸터는 (이 페이지 자신을 뺀) 나머지 두 케이스 스터디를 보여줌.
@@ -347,6 +348,7 @@ export default function ProjectKakaoT() {
 
       <FooterMore projects={moreProjects} />
       <ScrollFadeImages selector=".project-kakao-t__body" />
+      <SectionIndicator selector=".project-kakao-t__body" labels={['OVERVIEW', 'DISCOVER', 'DEFINE', 'DEVELOP', 'DELIVER', 'USABILITY TEST']} />
     </article>
   )
 }

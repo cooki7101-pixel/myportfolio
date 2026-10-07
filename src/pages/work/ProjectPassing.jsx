@@ -11,6 +11,7 @@ import WireframeGroup from '../../components/WireframeGroup'
 import UtGroupPassing from '../../components/UtGroupPassing'
 import FooterMore from '../../components/FooterMore'
 import ScrollFadeImages from '../../components/ScrollFadeImages'
+import SectionIndicator from '../../components/SectionIndicator'
 import '../../componentsStyle/project-passing.css'
 
 // "MORE PROJECTS" 푸터에는 이 페이지 자신을 제외한 나머지 두 개의 케이스 스터디를 표시합니다.
@@ -237,6 +238,7 @@ export default function ProjectPassing() {
 
       <FooterMore projects={moreProjects} />
       <ScrollFadeImages selector=".project-passing__body" />
+      <SectionIndicator selector=".project-passing__body" labels={['OVERVIEW', 'EMPATHIZE', 'DEFINE', 'IDEATE', 'PROTOTYPE', 'USABILITY TEST']} />
     </article>
   )
 }

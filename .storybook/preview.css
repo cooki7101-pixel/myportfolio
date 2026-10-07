@@ -1,0 +1,6 @@
+/* 사이트와 동일한 배경색 */
+body,
+.sb-show-main.sb-main-fullscreen,
+.docs-story {
+  background: #c9d2e7 !important;
+}

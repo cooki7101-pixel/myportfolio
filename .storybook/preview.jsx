@@ -3,6 +3,7 @@ import '../src/styles/variables.css'
 import '../src/styles/global.css'
 import '../src/styles/layout.css'
 import '../src/styles/components.css'
+import './preview.css'
 
 /** @type { import('@storybook/react-vite').Preview } */
 const preview = {

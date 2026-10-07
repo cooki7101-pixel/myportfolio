@@ -1,0 +1,37 @@
+.section-indicator {
+  position: fixed;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.section-indicator--visible { opacity: 1; pointer-events: auto; }
+.section-indicator__item {
+  all: unset;
+  cursor: pointer;
+  font-family: 'Neue Machina', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #a6a6a6;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+.section-indicator__item--active { color: #333; }
+/* 태블릿: 좌측 고정 + 좌측 정렬 */
+@media (max-width: 1440px) {
+  .section-indicator { left: 24px; right: auto; align-items: flex-start; }
+  .section-indicator__item { font-size: 16px; text-align: left; }
+}
+/* 모바일 */
+@media (max-width: 681px) {
+  .section-indicator { left: 12px; gap: 4px; }
+  .section-indicator__item { font-size: 14px; }
+}
