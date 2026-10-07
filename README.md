@@ -40,7 +40,7 @@ React에서도 같은 구조로 컴포넌트를 구현해 디자인과 실제 �
 
 디자인에 대한 이야기나 새로운 만남은 언제든 환영합니다. 편하게 연락 주세요 :)
 
-📄 [Resume](https://cooki7101-pixel.github.io/myportfolio/assets/resume.pdf) · ✉️ cooki7101@gmail.com
+✉️ cooki7101@gmail.com
 
 ```bash
 npm install
