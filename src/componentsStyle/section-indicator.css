@@ -30,8 +30,7 @@
   .section-indicator { left: 24px; right: auto; align-items: flex-start; }
   .section-indicator__item { font-size: 16px; text-align: left; }
 }
-/* 모바일 */
+/* 모바일: 인디케이터 숨김 */
 @media (max-width: 681px) {
-  .section-indicator { left: 12px; gap: 4px; }
-  .section-indicator__item { font-size: 14px; }
+  .section-indicator { display: none; }
 }

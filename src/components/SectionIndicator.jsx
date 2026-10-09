@@ -10,6 +10,17 @@ export default function SectionIndicator({ selector, labels }) {
   const [active, setActive] = useState(0)
   const [visible, setVisible] = useState(false)
   const targetsRef = useRef([])
+  // 모바일(≤721px)에서는 인디케이터를 아예 그리지 않습니다.
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 721px)').matches
+  )
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 721px)')
+    const onChange = (e) => setIsMobile(e.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
 
   useEffect(() => {
     const container = document.querySelector(selector)
@@ -50,6 +61,8 @@ export default function SectionIndicator({ selector, labels }) {
     const top = el.getBoundingClientRect().top + window.scrollY - 80
     window.scrollTo({ top, behavior: 'smooth' })
   }
+
+  if (isMobile) return null
 
   return (
     <nav
