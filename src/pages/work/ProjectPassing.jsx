@@ -219,16 +219,21 @@ export default function ProjectPassing() {
           </div>
           <div className="project-passing__takeaways-list">
             <div className="project-passing__takeaway">
-              <div className="project-passing__takeaway-row"><span>01</span><strong>요청 뒤의 진짜 문제 찾기</strong></div>
-              <p>사용자가 말한 요청을 그대로 만들지 않고, 그 요청이 가리키는 진짜 불안을 찾아내는 법을 배웠습니다.</p>
+              <div className="project-passing__takeaway-row"><span>01</span><strong>사용자 의견 너머의 진짜 문제 찾기</strong></div>
+              <p>리서치로 세운 가설을 확인하기 위해 인터뷰를 설계했습니다. 인터뷰에서는 다양한 불편이 쏟아졌지만 모두 해결하려 
+                하지 않고 "가설을 검증하는 내용인가"를 
+                기준으로 걸러냈습니다. 그 결과 프로젝트 방향을 처음 정의한 문제에 일관되게 유지할 수 있었습니다.</p>
             </div>
             <div className="project-passing__takeaway">
-              <div className="project-passing__takeaway-row"><span>02</span><strong>안전과 이탈 없음 사이의 균형</strong></div>
-              <p>안전장치를 더하는 것과 사용자를 지치게 하지 않는 것 사이에서 균형을 잡는 게 진짜 설계라는 걸 배웠습니다.</p>
+              <div className="project-passing__takeaway-row"><span>02</span><strong>AI 기술을 활용한 문제 해결 방식 탐색</strong></div>
+              <p>검증 단계가 늘면 이탈이 생기기 때문에 판단은 AI가 하고 사용자는 결과만 확인하는 흐름으로 줄였습니다. 
+                사용성 테스트에서 SUS 86.3점으로 신뢰와 사용 편의를 함께 확인했습니다.</p>
             </div>
             <div className="project-passing__takeaway">
               <div className="project-passing__takeaway-row"><span>03</span><strong>기술적 한계 안에서 설계하기</strong></div>
-              <p>예매처 API가 공개되지 않아 할 수 없는 일이 많았습니다. 좋은 디자인은 그 한계를 인정하고 그 안에서 최선의 답을 찾는 것이라는 걸 배웠습니다.</p>
+              <p>사용자 편의뿐 아니라 기술적 구현 가능성, 보안, 정책적 제약을 함께 검토했습니다. 
+                예매처 API가 공개되지 않아 자동 연동이 불가능했기 때문에 X 환경에서 바로 사용할 수 있는 방식과 이미지 검증 기능을 
+                대안으로 설계해 주어진 조건 안에서 실현 가능한 해법을 제시했습니다.</p>
             </div>
           </div>
         </div>

@@ -329,16 +329,21 @@ export default function ProjectKakaoT() {
           </div>
           <div className="project-kakao-t__takeaways-list">
             <div className="project-kakao-t__takeaway">
-              <div className="project-kakao-t__takeaway-row"><span>01</span><strong>접근성은 크기의 문제가 아니라 회복의 문제다.</strong></div>
-              <p>글씨와 버튼을 키우면 될 거라 생각했지만, 알려드리면 잘 쓰시다가도 혼자 실패하는 순간 모든 걸 포기하시는 걸 봤습니다. 접근성은 보이는 크기가 아니라 실패했을 때 돌아올 길이 있느냐의 문제였습니다.</p>
+              <div className="project-kakao-t__takeaway-row"><span>01</span><strong>기존 서비스의 정체성과 시니어 접근성의 균형</strong></div>
+              <p>시니어 전용 앱을 별도로 만들면 기존 카카오T 사용자에게 익숙한 이용 경험과 서비스의 일관성이 끊길 수 있다고 판단했습니다. 
+                이에 기존 앱 안에 간단 모드를 제공해 시니어에게는 쉬운 사용 환경을 제공하고 기존 사용자에게는 익숙한 서비스 경험을 유지하고자 했습니다.</p>
             </div>
             <div className="project-kakao-t__takeaway">
-              <div className="project-kakao-t__takeaway-row"><span>02</span><strong>'평균 사용자'를 세우는 순간 가장 필요한 사용자가 배제된다.</strong></div>
-              <p>평균적인 시니어를 기준으로 잡았다면 훨씬 만들기 쉬운 안이 나왔을 겁니다. 조작 자체가 어려운 사용자까지 데려가겠다고 타깃을 좁힌 결정이 해법을 화면 개선에서 방식 전환으로 바꿨습니다.</p>
+              <div className="project-kakao-t__takeaway-row"><span>02</span><strong>기존 입력 방식에서 사용자 중심의 인터랙션으로 전환</strong></div>
+              <p>기존 카카오T는 사용자가 타이핑과 지도 조작이라는 앱의 방식에 맞춰야 했습니다. 
+                하지만 시니어 사용자는 글자보다 말을 편해한다는 점에서 출발해 입력을 말로 대신하는 AI 보이스 에이전트를 설계하여 
+                사용자를 기술에 맞추는 대신 기술이 사용자의 방식에 맞추도록 했습니다.</p>
             </div>
             <div className="project-kakao-t__takeaway">
-              <div className="project-kakao-t__takeaway-row"><span>03</span><strong>오류 화면은 기능이 아니라 태도를 설계하는 자리다.</strong></div>
-              <p>같은 실패라도 "다시 시도하세요"와 "지금 비가 와서 택시가 모두 나가 있어요"는 사용자가 자신을 대하는 방식을 바꿉니다. UX 라이팅이 사용자의 자책을 막을 수 있다는 것을 이 프로젝트에서 배웠습니다.</p>
+              <div className="project-kakao-t__takeaway-row"><span>03</span><strong>팀원 간 의견 조율과 일관된 디자인 기준 정립</strong></div>
+              <p>팀 내 의견이 갈릴 때마다 "시니어가 이 기능 없이도 혼자 빠져나올 수 있는가"라는 하나의 기준으로 판단했습니다. 
+                크레이지 8과 실시간 와이어프레임으로 팀원과 논의를 빠르게 좁히고, 디자인 시스템을 체계화해 팀원 모두가 
+                같은 기준으로 일관된 UI를 만들 수 있게 했습니다.</p>
             </div>
           </div>
         </div>
